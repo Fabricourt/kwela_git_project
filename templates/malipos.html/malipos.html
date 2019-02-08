@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w3-content" style="max-width:700px">
+            
+<h1 class="w3-center w3-text-white">Malipo List</h1>
+<div class="w3-container w3-margin">
+        <div class="w3-margin w3-card w3-hover-shadow w3-topbar w3-border-green  w3-white">
+            <div class="w3-margin">
+
+                {% if malipo-list %}
+                {% if user=user %}
+                <ol>
+
+                {% for malipo in malipo-list %}
+                    <li>
+                    <a href="{{ malipo.get_absolute_url }}">
+                    <p>{{ malipo }} </p>
+                    </a>
+                    </li>
+                {% endfor %}
+
+                </ol>
+                {% else %}
+                <p>There are no locations available.</p>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+</div>
+{% endblock %}

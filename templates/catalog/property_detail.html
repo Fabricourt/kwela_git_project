@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w3-content" style="max-width:700px;">
+  <h1 class="w3-center w3-text-white">Title: {{ property.title }}</h1>
+  <div class="w3-card w3-hover-shadow  w3-theme-l4 ">
+    <div class="container w3-theme-l4 w3-topbar w3-border-green">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb w3-theme-l4">
+            <li class="breadcrumb-item">
+              <a href="{% url 'propertys' %}">
+                <i class=" "></i> Back to Propertys</a>
+            </li>
+            <li class="breadcrumb-item active"> Property_detail</li>
+          </ol>
+        </nav>
+    </div>
+    <div class="w3-margin">
+      <p><strong>Owner:</strong> <a href="">{{ property.owner }}</a></p> <!-- owner detail link not yet defined -->
+      <p><strong>Buyer:</strong> <a href="">{{ property.buyer }}</a></p> <!-- buyer detail link not yet defined -->
+      <p><strong>Summary:</strong> {{ property.summary|safe }}</p>
+      <p><strong>Listing:</strong> {{ property.listing }}</p>  
+      <p><strong>Property Location:</strong> {% for location in property.location.all %} {{ location }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+      <p><strong>Type of property:</strong> {% for propertytype in property.propertytype.all %} {{ propertytype }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+      <p><strong>Mode of payment:</strong> {% for paymenttype in property.paymenttype.all %} {{ paymenttype }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+      <h4 class="w3-center">Property Instance</h4>
+      <!---
+      {% for copy in property.propertyinstance_set.all %}
+        <hr>
+        <p class="w3-green w3-button {% if copy.status == 'a' %}text-success{% elif copy.status == 'r' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+        {% if copy.status != 'a' %}
+          <p><strong>Due to be paid by when:</strong> {{copy.paymentdue_when}}</p>
+      {% endif %}
+        <p><strong>Client Name:</strong> {{copy.debtor}}</p>
+        <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+      {% endfor %}
+      --->
+    </div>
+  </div>
+</div>
+<br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+{% endblock %}

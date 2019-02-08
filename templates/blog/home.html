@@ -1,0 +1,177 @@
+{% extends "blog/base.html" %}
+{% block title %}  | Blog {% endblock %}
+{% block content %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
+<style>
+
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+    img:hover {
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+    
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    .w3-lobster {
+      font-family: "Lobster", serif;
+    }
+
+ 
+    </style>
+
+
+
+<body class="w3-light-grey">
+
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+        
+          <h6 class="display-4 w3-lobster w3-xxlarge ">Welcome {{ user.username|capfirst }}</h6>
+         
+          <p class="lead"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+    
+    
+    <!-- w3-content defines a container for fixed size centered content, 
+    and is wrapped around the whole page content, except for the footer in this example -->
+    <div class="w3-content" style="max-width:1400px">
+    
+    <!-- Header -->
+    
+    
+
+    <!-- Grid -->
+    <div class="w3-row">
+    
+    <!-- Blog entries -->
+ 
+    <div class="w3-col l8 s12">
+      <!-- Blog entry -->
+   
+      {% for post in posts %}
+ 
+      <div class="w3-card-4 w3-margin  w3-hover-shadow w3-white">
+        <div class="w3-2019-princess-blue">
+            <header class="w3-margin w3-padding"><b><h2 class="article-title w3-2019-princess-blue">{{ post.title}}</h2></b></header>
+        </div>
+          
+
+        
+        <div class="w3-container">
+          <div class="article-metadata">
+              <h5><strong><a class="mr-2" href="#">{{ post.author }}</a></strong></h5>
+              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            </div>
+        </div>
+        <div class="w3-container">
+       
+            <article class="media content-section w3-large  w3-margin">
+     
+              <a  href="{% url 'post-detail' post.id %}" style="text-decoration:none;" >
+                <img class=" article-img w3-margin w3-border" src="{{ post.author.profile.image.url }}" style="width:80px; padding:6px;"></a>
+              <div class="media-body">
+                <p class="article-content">{{ post.content|slice:"255" |safe }}</p>
+              </div>
+            </article>
+            
+          <div class="w3-row">
+            <div class="w3-col m8 s12">
+              <p><button class="w3-button w3-padding-large w3-green w3-hover-orange w3-border"><a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;"><b>READ MORE »</b></a></button></p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+       <hr class="">
+      
+      {% endfor %}
+     
+     
+  
+    </div>
+    <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:50px;">
+    
+    <!-- Introduction menu -->
+    <div class="w3-col l4">
+      <!-- About Card -->
+
+      
+      <div class="w3-card w3-media w3-margin w3-margin-top">
+        
+          <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:50px;">
+
+        <div class="w3-container w3-white">
+           
+        </div>
+      </div>
+  
+      <!-- Posts -->
+      <div class="w3-card w3-margin">
+        <div class="w3-container w3-padding">
+          <h4>In the The Blog</h4>
+        </div>
+        
+      {% for post in posts %}
+        <ul class="w3-ul w3-hoverable w3-white">
+          <li class="w3-padding-16">
+              <p class="article-title w3-text-blue">
+                <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:30px;">
+                <span class="w3-text-black">{{ post.author }}</span> {{ post.title}} </p>
+          </li> 
+        </ul>
+      {% endfor %}
+      </div>
+    
+     
+     
+      
+    <!-- END Introduction Menu -->
+    </div>
+    
+    <!-- END GRID -->
+    </div><br>
+    
+    <!-- END w3-content -->
+    </div>
+    
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+      <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+      <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
+    
+  </body>
+
+   
+  <!-- END Introd-->
+    
+{% endblock content %}
+

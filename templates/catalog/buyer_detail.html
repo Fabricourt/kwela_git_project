@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block content %}
+
+<div class="w3-content" style="max-width:700px">
+
+<div class="w3-container w3-margin ">
+    <div class=" w3-card   w3-hover-shadow  w3-white">
+            <div class="container w3-theme-l4 w3-topbar w3-border-green">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb w3-theme-l4">
+                        <li class="breadcrumb-item">
+                          <a href="{% url 'buyers' %}">
+                            <i class=" "></i> Back to Buyers</a>
+                        </li>
+                        <li class="breadcrumb-item active"> Buyer_detail</li>
+                      </ol>
+                    </nav>
+            </div>
+        <div class="w3-margin w3-card ">
+            <header class="w3-container w3-light-grey">
+                    <h4 class="w3-padding" >{{buyer.first_name}} {{buyer.last_name}}
+                        <span class="w3-text-green w3-text-right-align">  Id No:{{buyer.identity_number}}</span></h4>
+
+            </header>
+            <div class="w3-container">
+               
+                <img src={{buyer.photo.url}} alt=" " class="w3-padding img-main img-fluid mb-3 w3-left  w3-margin-right" style="width:200px">
+           
+                <p class="w3-responsive"><strong>Client Profile</strong>:-{{buyer.description | safe}} </p>
+                
+            <ol>
+                <hr class="w3-green">
+                <li><strong>Date of birth:-</strong>{{buyer.date_of_birth}}</li>
+                <li><strong>Date of death:-</strong>{{buyer.date_of_death}}</li>
+                <li><strong>Date of registration:-</strong>{{buyer.Registration_date}}</li>
+                <li><strong>Date deposit paid:-</strong>{{buyer.Deposit_date}}</li>
+                <hr class="w3-green">
+                <li><strong>Amount agreed on as buying price:-</strong>KSH {{buyer.amount_agreed_on}}</li>
+                <li><strong>deposit amount buyer paid:-</strong>KSH {{buyer.deposit_amount_paid}}</li>
+                <hr class="w3-green">
+                <li><strong>Payment completion date:-</strong>{{buyer.buying_date}}</li>
+                <li><strong>Date buyer agreed to pay next installment:-</strong>{{buyer.installment_date}}</p>
+                <hr class="w3-green">
+                <li><strong>Realtor assigned to this buyer:-</strong>{{buyer.realtor}}</li>
+                <li><strong>Owner of property being purchased:-</strong>{{buyer.owner}}</li>
+                <li><strong>property being purchased:-</strong>{{buyer.listing}}</li>
+            </ol>
+
+        
+
+
+
+            </div>
+            <button class="w3-button w3-block w3-dark-grey">
+                {{buyer.phone}}/
+                {{buyer.email}}
+            </button>
+        </div>
+    </div>
+  
+</div>
+
+<br /><br /><br /><br /><br /><br /><br />
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="w3-content" style="max-width:700px">
+
+
+        <div class="w3-margin w3-card   w3-hover-shadow w3-topbar w3-border-green  w3-white" style="background:#FFFAFA rgb(255,250,250);">
+          <h1 class="w3-center  ">Location List</h1>
+            <div class="w3-margin ">
+
+                {% if location_list %}
+                <ol>
+
+                {% for location in location_list %}
+                    <li>
+                    <a href="{{ location.get_absolute_url }}">
+                    <p>{{ location }} </p>
+                    </a>
+                    </li>
+                {% endfor %}
+
+                </ol>
+                {% else %}
+                <p>There are no locations available.</p>
+                {% endif %}
+
+            </div>
+
+            {% block pagination %}
+  {% if is_paginated %}
+    <div class="pagination w3-margin w3-padding-64">
+    <p>
+      <span class="page-links">
+        {% if page_obj.has_previous %}
+          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="page-current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+      </span>
+    </p>
+    </div>
+  {% endif %}
+{% endblock %} 
+        </div>
+
+        
+    </div>
+    
+{% endblock %}

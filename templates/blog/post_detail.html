@@ -1,0 +1,174 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
+<style>
+
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+    img:hover {
+      animation: shake 0.5s;
+      animation-iteration-count: infinite;
+    }
+    
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    .w3-lobster {
+      font-family: "Lobster", serif;
+    }
+
+  
+</style>
+
+<body class="w3-light-grey">
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+          
+          <!-- Breadcrumb -->
+  <section id="showcase-inner" class="py-5 text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <h1 class="display-4">{{ user.username }}</h1>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+<div class="w3-content">
+  <section id="bc" class="mt-3">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+           
+            <li class="breadcrumb-item">
+                <a href="{% url 'blog-home' %}">
+                    <button class="w3-button w3-green w3-hover-orange">Back To Blog</button></a>
+              </li>
+           
+          </ol>
+        </nav>
+      </div>
+    
+ 
+
+          
+          
+          <!-- w3-content defines a container for fixed size centered content, 
+          and is wrapped around the whole page content, except for the footer in this example -->
+          <div class="w3-content" style="max-width:1000px">
+
+          <!-- Grid -->
+          <div class="w3-row">
+          
+          <!-- Blog entries -->
+       
+          <div class="w3-col l8 s12">
+            <!-- Blog entry -->
+         
+            
+       
+            <article class="media content-section">
+              <img class=" w3-padding article-img w3-hover-grayscale" src="{{ object.author.profile.image.url }}" style="width:200px;">
+            
+              
+              <div class="media-body">
+        
+                    
+                  <div class="article-metadata">
+                      <div>
+                          <header>
+                            <h2 class="article-title w3-padding w3-2019-princess-blue">{{ object.title }}</h2>
+                          </header>
+                        </div>
+                    <a class="mr-2" href="#">{{ object.author }}</a>
+                    <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+                    {% if object.author == user %}
+                      <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                      </div>
+                    {% endif %}
+                  </div>
+               
+                  
+                  <p class="article-content">{{ object.content|safe }}</p>
+                </div>
+            </article>
+            
+          
+           
+           
+        
+          </div>
+       
+          
+          <!-- Introduction menu -->
+          <div class="w3-col l4">
+
+
+            <!-- In the Blog -->
+      
+            
+            <div class="w3-card w3-media w3-margin w3-margin-top">
+                <div class="w3-margin">
+                    <div class="fb-comments  w3-text-white w3-hover-shadow " data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="12"></div>
+                  </div>
+              
+              
+              </div>
+            </div>
+        
+          
+            </div>
+          
+           
+           
+       
+          </div>
+          
+          <!-- END GRID -->
+          </div><br>
+          
+          <!-- END w3-content -->
+          </div>
+          
+         
+        </body>
+      
+         
+        <!-- END Introd-->
+          
+      {% endblock content %}
+      
+      
+
