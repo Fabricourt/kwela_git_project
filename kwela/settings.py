@@ -250,3 +250,9 @@ CKEDITOR_CONFIGS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
