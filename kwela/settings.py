@@ -95,13 +95,12 @@ WSGI_APPLICATION = 'kwela.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-
 DATABASES = { 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kwela_prod',
-        'USER': 'dbadmin',
-        'PASSWORD': 'kamau2030',
+        'NAME': 'btredb',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
         'HOST': 'localhost'
     }
 }
