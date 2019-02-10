@@ -159,26 +159,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-
-# Email config
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-# Actual Gmail address env variable.
-#EMAIL_HOST_USER='pwagiatha3@gmail.com'
-# Actual Gmail password env variable.
-##EMAIL_USE_TLS=True
-
-#EMAIL_BACKEND = 'django.core.mail.backends.EmailBackend'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mfalme2030@gmail.com'
-EMAIL_HOST_PASSWORD = 'whyilovemywife'
-
-
-
 LOGIN_URL = 'login'
 
 CKEDITOR_CONFIGS = {
