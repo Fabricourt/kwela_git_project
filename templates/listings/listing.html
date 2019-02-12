@@ -5,6 +5,7 @@
 {% block title %} | {{ listing.title }} {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
@@ -19,9 +20,9 @@
 
   <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
-    <div class="container">
-      <nav>
-        <ol class="breadcrumb">
+    <div class="container ">
+      <nav >
+        <ol class="breadcrumb w3-flat-silver">
           <li class="breadcrumb-item">
             <a href="{% url 'index' %}">Home</a>
           </li>
@@ -39,8 +40,7 @@
 
   <!-- Listing -->
   <section id="listing" class="py-4">
-    <div class="container">
-      <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
+    <div class="container ">
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
@@ -91,46 +91,46 @@
             {% endif %}
           </div>
           <!-- Fields -->
-          <div class="row mb-5 fields">
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-money-bill-alt"></i> Asking Price:
-                  <span class="float-right">${{ listing.price | intcomma }}</span>
+          <div class="row mb-5 fields ">
+            <div class="col-md-6 ">
+              <ul class="list-group list-group-flush ">
+                <li class="list-group-item text-black">
+                  <i class="fas fa-money-bill-alt w3-brown"></i> Asking Price:
+                  <span class="float-right text-success">Kes{{ listing.price | intcomma }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Bedrooms:
-                  <span class="float-right">{{ listing.bedrooms }}</span>
+                <li class="list-group-item text-black">
+                  <i class="fa fa-road w3-text-black"></i> Roads:
+                  <span class="float-right text-success">{{ listing.roads}}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Bathrooms:
-                  <span class="float-right">{{ listing.bathrooms }}</span>
+                <li class="list-group-item text-black">
+                  <i class="fas fa-tint text-info"></i> Water:
+                  <span class="float-right text-success">{{ listing.water }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-car"></i> Garage:
-                  <span class="float-right">{{ listing.garage }}
+                <li class="list-group-item text-black">
+                  <i class="fa fa-lightbulb-o text-warning"></i> Electricity:
+                  <span class="float-right text-success">{{ listing.electricity }}
                   </span>
                 </li>
               </ul>
             </div>
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-th-large"></i> Square Feet:
-                  <span class="float-right">{{ listing.sqft }}</span>
+            <div class="col-md-6 w3-card w3-white">
+              <ul class="list-group list-group-flush  ">
+                <li class="list-group-item text-black">
+                  <i class="fas fa-th-large w3-text-brown"></i> Square Feet:
+                  <span class="float-right text-success">{{ listing.sqft }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-square"></i> Lot Size:
-                  <span class="float-right">{{ listing.lot_size }} Acres
+                <li class="list-group-item text-black">
+                  <i class="fas fa-square w3-text-brown"></i> Lot Size:
+                  <span class="float-right text-success">{{ listing.lot_size }} Acres
                   </span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-calendar"></i> Listing Date:
-                  <span class="float-right">{{ listing.list_date }}</span>
+                <li class="list-group-item text-black">
+                  <i class="fas fa-calendar text-primary"></i> Listing Date:
+                  <span class="float-right text-secondary">{{ listing.list_date }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Realtor:
-                  <span class="float-right">{{ listing.realtor }}
+                <li class="list-group-item text-black">
+                  <i class="fas fa-user text-danger"></i> Realtor:
+                  <span class="float-right text-success">{{ listing.realtor }}
                   </span>
                 </li>
 
@@ -140,9 +140,9 @@
           </div>
 
           <!-- Description -->
-          <div class="row mb-5">
-            <div class="col-md-12">
-                {{ listing.description }}
+          <div class="row mb-5 w3-white w3-margin w3-padding">
+            <div class="col-md-12 w3-padding w3-white">
+                {{ listing.description|safe }}
             </div>
           </div>
         </div>
