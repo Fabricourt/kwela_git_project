@@ -34,6 +34,7 @@ price_choices = {
 
 state_choices = {
         'Ruiru': 'Ruiru',
+        'Lamu':'Lamu'
         
   
 }

@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from wasifu import views as wasifu_views
 from contact.views import Contact
 from malipo.views import Malipo
 
@@ -19,6 +20,8 @@ urlpatterns = [
     path('malipo/', include('malipo.urls')),
     path('admin/', admin.site.urls),
     path('profile/', user_views.profile, name='profile' ),
+    path('wasifu/', wasifu_views.wasifu, name='wasifu' ),
+
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
