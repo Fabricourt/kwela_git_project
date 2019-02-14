@@ -5,29 +5,19 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
-<style>
-.w3-highway-red{color:#fff;background-color:#a6001a}
-</style>
+
 </head>
 <section id="top-bar  " class="p-3 " >
     <div class="container">
-   
- 
-        <div class="w3-container">
-          
-              <div class="w3-tag w3-jumbo w3-pannel w3-topbar w3-bottombar w3-leftbar w3-rightbar w3-border-white w3-round w3-white w3-border w3-border-white" style="border:50px;">
+        <div class="w3-container w3-right-align">   
                 {% if pages %}
                   {% for photoi in pages %}
-                  <img src="{{ photoi.photo_logo.url }}" alt="Kwela">
+                  <img src="{{ photoi.photo_logo.url }}" alt="Kwela"  style="width:150px;">
                   {% endfor %}
                 {% endif %}
-              </div>
-              
-          </div>
-
- 
         </div>
   </div>
+<!--
   <div>
       </a>
       <div class="row">
@@ -54,7 +44,7 @@
                 <i class="fab fa-twitter w3-light-blue"></i>
             </a><br />
               <i class="fas fa-phone"></i> (+254) 743 800 497 <br />
-              <i class="fas fa-envelope-open"></i> contact@goshenrealestate.co <br />
+          
             
             
            
@@ -64,5 +54,5 @@
         
       </div>
     </div>
-    
+  -->
   </section>

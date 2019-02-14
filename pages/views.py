@@ -7,7 +7,7 @@ from realtors.models import Realtor
 from pages.models import Photoi, Photoa
 
 def index(request):
-    pages = Photoi.objects.order_by('title').filter(is_published=True)[:3]
+    pages = Photoa.objects.all().filter(is_published=True)[:3]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
 
     context = {
@@ -34,3 +34,4 @@ def about(request):
     }
 
     return render(request, 'pages/about.html', context)
+
