@@ -8,12 +8,18 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from pages.models import Photoa
 
 
 
 def home(request):
+    pages = Photoa.objects.all().filter(is_published=True)[:3]
+    
     context = {
+        'pages': pages,
         'posts': Post.objects.all()
+        
+
     }
     return render(request, 'blog/home.html', context)
 

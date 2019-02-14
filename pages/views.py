@@ -35,3 +35,12 @@ def about(request):
 
     return render(request, 'pages/about.html', context)
 
+def _topbar(request):
+    pages = Photoa.objects.order_by('title').filter(is_published=True)[:3]
+   
+    context = {
+        'pages': pages,
+
+    }
+
+    return render(request, 'partials/_tobar.html', context)

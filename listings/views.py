@@ -1,26 +1,31 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .choices import price_choices, lot_size_choices, state_choices
+from pages.models import Photoa
 
 from.models import Listing
 
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+  pages = Photoa.objects.all().filter(is_published=True)[:3]
 
   paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
   context = {
-    'listings': paged_listings
+    'listings': paged_listings,
+    'pages': pages,
   }
 
   return render(request, 'listings/listings.html', context)
 
 def listing(request, listing_id):
+  pages = Photoa.objects.all().filter(is_published=True)[:3]
   listing = get_object_or_404(Listing, pk=listing_id)
 
   context = {
+    'pages': pages,
     'listing': listing
   }
 

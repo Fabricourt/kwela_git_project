@@ -43,19 +43,19 @@
 
 
 <body class="w3-light-grey">
-
-<section id="showcase-inner" class="py-5 text-white">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-        
-          <h6 class="display-4 w3-lobster w3-xxlarge ">Welcome {{ user.username|capfirst }}</h6>
-         
-          <p class="lead"></p>
-        </div>
+    <section id="top-bar  " class="p-3 w3-center " >
+        <div class="container">
+            <div class="w3-container">   
+                    {% if pages %}
+                      {% for photoi in pages %}
+                      <img src="{{ photoi.photo_logo.url }}" alt="Kwela"  style="width:150px;">
+                      {% endfor %}
+                    {% endif %}
+            </div>
       </div>
-    </div>
-  </section>
+    <section>
+
+
  
 
     
