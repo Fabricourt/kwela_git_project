@@ -1,5 +1,5 @@
 <!-- Top Bar -->
-
+{% load static %}
 <head>
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
@@ -11,14 +11,18 @@
 </head>
 <section id="top-bar  " class="p-3 " >
     <div class="container">
-     
+   
  
         <div class="w3-container">
           
               <div class="w3-tag w3-jumbo w3-pannel w3-topbar w3-bottombar w3-leftbar w3-rightbar w3-border-white w3-round w3-white w3-border w3-border-white" style="border:50px;">
-        <h1 class="w3-wide w3-bottombar w3-white w3-border-orange w3-jumbo w3-text-brown w3-hover bounceInLeft "><strong>Kwela</strong></h1>
+                {% if pages %}
+                  {% for photoi in pages %}
+                  <img src="{{ photoi.photo_header.url }}" alt="" style="width:100%; height:250px;">
+                  {% endfor %}
+                {% endif %}
               </div>
-         
+              
           </div>
 
  

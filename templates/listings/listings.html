@@ -23,18 +23,18 @@
   <div class="container">
     <h3 class="text-center mb-3">Latest Listings</h3>
     <div class="row">
-      {% if listings %}
+        {% if listings %}
         {% for listing in listings %}
           <!-- Listing 1 -->
           <div class="col-md-6 col-lg-4  mb-4">
-            <div class="card w3-border-white w3-hover-shadow listing-preview">
+            <div class="card w3-border-white listing-preview w3-hover-shadow">
               <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="width:100%; height:250px;">
               <div class="card-img-overlay ">
                 <h2>
-                  <span class="badge w3-amber text-black">Kes{{ listing.price | intcomma }}</span>
+                  <span class="badge w3-orange text-black">Kes{{ listing.price | intcomma }}</span>
                 </h2>
               </div>
-              <div class="card-body w3-white w3-hover-shadow">
+              <div class="card-body w3-white">
                 <div class="listing-heading text-center">
                   <h4 class="text-primary">{{ listing.title }}</h4>
                   <p>
@@ -65,7 +65,7 @@
                 </div>
               </div>
                 
-                <a href="{% url 'listing' listing.id %}" class="btn w3-2019-princess-blue w3-hover-green btn-block">More Info</a>
+                <a href="{% url 'listing' listing.id %}" class="btn w3-theme-d4 w3-hover-green btn-block">More Info</a>
               </div>
             </div>
           
@@ -76,6 +76,7 @@
           <p>No Plots listings Available</p>
         </div>
       {% endif %}
+
 
       </div>
 
