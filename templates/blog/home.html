@@ -96,7 +96,9 @@
             <article class="media content-section w3-large  w3-margin">
      
               <a  href="{% url 'post-detail' post.id %}" style="text-decoration:none;" >
-                <img class=" article-img w3-margin w3-border" src="{{ post.author.profile.image.url }}" style="width:80px; padding:6px;"></a>
+                  <a class="navbar-brand" href="{% url 'wasifu' %}">
+                      <img class=" article-img w3-margin w3-border" src="{{ post.author.profile.image.url }}" style="width:80px; padding:6px;">
+                  </a>
               <div class="media-body">
                 <p class="article-content">{{ post.content|slice:"255" |safe }}</p>
               </div>
@@ -104,7 +106,7 @@
             
           <div class="w3-row">
             <div class="w3-col m8 s12">
-              <p><button class="w3-button w3-padding-large w3-green w3-hover-orange w3-border"><a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;"><b>READ MORE »</b></a></button></p>
+              <p><button class="w3-button w3-padding-large w3-orange w3-hover-brown w3-border"><a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;"><b>READ MORE »</b></a></button></p>
             </div>
             
           </div>
@@ -117,21 +119,14 @@
      
   
     </div>
-    <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:50px;">
+ 
     
     <!-- Introduction menu -->
     <div class="w3-col l4">
       <!-- About Card -->
 
       
-      <div class="w3-card w3-media w3-margin w3-margin-top">
-        
-          <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:50px;">
-
-        <div class="w3-container w3-white">
-           
-        </div>
-      </div>
+      
   
       <!-- Posts -->
       <div class="w3-card w3-margin">
@@ -140,13 +135,17 @@
         </div>
         
       {% for post in posts %}
+      <a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
         <ul class="w3-ul w3-hoverable w3-white">
           <li class="w3-padding-16">
               <p class="article-title w3-text-blue">
-                <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:30px;">
+                
+                     <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:30px;">
+                
                 <span class="w3-text-black">{{ post.author }}</span> {{ post.title}} </p>
           </li> 
         </ul>
+      </a>
       {% endfor %}
       </div>
     

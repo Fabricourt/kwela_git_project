@@ -21,21 +21,8 @@
 
   <section id="about" class="py-4">
   
-    <div class="container w3-leftbar w3-hover-shadow w3-border-green w3-card w3-white">
-         <!-- Breadcrumb -->
-  <section class=" w3-margin ">
-      <div class="container   w3-border-green">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb ">
-            <li class="breadcrumb-item">
-              <a href="{% url 'index' %}">
-                <i class="fas fa-home"></i> Home</a>
-            </li>
-            <li class="breadcrumb-item active"> About</li>
-          </ol>
-        </nav>
-      </div>
-    </section>
+    <div class="container w3-leftbar w3-hover-shadow w3-border-orange w3-card w3-white">
+
       <div class="row">
         <div class="col-md-8">
           <h2 class="w3-center">We Work To Find You The Perfect Plot</h2>
@@ -86,11 +73,12 @@
   </section>
 
   <!-- Work -->
-  <section id="work" class="text-white text-center w3-black">
+  <section id="work" class="text-white text-center w3-theme-d5">
     <h2 class="display-4">We Work For You</h2>
+    <br>
     
-    <hr>
-    <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+    <a href="{% url 'listings' %}" class="btn w3-orange w3-hover-green text-white btn-lg">View Our Featured Listings</a>
+   
   </section>
   
   <!-- Team 
