@@ -80,9 +80,9 @@
           {% for listing in listings %}
             <!-- Listing 1 -->
             <div class="col-md-6 col-lg-4  mb-4">
-              <div class="card w3-border-white listing-preview w3-hover-shadow">
+              <div class="card w3-border-white listing-preview w3-shadow">
                 <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="width:100%; height:250px;">
-                <div class="card-img-overlay ">
+                <div class="card-img-overlay w3-shadow ">
                   <h2>
                     <span class="badge w3-orange text-black">Kes{{ listing.price | intcomma }}</span>
                   </h2>
@@ -132,9 +132,44 @@
 
             </div>
           </div>
-          <br /><br /><br /><br />
         </div>
-      </
+
+          
+  <section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fas fa-comment fa-4x mr-4"></i>
+          <hr>
+          <h3>Consulting Services</h3>
+          <p>We at Kwela have been buying and selling plots for more than ten years. 
+            We know the do and dont's of everything to do with Land. That includes as
+            being victims in our days of amateurism don't just buy because it has a title we know better.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-home fa-4x mr-4"></i>
+          <hr>
+          <h3>Plot Search</h3>
+          <p>Sometimes the kind of land your looking for it is too strategic few people are selling. 
+            That means few are advertising, thats where we come in we work with you to search it out so 
+            that you only buy what your looking for .</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-suitcase fa-4x mr-4"></i>
+          <hr>
+          <h3>Selling</h3>
+          <p>Not everyone is a buyer we value the people who choose to sell land through us. 
+            Depending with location at times we too can be you customers. So come and join us today we can build faster and bigger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+          
+        
+      
             
 
 
