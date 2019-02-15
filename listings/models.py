@@ -34,3 +34,12 @@ class Listing(models.Model):
 
 
 
+class Logo(models.Model):
+    title = models.CharField(max_length=10, blank=True, null=True)
+    kwela = models.ImageField(upload_to='logo_pics', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+      
