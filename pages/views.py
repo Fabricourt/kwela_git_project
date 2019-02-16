@@ -6,6 +6,9 @@ from listings.models import Listing
 from realtors.models import Realtor
 from pages.models import Photoi, Photoa
 
+from django.contrib.auth.decorators import login_required
+
+
 def index(request):
     pages = Photoa.objects.all().filter(is_published=True)[:3]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
@@ -18,6 +21,7 @@ def index(request):
         'price_choices': price_choices
     }
     return render(request, 'pages/index.html', context)
+
 
 def about(request):
     pages = Photoa.objects.order_by('title').filter(is_published=True)[:3]

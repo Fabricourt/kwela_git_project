@@ -21,6 +21,9 @@ def index(request):
 
   return render(request, 'listings/listings.html', context)
 
+
+
+@login_required
 def listing(request, listing_id):
   
 
@@ -35,7 +38,7 @@ def listing(request, listing_id):
   return render(request, 'listings/listing.html', context)
 
 
- 
+@login_required
 def search(request):
   queryset_list = Listing.objects.order_by('-list_date')
 

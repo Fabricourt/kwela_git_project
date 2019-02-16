@@ -4,7 +4,9 @@ from django.core.mail import send_mail
 from .models import Sema
 from .forms import ContactForm
 from listings.models import Logo
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def Contact(request):
     template ="contact.html"
 
@@ -28,7 +30,7 @@ def Contact(request):
 
 
 
-
+@login_required
 def sema(request):
   if request.method == 'POST':
     listing_id = request.POST['listing_id']
