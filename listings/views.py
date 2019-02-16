@@ -70,6 +70,7 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
+        'logo': Logo.objects.all(),
         'state_choices': state_choices,
         'lot_size_choices': lot_size_choices,
         'price_choices': price_choices,

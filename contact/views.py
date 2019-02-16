@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from .models import Sema
 from .forms import ContactForm
+from listings.models import Logo
 
 def Contact(request):
     template ="contact.html"
@@ -16,6 +17,7 @@ def Contact(request):
         form = ContactForm()
 
     context ={
+        'logo': Logo.objects.all(),
         'form': form,
     }
 
