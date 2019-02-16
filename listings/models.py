@@ -36,7 +36,7 @@ class Listing(models.Model):
 
 class Logo(models.Model):
     title = models.CharField(max_length=10, blank=True, null=True)
-    kwela = models.ImageField(default='kwela.jpg')
+    kwela = models.ImageField(default='default.jpg', upload_to='kwela_pics')
 
     def __str__(self):
         return self.title
