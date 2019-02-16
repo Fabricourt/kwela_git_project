@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .choices import price_choices, lot_size_choices, state_choices
-
+from django.contrib.auth.decorators import login_required
 from.models import Listing, Logo 
 
+@login_required
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
 

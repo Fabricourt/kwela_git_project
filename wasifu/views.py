@@ -19,7 +19,7 @@ def register(request):
 
 """
 
-@login_required
+
 def wasifu(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
