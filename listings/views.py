@@ -6,15 +6,14 @@ from.models import Listing, Logo
 
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
-  logo = listings
-  logo = Logo.objects.all()
+
   
   paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
   context = {
-    'logo': logo,
+    'logo': Logo.objects.all(),
     'listings': paged_listings
     
   }
@@ -22,12 +21,13 @@ def index(request):
   return render(request, 'listings/listings.html', context)
 
 def listing(request, listing_id):
+  
 
   listing = get_object_or_404(Listing, pk=listing_id)
 
   context = {
-    
-    'listing': listing
+        'logo': Logo.objects.all(),
+        'listing': listing
   }
 
 

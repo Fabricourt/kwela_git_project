@@ -7,7 +7,20 @@
 
 {% block content %}
 
+
   <!-- Contact/Area Container -->
+    
+  <div class="container">
+      <div class="w3-container">   
+              {% if listings %}
+                {% for logo in logo %}
+                <img src="{{ contact.logo.kwela.url }}" alt=""  style="width:150px;">
+                {% endfor %}
+              {% endif %}
+      </div>
+</div>
+
+
   <div class="w3-container " id="where" style="padding-bottom:32px;">
       <div class="w3-content " style="max-width:700px">
           {% include 'partials/_alerts.html' %}
