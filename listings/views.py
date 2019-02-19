@@ -1,44 +1,31 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .choices import price_choices, lot_size_choices, state_choices
-from django.contrib.auth.decorators import login_required
-from.models import Listing, Logo 
 
-@login_required
+from.models import Listing
+
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
 
-  
   paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
   context = {
-    'logo': Logo.objects.all(),
     'listings': paged_listings
-    
   }
 
   return render(request, 'listings/listings.html', context)
 
-
-
-@login_required
 def listing(request, listing_id):
-  
-
   listing = get_object_or_404(Listing, pk=listing_id)
 
   context = {
-        'logo': Logo.objects.all(),
-        'listing': listing
+    'listing': listing
   }
-
 
   return render(request, 'listings/listing.html', context)
 
-
-@login_required
 def search(request):
   queryset_list = Listing.objects.order_by('-list_date')
 
@@ -74,7 +61,6 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
-        'logo': Logo.objects.all(),
         'state_choices': state_choices,
         'lot_size_choices': lot_size_choices,
         'price_choices': price_choices,
