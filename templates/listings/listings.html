@@ -170,6 +170,8 @@
           
           <h1 class="display-4">Browse Our Plots</h1>
           <p class="lead">Our GOAL is to link you to a plot equal to your investement!</p>
+          <p>Please visit our featured plots for more property options</p>
+          <p>Here you will find your personal records, please select book for viewing first to access infomation here</p>
         </div>
       </div>
     </div>
@@ -224,7 +226,7 @@
                     <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
                 </div>
               </div>
-                 @login_required
+                 
                 <a href="{% url 'listing' listing.id %}" class="btn w3-theme-d5 w3-hover-green btn-block">More Info</a>
               </div>
             </div>
