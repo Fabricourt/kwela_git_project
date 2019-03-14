@@ -17,8 +17,12 @@
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-brown.css">
+<body>
+
 
  
   <!-- Font Awesome -->
@@ -34,21 +38,26 @@
  
  
 
-  <title>Kwela{% block title %}{% endblock %}</title>
+  <title>Kwela{% block title %}  {% endblock %}</title>
+  
 </head>
 
-<body class="">
+<body >
+
+ 
   <!-- Top Bar -->
   {% include 'partials/_topbar.html' %}
   <!-- NavBar -->
   {% include 'partials/_navbar.html' %}
     <!-- Main Content -->
+   
   {% block content %} <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="width:50px;">{% endblock %}
-  
-  
-  <!-- Footer
+  <!-- Footer -->
   {% include 'partials/_footer.html' %}
-  -->
+  
+  
+
+
   <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
   <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

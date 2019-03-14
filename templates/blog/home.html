@@ -1,15 +1,11 @@
-{% extends "blog/base.html" %}
-{% block title %}  | Blog {% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+
+{% block title %} Welcome {% endblock %}
+
 {% block content %}
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-brown.css">
 <style>
 
     body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -36,142 +32,277 @@
     .w3-lobster {
       font-family: "Lobster", serif;
     }
-
  
     </style>
 
-
-
-<body class="w3-light-grey">
-    <section id="top-bar  " class="p-3 w3-center " >
-        <div class="container">
-            <div class="w3-container">   
-                    {% if pages %}
-                      {% for photoi in pages %}
-                      <img src="{{ photoi.photo_logo.url }}" alt="Kwela"  style="width:150px;">
-                      {% endfor %}
-                    {% endif %}
-            </div>
-      </div>
-    <section>
-
-
- 
-
-    
-    
-    <!-- w3-content defines a container for fixed size centered content, 
-    and is wrapped around the whole page content, except for the footer in this example -->
-    <div class="w3-content" style="max-width:1400px">
-    
-    <!-- Header -->
-    
-    
-
-    <!-- Grid -->
-    <div class="w3-row">
-    
-    <!-- Blog entries -->
- 
-    <div class="w3-col l8 s12">
-      <!-- Blog entry -->
-   
-      {% for post in posts %}
- 
-      <div class="w3-card-4 w3-margin  w3-hover-shadow w3-white">
-        <div class="w3-theme-d5">
-            <header class="w3-margin w3-padding"><b><h2 class="article-title ">{{ post.title}}</h2></b></header>
+    <div class="w3-center">
+        <img  src="{{ user.profile.image.url }}" style="width:150px">
         </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top">
+
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li
+            {% if '/' == request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+          </li>
+          <li
+            {% if 'about' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li
+            {% if 'contact' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+          <li
+            {% if 'listings' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
+          </li>
           
+            <a class="nav-link" href="{% url 'contact' %}">Contact </a>
+          </li>
+          <li
+            {% if 'blog-home' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link " href="{% url 'blog-home' %}">Kwela InfoHub </a>
+          </li>
 
-        
-        <div class="w3-container">
-          <div class="article-metadata">
-              <h5><strong><a class="mr-2" href="#">{{ post.author }}</a></strong></h5>
-              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-            </div>
-        </div>
-        <div class="w3-container">
-       
-            <article class="media content-section w3-large  w3-margin">
-     
-              <a  href="{% url 'post-detail' post.id %}" style="text-decoration:none;" >
-                  <a class="navbar-brand" href="{% url 'wasifu' %}">
-                      <img class=" article-img w3-margin w3-border" src="{{ post.author.profile.image.url }}" style="width:80px; padding:6px;">
-                  </a>
-              <div class="media-body">
-                <p class="article-content">{{ post.content|slice:"255" |safe }}</p>
-              </div>
-            </article>
-            
-          <div class="w3-row">
-            <div class="w3-col m8 s12">
-              <p><button class="w3-button w3-padding-large w3-orange w3-hover-brown w3-border"><a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;"><b>READ MORE »</b></a></button></p>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-       <hr class="">
-      
-      {% endfor %}
-     
-     
-  
-    </div>
- 
-    
-    <!-- Introduction menu -->
-    <div class="w3-col l4">
-      <!-- About Card -->
-
-      
-      
-  
-      <!-- Posts -->
-      <div class="w3-card w3-margin">
-        <div class="w3-container w3-padding">
-          <h4>In the The Blog</h4>
-        </div>
-        
-      {% for post in posts %}
-      <a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
-        <ul class="w3-ul w3-hoverable w3-white">
-          <li class="w3-padding-16">
-              <p class="article-title w3-text-blue">
-                
-                     <img class=" article-img  w3-left w3-margin-right" src="{{ post.author.profile.image.url }}" style="width:30px;">
-                
-                <span class="w3-text-black">{{ post.author }}</span> {{ post.title}} </p>
-          </li> 
+         
+          </li>
         </ul>
-      </a>
-      {% endfor %}
+        
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li
+            {% if 'wasifu ' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
+          </li>
+            
+        </li>
+            <li
+            {% if 'dashboard' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+              <a class="nav-link" href="{% url 'dashboard' %}">
+               [Dashboard]</a>
+            </li>
+            
+            <li class="nav-item mr-3">
+              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+              <form action="{% url 'logout' %}" method="POST" id="logout">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+            </li>
+          {% else %}
+            <li
+            {% if 'register' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+              <a class="nav-link" href="{% url 'register' %}">
+                <i class="fas fa-user-plus"></i> Register</a>
+            </li>
+            <li
+            {% if 'login' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i>
+
+                Login</a>
+            </li>
+          {% endif %}
+        
+          {% if perms.catalog.can_view_buyers %}
+          <li {% if 'Propertys' in request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+        >
+          <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Files
+              </a>
+              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
+                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Properties file</a>
+                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
+                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
+                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
+            
+                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
+                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
+            
+              </div>
+              </div>
+            </li>
+            {% endif %}
+        </ul>
+    
+                </div>
+              </div>
+              
+            </nav>
+            <div class="w3-light-grey  w3-top-padding w3-margin-bottom w3-center">
+                <h1 class="w3-jumbo jumbotron">[Kwela<span class="w3-text-red">Info</span>] <hr class="w3-red w3-padding-10"> 
+                  <p><strong class="w3-2019-princess-blue">Hub</strong></p>
+                </h1>
+              </div>
+              <h6 class="display-4  w3-center w3-xlarge w3-lobster">{{ user.username|capfirst }} Welcome To Kwela Info Hub </h6>
+   {% for post in posts %}
+            <div class="w3-content">
+                <div class="w3-row w3-margin">
+                 
+                    <a class="article-title" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">
+                      <div class="w3-third">
+
+                          <img src="{{ post.photo_main.url}}" style="width:100%;min-height:200px">
+                      </div>
+                      <div class="w3-twothird w3-left-align w3-container">
+                          <h3 class="w3-text-theme">{{ post.author|capfirst }} </h3>
+                          <p class="w3-left-align">{{ post.content|slice:"200" |safe }}</p>
+                          <p class="w3-text-green">{{ post.date_posted|date:"F d, Y" }}</p>
+                    </a>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    {% endfor %}
+                  
+               
+                       
+                   
+            
+            </div>
+              
+
+
+<!-- Footer -->
+<footer class="page-footer font-small  w3-theme-d5 w3-padding w3-small pt-4">
+
+
+    <div class="container-fluid text-center text-md-left">
+  
+      <div class="row">
+  
+        <div class="col-md-6 mt-md-0 mt-3 w3-hide">
+  
+          <h5 class="text-uppercase ">Reach us</h5>
+          <a href="{% url 'contact' %}"   class="w3-button w3-light-grey"><i class="fa fa-arrow-right  w3-margin-right"></i>Contact</a>
+          <div class="w3-xlarge w3-section">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+          </div>
+        
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none pb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3 w3-hide">
+  
+           
+            <h5 class="text-uppercase">About</h5>
+  
+            <ul class="list-unstyled w3-text-blue">
+              <li>
+                <a class="w3-orange w3-button"href="{% url 'blog-home' %}">Blog</a>
+              </li>
+            
+              <li>
+                <a class="w3-orange w3-button" href="{% url 'post-create' %}">Create</a>
+              </li>
+              <li>
+                <a class="w3-orange w3-button w3-border -w3-border-white" href="{% url 'blog-about' %}">Kwela Company Profile</a>
+              </li>
+            </ul>
+  
+          </div>
+         
+          <div class="col-md-3 mb-md-0 mb-3 w3-hide">
+  
+            <h5 class="text-uppercase">A-block</h5>
+  
+            <ul class="list-unstyled">
+              <li>
+                <a class="w3-blue" href="{% url 'propertys' %}">P-block</a>
+              </li>
+              <li>
+                <a class="w3-blue" href="{% url 'owners' %}">O-block</a>
+              </li>
+              <li>
+                <a class="w3-blue" href="{% url 'buyers' %}">B-block</a>
+              </li>
+            
+            </ul>
+  
+          </div>
+  
+  
       </div>
     
-     
-     
-      
-    <!-- END Introduction Menu -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+  
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="http://www.kwela.co.ke"><span class="w3-text-blue">kwela.co.ke</span> </a>
     </div>
     
-    <!-- END GRID -->
-    </div><br>
-    
-    <!-- END w3-content -->
-    </div>
-    
-    <!-- Footer -->
-    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-      <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-      <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-    
-  </body>
+  
+  </footer>
+  
+       
+{% endblock %}
 
-   
-  <!-- END Introd-->
-    
-{% endblock content %}
 

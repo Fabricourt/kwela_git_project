@@ -7,22 +7,25 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
-from pages.models import Photoa
+from .models import Post, Logo
 
 
 
 def home(request):
-    pages = Photoa.objects.all().filter(is_published=True)[:3]
-    
+
+
     context = {
-        'pages': pages,
-        'posts': Post.objects.all()
-        
+        'posts': Post.objects.all(),
+        'logos': Logo.objects.all()
+
 
     }
     return render(request, 'blog/home.html', context)
 
+class LogoListView(ListView):
+    model = Logo
+    template_name = 'blog/home.html'
+    context_object_name = 'logo'
 
 class PostListView(ListView):
     model = Post
