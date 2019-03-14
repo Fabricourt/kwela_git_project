@@ -7,25 +7,17 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Logo
+from .models import Post
 
 
 
 def home(request):
-
-
     context = {
         'posts': Post.objects.all(),
-        'logos': Logo.objects.all()
-
-
     }
     return render(request, 'blog/home.html', context)
 
-class LogoListView(ListView):
-    model = Logo
-    template_name = 'blog/home.html'
-    context_object_name = 'logo'
+
 
 class PostListView(ListView):
     model = Post
@@ -38,8 +30,6 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
   
-
-
 
 
 

@@ -18,7 +18,3 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-class Logo(models.Model):
-    logo = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True, blank=True)
-def __str__(self):
-        return self.title
