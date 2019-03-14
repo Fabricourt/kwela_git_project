@@ -203,7 +203,7 @@
                       </div>
                       <div class="w3-twothird w3-left-align w3-container">
                           <h3 class="w3-text-theme">{{ post.author|capfirst }} </h3>
-                          <p class="w3-left-align">{{ post.content|slice:"200" |safe }}</p>
+                          <p class="w3-left-align">{{ post.content|slice:"200"|safe }}</p>
                           <p class="w3-text-green">{{ post.date_posted|date:"F d, Y" }}</p>
                     </a>
                           </div>
