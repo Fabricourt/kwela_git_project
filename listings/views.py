@@ -1,6 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render, get_object_or_404 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .choices import price_choices, lot_size_choices, state_choices
+from django.http import HttpResponse
+from .models import Snippet
 
 from.models import Listing
 
@@ -70,3 +72,7 @@ def search(request):
   }
 
   return  render(request, 'listings/search.html', context)
+
+def snippet_detail(request, slug):
+  snippet = get_object_or_404(Snippet, slug=slug)
+  return HttpResponse(f'This should be the detail view for the slug of {slug}')

@@ -1,8 +1,20 @@
 from django.db import models
 from datetime import datetime
 from realtors.models import Realtor
-
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
+
+class Snippet(models.Model):
+  title = models.CharField(max_length=200, blank=True, null=True)
+  slug = models.SlugField(blank=True, null=True)
+  body = models.TextField(blank=True, null=True)
+
+  def save(self, *args, **kwargs):
+    self.slug =slugify(self.title)
+    super().save(*args, **kwargs)
+
+
+
 
 class Listing(models.Model):
   realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
