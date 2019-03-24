@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from listings.choices import price_choices, lot_size_choices, state_choices
-
+from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
 from pages.models import Photoi, Photoa
@@ -12,13 +12,16 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     pages = Photoa.objects.all().filter(is_published=True)[:3]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
+    testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
+
 
     context = {
         'pages': pages,
         'listings': listings,
         'state_choices': state_choices,
         'lot_size_choices': lot_size_choices,
-        'price_choices': price_choices
+        'price_choices': price_choices,
+        'testimonials': testimonials,
     }
     return render(request, 'pages/index.html', context)
 

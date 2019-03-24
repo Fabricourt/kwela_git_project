@@ -8,6 +8,8 @@ from contact.views import Contact
 from malipo.views import Malipo
 from django.contrib.sitemaps.views import sitemap
 from listings.sitemaps import StaticViewSitemap
+from testimonials.views import testimonial
+
 
 
 sitemaps = {
@@ -29,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', user_views.profile, name='profile' ),
     path('wasifu/', wasifu_views.wasifu, name='wasifu' ),
+    path('testimonial/', testimonial, name='testimonial'),
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
