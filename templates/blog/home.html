@@ -191,7 +191,7 @@
                   <p><strong class="w3-2019-princess-blue">Hub</strong></p>
                 </h1>
               </div>
-              <h6 class="display-4  w3-center w3-xlarge w3-lobster">{{ user.username|capfirst }} Welcome To Kwela Info Hub </h6>
+              <h6 class="display-4  w3-center w3-xlarge w3-lobster">{{ user.first_name|capfirst }} {{ user.last_name|capfirst }} Welcome To Kwela Info Hub </h6>
    {% for post in posts %}
             <div class="w3-content">
                 <div class="w3-row w3-margin">
@@ -202,7 +202,7 @@
                           <img src="{{ post.photo_main.url}}" style="width:100%;min-height:200px">
                       </div>
                       <div class="w3-twothird w3-left-align w3-container">
-                          <h3 class="w3-text-theme">{{ post.author|capfirst }} </h3>
+                          <h3 class="w3-text-theme">{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }}  </h3>
                           <p class="w3-left-align">{{ post.content|slice:"200"|safe }}</p>
                           <p class="w3-text-green">{{ post.date_posted|date:"F d, Y" }}</p>
                     </a>
