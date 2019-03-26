@@ -1,78 +1,27 @@
 
-
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    .zoom {
+      
+      transition: transform .2s;
+    
+     
+    }
+    
+    .zoom:hover {
+      -ms-transform: scale(1.5); /* IE 9 */
+      -webkit-transform: scale(1.5); /* Safari 3-8 */
+      transform: scale(1.5); 
+    }
+    </style>
+    </head>
 
 <!-- Footer -->
 <footer class="page-footer font-small  w3-theme-d5 w3-padding w3-small pt-4">
 
-
-  <div class="container-fluid text-center text-md-left">
-
-    <div class="row">
-
-      <div class="col-md-6 mt-md-0 mt-3 w3-hide">
-
-        <h5 class="text-uppercase ">Reach us</h5>
-        <a href="{% url 'contact' %}"   class="w3-button w3-light-grey"><i class="fa fa-arrow-right  w3-margin-right"></i>Contact</a>
-        <div class="w3-xlarge w3-section">
-          <i class="fa fa-facebook-official w3-hover-opacity"></i>
-          <i class="fa fa-instagram w3-hover-opacity"></i>
-          <i class="fa fa-snapchat w3-hover-opacity"></i>
-          <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-          <i class="fa fa-twitter w3-hover-opacity"></i>
-          <i class="fa fa-linkedin w3-hover-opacity"></i>
-        </div>
-      
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none pb-3">
-
-      <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3 w3-hide">
-
-         
-          <h5 class="text-uppercase">About</h5>
-
-          <ul class="list-unstyled w3-text-blue">
-            <li>
-              <a class="w3-orange w3-button"href="{% url 'blog-home' %}">Blog</a>
-            </li>
-          
-            <li>
-              <a class="w3-orange w3-button" href="{% url 'post-create' %}">Create</a>
-            </li>
-            <li>
-              <a class="w3-orange w3-button w3-border -w3-border-white" href="{% url 'blog-about' %}">Kwela Company Profile</a>
-            </li>
-          </ul>
-
-        </div>
-       
-        <div class="col-md-3 mb-md-0 mb-3 w3-hide">
-
-          <h5 class="text-uppercase">A-block</h5>
-
-          <ul class="list-unstyled">
-            <li>
-              <a class="w3-blue" href="{% url 'propertys' %}">P-block</a>
-            </li>
-            <li>
-              <a class="w3-blue" href="{% url 'owners' %}">O-block</a>
-            </li>
-            <li>
-              <a class="w3-blue" href="{% url 'buyers' %}">B-block</a>
-            </li>
-          
-          </ul>
-
-        </div>
-
-
-    </div>
-  
-
-  </div>
   <!-- Footer Links -->
 
   <div class=" w3-margin-top w3-theme-l4">
@@ -80,26 +29,33 @@
 
           <div class="container  w3-margin-bottom">
               <div class="w3-panel w3-bottombar w3-border-theme">
-              <div class=" w3-third w3-center">
-                  <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0726 776 796
+              
                 </div>
-                <div class="w3-third w3-center">
-                    <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 072 697 3915
-                  </div>
-                  <div class="w3-third w3-center">
-                      <i class="fas fa-phone" style="font-size:18px;color:rgb(44, 105, 236);"></i> (+254) 0743 800 497
-                    </div>
-                </div>
-                <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> Discover More </p>
-              </div>    
+                <div class="w3-quarter">
+                <h5 class="text-uppercase">Location</h5>
+                <p>
+                    Biashara House,<br>
+                    Opp. Ruiru Town Main Bus Stage,<br>
+                    P.O. Box 1404, 00232, Ruiru<br>
+                    phone-1 (+254) 0726 776 796<br>
+                          (+254) 0726 973 915<br>
+                          (+254) 0743 800 497
+                    
+                </p>
+              </div>
+              <div class="w3-threequarter w3-margin-bottom zoom " >
+                  <img src="http://www.kwela.co.ke/media/photos/2019/03/14/Ruiru-town.jpg"  class="w3-round" alt="Biashara house Ruiru">
+              </div>
+              
+            </div>    
         </div>
     </div>
   </div>
   
 </div>
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="http://www.kwela.co.ke"><span class="w3-text-blue">kwela.co.ke</span> </a>
+    <a><span class="w3-text-blue">www.kwela.co.ke</span> </a><br>
+    <small>Design:Fabri</small>
   </div>
-  
 
 </footer>
