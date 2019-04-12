@@ -202,9 +202,9 @@
                           <img src="{{ post.photo_main.url}}" style="width:100%;min-height:200px">
                       </div>
                       <div class="w3-twothird w3-left-align w3-container">
-                          <h3 class="w3-text-theme w3-small">{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }}   </h3>
-                          <p class="w3-left-align w3-large">{{ post.title }}</p>
-                          <p class="w3-left-align w3-small">{{ post.content|slice:"250"|safe }}</p>
+                          <p class="w3-text-theme w3-small">{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }} </p>
+                          <h3 class="w3-left-align w3-text-red w3-large">{{ post.title }}</p>
+                           class="w3-left-align w3-small">{{ post.content|slice:"250"|safe }}</p>
                           <p class="w3-text-green w3-small">{{ post.date_posted|date:"F d, Y" }}</p>
                     </a>
                           </div>
