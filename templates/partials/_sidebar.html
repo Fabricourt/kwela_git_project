@@ -1,0 +1,62 @@
+{% load static %}
+
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <div class="w3-container">
+      <a href="#" onclick="w3_close()" class="w3-hide-large w3-right" title="close menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <a href="/">
+      <img src="{% static 'img/logo.jpg' %}" alt="Kwela" style="width:45%;" class="w3-border-black w3-center w3-round"><br><br>
+     </a>
+    </div>
+    <div class="w3-bar-block">
+    <div class="w3-container w3-text-amber w3-round   w3-margin-bottom ">
+        
+       
+        <hr>
+        <form action="{% url 'search' %}">
+            
+            <div class="form-group">
+              <label class="sr-only">Keywords</label>
+              <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
+            </div>
+
+          
+            <div class="form-group">
+                <label class="sr-only">Location</label>
+                <select name="location" class="form-control">
+                <option selected="true" disabled="disabled">Location</option>
+                  {% for key,value in location_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+           
+            <div class="form-group">
+                <label class="sr-only">Lot Size</label>
+                <select name="lot_size" class="form-control">
+                  <option selected="true" disabled="disabled">Lot Size</option>
+                  {% for key,value in lot_size_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <select name="price" class="form-control" id="type">
+                    <label class="sr-only">Price</label>
+                    <option selected="true" disabled="disabled">Price</option>
+                    {% for key,value in price_choices.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
+                  </select>
+            </div>
+        <button class="btn w3-white btn-block w3-border-black w3-hover-black w3-hover-text-amber w3-text-black mt-4 w3-margin-bottom" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+
+  </nav>

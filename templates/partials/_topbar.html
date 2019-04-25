@@ -1,61 +1,29 @@
 <!-- Top Bar -->
 {% load static %}
-<head>
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-food.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-camo.css">
 
-</head>
-<section id="top-bar  " class="p-3 w3-center " >
-    <div class="container">
-        <div class="w3-container">   
-                {% if pages %}
-                  {% for photoa in pages %}
-                  <img src="{{ photoa.photo_logo.url }}" alt="Kwela"  style="width:150px;">
-                  {% endfor %}
-                {% endif %}
-        </div>
-  </div>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
- 
- <!--
-  <div>
-      </a>
-      <div class="row">
-        <div class="col-md-4">
-          
-        </div>
-        <div class="col-md-4">
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
 
-        </div>
-        <div class="col-md-4">
-          <div class="social text-right">
-           
-            <a href="#">
-              <i class="fab fa-facebook w3-blue"></i>
-            </a>
-         
-            <a href="#">
-              <i class="fab fa-linkedin w3-black"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-instagram w3-amber"></i>
-            </a>
-            <a href="#">
-                <i class="fab fa-twitter w3-light-blue"></i>
-            </a><br />
-              <i class="fas fa-phone"></i> (+254) 743 800 497 <br />
-          
-            
-            
-           
-          </div>
-          
-        </div>
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img src="{% static 'img/logo.jpg' %}" alt="Kwela"  style="width:100px;" class="w3-round w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge btn-outline-info w3-hover-text-grey w3-left" onclick="w3_open()"><i class="fa fa-search"></i> </span>
+    <div class="w3-container w3-margin-top">
+    <h1><b>Kwela Plots Network</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Find Us:</span> 
+      <button class="w3-button w3-blue w3-hover-blue"><i class="fab fa-facebook w3-large  w3-blue"></i></button>
+      <button class="w3-button w3-hover-black w3-black "><i class="fab fa-linkedin w3-large w3-black "></i></button>
+      <button class="w3-button w3-hover-amber w3-amber "><i class="fab fa-instagram w3-large w3-amber"></i></button>
+      <button class="w3-button w3-hover-light-blue w3-light-blue "><i class="fab fa-twitter w3-large w3-light-blue"></i></button>
+      <button class="w3-button w3-khaki w3-hover-khaki  social  text-right">
+        <i class="fas fa-phone w3-khaki w3-large"> Kwela (+254) 743 800 497..</i>
+     </button>
         
-      </div>
-     
+    
     </div>
-     -->
-  </section>
+    </div>
+  </header>

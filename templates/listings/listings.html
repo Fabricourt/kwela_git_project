@@ -6,241 +6,65 @@
 
 {% block content %}
 
-<div class="w3-center">
-<img  src="{{ user.profile.image.url }}" style="width:150px">
-</div>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top">
-
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
-          </li>
-          
-            <a class="nav-link w3-hide" href="{% url 'contact' %}">Contact </a>
-          </li>
-          <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link " href="{% url 'blog-home' %}">Kwela InfoHub </a>
-          </li>
-
-         
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'wasifu ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
-          </li>
-            
-        </li>
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-            <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        
-          {% if perms.catalog.can_view_buyers %}
-          <li {% if 'Propertys' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-        >
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Files
-              </a>
-              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Propreties file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
-            
-                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
-                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
-            
-              </div>
-              </div>
-            </li>
-            {% endif %}
-        </ul>
-    
-                </div>
-              </div>
-              
-            </nav>
-
-
-
-
-<div class="">
-<section id="showcase-inner" class="py-5 text-white">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          
-          <h1 class="display-4">Browse Our Plots</h1>
-          <p class="lead">Our GOAL is to link you to a plot equal to your investement!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
 <!-- Listings -->
+<!-- sidebar-->
+{% include 'partials/_sidebar.html' %}
 
-<section id="listings" class="py-5 " >
-  <div class="container">
-    <h3 class="text-center mb-3">Latest Listings</h3>
-    <div class="row">
-    
-        {% if listings %}
-        {% for listing in listings %}
-          <!-- Listing 1 -->
-          <div class="col-md-6 col-lg-4  mb-4">
-            <div class="card w3-border-white listing-preview w3-hover-shadow">
-              <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="width:100%; height:250px;">
-              <div class="card-img-overlay ">
-                <h2>
-                  <span class="badge w3-orange text-black">Kes{{ listing.price | intcomma }}</span>
-                </h2>
-              </div>
-              <div class="card-body w3-white">
-                <div class="listing-heading text-center">
-                  <h4 class="text-primary">{{ listing.title }}</h4>
-                  <p>
-                    <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
-                </div>
-                
-                
-                <div class="row py-2  ">
-                  <div class="col-6">
-                    <i class="fa fa-road text-dark"></i> Roads: {{ listing.roads }}</div>
-                  <div class="col-6">
-                    <i class="fas fa-tint text-info"></i> Water: {{ listing.water}}</div>
-                </div>
-                <div class="row py-2 ">
-                  <div class="col-6">
-                    <i class="fas fa-th-large w3-text-brown"></i> Size: {{ listing.lot_size }}</div>
-                  <div class="col-6">
-                    <i class="fa fa-lightbulb-o text-warning"></i> Electricity: {{ listing.electricity}}</div>
-                </div>
+<!-- Top Bar -->
+{% include 'partials/_topbar.html' %}
+<div class="w3-row-padding">
+    {% if listings %}
+      {% for listing in listings %}
+    <div class="w3-third  w3-margin-bottom">
+        <img src="{{ listing.photo_main.url }}" alt="Norway" style="width:100%; height:200px;" class="w3-hover-opacity">
+      <div>
+          <h2>
            
-                <div class="row py-2 ">
+          </h2>
+        </div>
+      <div class="w3-small w3-white">
+          <div class="card-body w3-hover-shadow w3-white">
+              <div class="listing-heading text-center">
+                <h6 class="text-primary"><b>{{ listing.title }}</b></h6>
+               
+                <p>
+                  <i class="fas fa-map-marker text-secondary"></i> {{ listing.location }}, {{ listing.state }}</p>
+              </div>     
+              <div class="row py-2  ">
+                <div class="col-6">
+                  <i class="fa fa-road text-dark"></i> Roads: {{ listing.roads }}</div>
+                <div class="col-6">
+                  <i class="fas fa-tint text-info"></i> Water: {{ listing.water}}</div>
+              </div>
+              <div class="row py-2 ">
+                <div class="col-6">
+                  <i class="fas fa-th-large w3-text-brown"></i> Size: {{ listing.lot_size }}</div>
+                <div class="col-6">
+                  <i class="fa fa-lightbulb-o text-warning"></i> Power: {{ listing.electricity}}</div>
+              </div>
+              <div class="row py-2 ">
                   <div class="col-6">
                     <i class="fas fa-user text-danger"></i> {{ listing.realtor }}</div>
-                </div>
-                <div class="row  pb-2">
                   <div class="col-6">
-                    <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
+                      <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
                 </div>
+              <div class="row py-2 ">
+                  <div class="col-6">
+                      <span class="btn w3-win8-cobalt w3-large text-black">Kes{{ listing.price | intcomma }}</span></div>
+                  <div class="col-6">
+                      <a href="{% url 'listing' listing.id %}" class="btn w3-right w3-border-amber w3-hover-amber">More Info</a></div>
               </div>
-                 
-                <a href="{% url 'listing' listing.id %}" class="btn w3-theme-d5 w3-hover-green btn-block">More Info</a>
-              </div>
+              
             </div>
-          
-        {% endfor %}
-      {% else %}
-        <div class="col-md-12">
-          
-          <p>No Plots listings Available</p>
-        </div>
-      {% endif %}
-
-
-
       </div>
-
+    </div>
+      {% endfor %}
+      {% else %}
+      <div class="col-md-12">
+        
+        <p>No Plots listings Available</p>
+      </div>
+    {% endif %}
       <div class="row">
         <div class="col-md-12">
           {% if listings.has_other_pages %}
@@ -279,7 +103,5 @@
         </div>
       </div>
     </div>
-  </section>
-  <br /><br /><br /><br /><br />
-</div>
+
 {% endblock %}

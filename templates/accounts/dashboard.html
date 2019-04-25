@@ -3,165 +3,21 @@
 {% block title %}  | {{ user.username|capfirst }}  {% endblock %}
 {% load humanize %}
 {% block content %}
-<div class="w3-center">
-    <img  src="{{ user.profile.image.url }}" style="width:150px">
-    </div>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top">
 
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
-          </li>
-          
-            <a class="nav-link w3-hide" href="{% url 'contact' %}">Contact </a>
-          </li>
-          <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link " href="{% url 'blog-home' %}">Kwela InfoHub </a>
-          </li>
+<!-- sidebar-->
+{% include 'partials/_sidebar.html' %}
 
-         
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'wasifu ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
-          </li>
-            
-        </li>
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        
-          {% if perms.catalog.can_view_buyers %}
-          <li {% if 'Propertys' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-        >
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Files
-              </a>
-              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Propreties file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
-            
-                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
-                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
-            
-              </div>
-              </div>
-            </li>
-            {% endif %}
-        </ul>
-    
-                </div>
-              </div>
-              
-            </nav>
-
-
-
-
+<!-- Top Bar -->
+{% include 'partials/_topbar.html' %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
+            <div class="w3-center">
+              <a href="/wasifu">
+                <img  src="{{ user.profile.image.url }}" class="w3-circle" style="width:150px; height:150px;">
+              </a>
+              </div>
           <h1 class="display-4">{{ user.username|capfirst }} Dashboard</h1>
           <p class="lead">Manage your Kwela account</p>
         </div>
@@ -720,8 +576,7 @@
     </div>
     </div> 
   </div>
-</div>
-</div>
+
 </section> 
 
   {% endblock %}

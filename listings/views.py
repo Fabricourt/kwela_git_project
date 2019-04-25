@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import price_choices, lot_size_choices, state_choices
+from .choices import price_choices, lot_size_choices, location_choices
 from django.http import HttpResponse
 from .models import Snippet
+from realtors.models import Realtor
 
 from.models import Listing
 
@@ -14,15 +15,22 @@ def index(request):
   paged_listings = paginator.get_page(page)
 
   context = {
-    'listings': paged_listings
-  }
-
+    'listings': paged_listings,
+    'location_choices': location_choices,
+    'lot_size_choices': lot_size_choices,
+    'price_choices': price_choices,
+ 
+    }
   return render(request, 'listings/listings.html', context)
 
 def listing(request, listing_id):
   listing = get_object_or_404(Listing, pk=listing_id)
 
   context = {
+   
+    'location_choices': location_choices,
+    'lot_size_choices': lot_size_choices,
+    'price_choices': price_choices,
     'listing': listing
   }
 
@@ -36,19 +44,14 @@ def search(request):
     keywords = request.GET['keywords']
     if keywords:
       queryset_list = queryset_list.filter(description__icontains=keywords)
+ 
+ 
 
-  
-  # City
-  if 'city' in request.GET:
-    city = request.GET['city']
-    if city:
-      queryset_list = queryset_list.filter(city__iexact=city)
-
-  # State
-  if 'state' in request.GET:
-    state = request.GET['state']
-    if state:
-      queryset_list = queryset_list.filter(state__iexact=state)
+  # Location
+  if 'location' in request.GET:
+    location = request.GET['location']
+    if location:
+      queryset_list = queryset_list.filter(location__iexact=location)
  
   # lot_size
   if 'lot_size' in request.GET:
@@ -63,7 +66,8 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
-        'state_choices': state_choices,
+    
+        'location_choices': location_choices,
         'lot_size_choices': lot_size_choices,
         'price_choices': price_choices,
         'listings': queryset_list,

@@ -5,179 +5,18 @@
 
 {% block content %}
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top">
-
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
-          </li>
-          
-            <a class="nav-link w3-hide" href="{% url 'contact' %}">Contact </a>
-          </li>
-          <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'blog-home' %}">Kwela InfoHub </a>
-          </li>
-
-         
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'wasifu ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
-          </li>
-            
-        </li>
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        
-          {% if perms.catalog.can_view_buyers %}
-          <li {% if 'Propertys' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-        >
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Files
-              </a>
-              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Propreties file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
-            
-                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
-                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
-            
-              </div>
-              </div>
-            </li>
-            {% endif %}
-        </ul>
-    
-                </div>
-              </div>
-              
-            </nav>
-
-
-
 
 <div >
-<section id="showcase-inner" class="py-5 text-white ">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <h1 class="display-4">About Kwela</h1>
-          
-        </div>
-      </div>
-    </div>
-  </section>
-
-
- 
-
+    <header class="w3-display-container w3-content w3-center" style="max-width:100%">
+        <img class="w3-image" src="{% static 'img/about.jpg' %}" alt="Magical Lamu Beutiful Pic" width="100%" height="400">  
+   </header>
   <section id="about" class="py-4">
   
-    <div class="container w3-leftbar w3-topbar w3-hover-shadow w3-border-orange w3-card w3-white">
+    <div class="container w3-white">
 
       <div class="row">
         <div class="col-md-8">
-          <h1 class="w3-center w3-text-orange">KWELA</h1>
+     
           <p class="mt-4">Kwela Group empowers its clients to grow through innovative real estate solutions.
               "Kwela",  means 'to climb' in Bemba, a Bantu Language from Zambia. The name truly 
               captrues the brand promise that  we make to our clients: taking you higher
@@ -228,15 +67,24 @@
         <div class="col-md-4 " >
             {% if mvp_realtors %}
               {% for realtor in mvp_realtors %}
-              <div class="card w3-card">
-                  <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Seller of the month">
-                  <div class="card-body">
-                    <hr>
-                    <h6 class="text-secondary">{{ realtor.name }}</h6>
-                    <p class="card-text">{{ realtor.description | safe }}
-                    </p>
+              <div class="w3-center" style="font-family: arial; font-size: 18px;">
+                  <div class="card">
+                      <img src="{{ realtor.photo.url }}" alt="Realtor" style="width:100%">
+                      <p></p>
+                      <h1>{{ realtor.name }}</h1>
+                      <p>Kwela Group Limited</p>
+                      <p class="w3-text-grey">  <i class="fas fa-award w3-text-red  mb-3"></i> Realtor </p>
+                    
+                      <div style="margin:0;">
+                        <a href="#" ><i class="fab fa-instagram"></i></a> 
+                        <a href="#"><i class="fab fa-twitter"></i></a>  
+                        <a href="#" ><i class="fab fa-linkedin"></i></a>  
+                        <a href="#"><i class="fab fa-facebook"></i></a> 
+                        <p>{{ realtor.email }}</p>
+                      </div>
+                      <p  class="w3-black"><button  class="w3-black w3-border-black">{{ realtor.phone }}</button></p>
+                    </div>
                   </div>
-                </div>
               {% endfor %}
             {% endif %}
           </div>
@@ -252,41 +100,48 @@
     <a href="{% url 'listings' %}" class="btn w3-orange w3-hover-green text-white btn-lg">View Our Featured Listings</a>
    
   </section>
-  
-  <!-- Team 
-  <section id="team">
+    <!-- Team -->
+  <section id="team" class="py-5">
       <div class="container">
-      <div class='w3-center w3-text-white'>
-        <h2 class="w3-margin-bottom w3-center">Our Team</h2>
-       </div>
-    
-          
+        <h2 class="text-center">Our Team</h2>
+        <div class="row text-center">
           {% if realtors %}
             {% for realtor in realtors %}
-           
-            <div class=" w3-quarter w3-margin w3-center w3-white w3-bottombar w3-border-green  ">
-              <div w3-card w3-hover-shadow >
-                <img src="{{ realtor.photo.url }}" alt="" style="width:100%; height:250px;">
-                <h4>{{ realtor.name }}</h4>
-                <p class="text-success">
-                  <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-                <hr>
-                <p>
-                  <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
-                <p>
-                  <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+            <div class="col-md-4 w3-center" style="font-family: arial; font-size: 18px;">
+              <div class="card">
+                  <img src="{{ realtor.photo.url }}" alt="Realtor" style="width:100%">
+                  <p></p>
+                  <h1>{{ realtor.name }}</h1>
+                  <p>Kwela Group Limited</p>
+                  <p class="w3-text-grey">  <i class="fas fa-award w3-text-red  mb-3"></i> Realtor </p>
+                
+                  <div style="margin:0;">
+                    <a href="#" ><i class="fab fa-instagram"></i></a> 
+                    <a href="#"><i class="fab fa-twitter"></i></a>  
+                    <a href="#" ><i class="fab fa-linkedin"></i></a>  
+                    <a href="#"><i class="fab fa-facebook"></i></a> 
+                    <p>{{ realtor.email }}</p>
+                  </div>
+                  <p  class="w3-black"><button  class="w3-black w3-border-black">{{ realtor.phone }}</button></p>
+                </div>
               </div>
-            </div>
             {% endfor %}
           {% else %}
-            <div class="col-md-12">
-              <p>No Realtors Available</p>
-            </div>
+          <div class="col-md-12">
+            <p>No Realtors Available</p>
+          </div>
           {% endif %}       
         </div>
       </div>
-      <br /><br /><br />
     </section>
-    -->
+
+     
+         
+          
+       
+          
+          
+          
+      
   </div>
   {% endblock %}

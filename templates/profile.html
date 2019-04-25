@@ -21,14 +21,15 @@
 
     <div class="w3-content">
       <div class="w3-row w3-margin">
-        <div class="w3-third">
-            <img class=" account-img w3-border w3-white w3-hover-grayscale w3-padding" src="{{ user.profile.image.url }}" style="width:300px">
-        </div>
+       
         <div class="w3-twothird w3-2019-princess-blue w3-container">
             <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <fieldset class="form-group">
                   <legend class="border-bottom mb-4">Change your user and email info here</legend>
+                  <div class="w3-third">
+                      <img class=" account-img w3-border w3-circle w3-white w3-hover-grayscale w3-padding" src="{{ user.profile.image.url }}" style="width:300px">
+                  </div>
                   {{ u_form|crispy }}
               </fieldset>
               <fieldset class="form-group">

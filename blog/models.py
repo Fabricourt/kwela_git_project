@@ -10,8 +10,8 @@ class Post(models.Model):
     content = RichTextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True, blank=True)
     photo_blog = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True, blank=True)
+    is_published = models.BooleanField(default=True)
     def __str__(self):
         return self.title
 

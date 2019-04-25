@@ -13,232 +13,48 @@
     }
 </style>
 
-<body class="w3-light-grey">
-
-<div id="fb-root"></div>
 <script>
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 </script>
 </head>
-<div class="w3-left">
-       <p class="">
-            <a href="{% url 'blog-home' %}">
-                <button class="w3-button w3-green w3-right w3-hover-orange">Back To Blog</button></a>
-            </p>
+
+<div id="fb-root"></div>
+<section>
+  <div class="w3-light-grey w3-padding-64 w3-margin-bottom w3-center">
+    <h1>{{ post.title }}</h1>
   </div>
-  <br>
-    <div class="w3-center">
-
-        <img  src="{{ user.profile.image.url }}" style="width:150px">
-        </div>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top">
-
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
-          </li>
-          
-            <a class="nav-link" href="{% url 'contact' %}">Contact </a>
-          </li>
-          <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link " href="{% url 'blog-home' %}">Kwela InfoHub </a>
-          </li>
-
-         
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'wasifu ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
-          </li>
-            
-        </li>
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        
-          {% if perms.catalog.can_view_buyers %}
-          <li {% if 'Propertys' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-        >
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Files
-              </a>
-              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Properties file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
-            
-                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
-                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
-            
-              </div>
-              </div>
-            </li>
-            {% endif %}
-        </ul>
-    
-                </div>
-              </div>
-              
-            </nav>
-<div class="w3-light-grey w3-padding-64 w3-margin-bottom w3-center">
-  <h1 class="w3-jumbo">{{ post.title }}</h1>
-</div>
-
-
-    
-       
-      
-
-<div class="w3-row-padding w3-content" style="max-width:1400px">
-
+  <div class="w3-row-padding w3-content" style="max-width:1400px">
   <div class="w3-twothird">
-     
-    <img src="{{ post.photo_main.url }}" alt="" style="width:100%">
-    
-    
-    
-    <div class="w3-justify">
-        <a class=" w3-xlarge" href="#">Author: <span class="w3-text-red">{{ object.author|capfirst }}<span></span></a>
-        <p class="text-muted ">{{ object.date_posted|date:"F d, Y" }}</p>
-        <br>
-                  
-                  {% if object.author == user %}
-                    <div>
-                      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-                      <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-                    </div>
-                  {% endif %}
-                
-                <p class="article-content">{{ object.content|safe }}</p>   
-    </div>
+    <img src="{{ post.photo_blog.url }}" alt="" style="width:100%;">
+  <div class="w3-justify">
+    <a class=" w3-xlarge" href="#" style="text-decoration:none;">Author: <span class="w3-text-red" >{{ object.author|capfirst }}<span></span></a>
+    <p class="text-muted ">{{ object.date_posted|date:"F d, Y" }}</p>
+    <br>       
+    {% if object.author == user %}
+      <div>
+        <a href="{% url 'blog-home' %}" class="btn  btn-sm mt-1 mb-1 w3-border-amber w3-highway-yellow w3-right w3-hover-white">Back To Blog</a>
+        <a class="btn btn-sm mt-1 mb-1  w3-border-green w3-highway-green w3-hover-white" href="{% url 'post-update' object.id %}">Update</a>
+        <a class="btn btn-sm mt-1 mb-1  w3-border-red w3-highway-red  w3-hover-white" href="{% url 'post-delete' object.id %}">Delete</a>
+      </div>
+    {% endif %}  
+    <p class="article-content">{{ object.content|safe }}</p>   
+  </div>
   </div>
   <div class="w3-third">
     
-      <div class="w3-card w3-media w3-margin w3-margin-top">
-          <div class="w3-margin">
-              <div class="fb-comments  w3-text-white w3-hover-shadow " data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="12"></div>
-            </div>
-  </div>
-</div>
-</div>
-
-
-<!-- Footer -->
-<footer class="page-footer font-small  w3-theme-d5 w3-padding w3-small pt-4">
-
-
-  
-  
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="http://www.kwela.co.ke"><span class="w3-text-blue">kwela.co.ke</span> </a>
+  <div class="w3-card w3-media w3-margin w3-margin-top">
+    <div class="w3-margin">
+      <div class="fb-comments  w3-text-white w3-hover-shadow " data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="12"></div>
     </div>
-    
-  
-  </footer>
+  </div>
+</section>
+
+
   
   {% endblock %}

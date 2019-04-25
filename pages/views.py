@@ -1,24 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from listings.choices import price_choices, lot_size_choices, state_choices
+from listings.choices import price_choices, lot_size_choices, location_choices  
 from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
-from pages.models import Photoi, Photoa
+from blog.models import Post
+
 
 from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    pages = Photoa.objects.all().filter(is_published=True)[:3]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
+    posts = Post.objects.order_by('-list_date').filter(is_published=True)[:3]
 
 
     context = {
-        'pages': pages,
+        'posts': posts,
         'listings': listings,
-        'state_choices': state_choices,
+        'location_choices': location_choices,
         'lot_size_choices': lot_size_choices,
         'price_choices': price_choices,
         'testimonials': testimonials,
@@ -27,7 +28,6 @@ def index(request):
 
 
 def about(request):
-    pages = Photoa.objects.order_by('title').filter(is_published=True)[:3]
     # Get all realtors
     realtors = Realtor.objects.order_by('-hire_date')
 
@@ -35,9 +35,19 @@ def about(request):
     mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
 
     context = {
-        'pages': pages,
         'realtors': realtors,
+        'location_choices': location_choices,
+        'lot_size_choices': lot_size_choices,
+        'price_choices': price_choices,
         'mvp_realtors': mvp_realtors
     }
 
     return render(request, 'pages/about.html', context)
+
+def lamu(request):
+    context = {
+        'location_choices': location_choices,
+        'lot_size_choices': lot_size_choices,
+        'price_choices': price_choices,
+    }
+    return render(request, 'pages/lamu.html', context)

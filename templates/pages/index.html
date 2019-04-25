@@ -6,670 +6,160 @@
 {% block title %} | Home {% endblock %}
 
 {% block content %}
-<style>
-    * {
-      box-sizing: border-box;
-    }
-    
-    .zoom {
-      
-      transition: transform .2s;
-    
-     
-    }
-    
-    .zoom:hover {
-      -ms-transform: scale(1.5); /* IE 9 */
-      -webkit-transform: scale(1.5); /* Safari 3-8 */
-      transform: scale(1.5); 
-    }
-    </style>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark w3-theme-d5 sticky-top" style="width:100%;">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured </a>
-          </li>
-          
-            <a class="nav-link w3-hide" href="{% url 'contact' %}">Contact </a>
-          </li>
-          
-          <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'blog-home' %}">Kwela InfoHub </a>
-          </li>
+<!-- sidebar-->
+{% include 'partials/_sidebar.html' %}
 
-         
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'wasifu ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
-          </li>
-            
-        </li>
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        
-          {% if perms.catalog.can_view_buyers %}
-          <li {% if 'Propertys' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-        >
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Files
-              </a>
-              <div class="dropdown-menu w3-theme-l2 w3-opacity-min " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item w3-text white" href="{% url 'propertys' %}">Properties file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'locations' %}">Locations file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'owners' %}">Owners file</a>
-                <a class="dropdown-item w3-text white" href="{% url 'buyers' %}">Buyers file</a>
-            
-                <a href="{% url 'blog-about' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Blog About</a>
-                <a href="{% url 'post-create' %}" class="w3-bar-item w3-button"  style="text-decoration:none;">Create</a>
-            
-              </div>
-              </div>
-            </li>
-          
-                
+<!-- Top Bar -->
+{% include 'partials/_topbar.html' %}
+  
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    {% if listings %}
+      {% for listing in listings %}
+    <div class="w3-third  w3-margin-bottom">
+        <img src="{{ listing.photo_main.url }}" alt="Norway" style="width:100%; height:200px;" class="w3-hover-opacity">
+      <div>
+          <h2>
            
-            {% endif %}
-        </ul>
-    </div>
-  </div>
-</nav>
-            
- 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-center" style="max-width:100%">
-  <img class="w3-image" src="https://timbuktutravel.imgix.net/regions/kodak_images/000/000/100/original/dhow-lamu-kenya-timbuktu-travel.jpg?w=900&h=599&auto=format&crop=fit&fit=min&dpr=1&q=50" alt="Magical Lamu Beutiful Pic" width="100%" height="400">
-  <div class="w3-display-middle w3-theme-d5 w3-opacity w3-padding-large w3-border w3-wide w3-text-light-grey  w3-center">
-    <h1 class="w3-xxxlarge">Plots of Land Lamu</h1>
-    <h5 class="w3-large" style="white-space:nowrap">Be Part of Magical Lamu</h5>
-    <h3 class="w3-xlarge">ROI in 5 Year</h3>
-  </div>
-  
-
-</header>
-
-   <!-- Listings -->
-   <section id="listings" class="py-5 " >
-
-    <div class="w3-padding-64 w3-margin 
-    ">
-    <div class="jumbotron w3-content w3-twothirds" >
-    <h1 class="w3-text-black w3-center w3-jumbo">Why <span class="w3-text-red">Investing In Lamu </span> is The Best Deal</h1>
-    <ol class=" w3-large">
-      <li class=""><strong>Lamu Is Beutiful</strong> : If you have ever wished you could have a piece of the coast this is your opportunity</li>
-      <hr class="w3-white">
-      <li><strong>Tourism</strong>: With Lamu growing Tourism will definately grow this means more money, more business and more value for land</li>
-      <hr class="w3-white">
-      <li><strong>Affordable</strong>: At the moment Lamu is open and land is affordable for the moment until the lapsett completion</li>
-      <hr class="w3-white">
-      <li><strong class="w3-text-red"> Lapsett</strong>: The Lapsett is the key reason we are even talking about Lamu 
-      <ul>
-        <li>The Lapsett is the biggest Investment by Kenya Goverment aimed at employing 450,000 people. </li>
-        <li>This number of people create market for Housing in future, schools, hosptials, and all other service industry provisions.</li>
-        <li>The Lapsett Project is 40% done with three berths already built.</li>
-        <li>The director of the Lapsett Project Mr. Silvester Kasuku projects the Lapsett building in Lamu to be complet by 2020. [one year remains]</li>
-      </ul></li>
-      <hr class="w3-white">
-      <li><strong>Lamu County Govement</strong>: The Lamu county goverment growth stategy include pulling as many investors to itself as possible.The Local investor offers the best opportunity since he is not detered by local challenges.This gives Kenyans the opportunity to invest in lamu with LAND becoming our most valuable asset Today and in the future</li>
-      <hr class="w3-white">
-      <li><strong>Land does not loose value</strong>: Land is the only investment that is garaunteed to increase value with time indefinately. You can never be wrong.</li>
-    </ol>
-   </div>
-    <div class=" w3-margin-top">
-        <div class="w3-container">
-  
-            <div class="container  w3-margin-bottom">
-                <div class="w3-panel w3-bottombar w3-border-theme">
-                <div class=" w3-third w3-center">
-                    <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0726 776 796
-                  </div>
-                  <div class="w3-third w3-center">
-                      <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 072 697 3915
-                    </div>
-                    <div class="w3-third w3-center">
-                        <i class="fas fa-phone" style="font-size:18px;color:rgb(44, 105, 236);"></i> (+254) 0743 800 497
-                      </div>
-                  </div>
-                  <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> we have the best Land Products in lamu. Upto 1 year Installments</p>
-                </div>    
-          </div>
-      </div>
-    </div>
-    
-  </div>
-      <!-- Good offers -->
-<section class="w3-2019-princess-blue">
-      <div class="w3-container  w3-margin-top">
-          <h1 class="w3-center w3-xxxlarge">What you need to know about the <span class="w3-text-amber">Lapsett?</span></h1>
-          <h6 class="w3-center">Lapsett<strong> Corridor</strong> Project.</h6>
-          <h5 class=" w3-center w3-padding w3-margin-bottom ">by Lapsett Project Director MR. Silvester Kasuku <br> & others  </h5>
+          </h2>
         </div>
-
-
-  <div class="w3-row-padding w3-text-white w3-large">
-    <div class="w3-half w3-margin-bottom">
-      <div class="w3-display-container w3-hover-shadow">
-          <iframe width="100%" height="510px" src="https://www.youtube.com/embed/zxjpRORoEmQ">
-          </iframe>
-        <span class="w3-display-right w3-margin  w3-padding  w3-theme-d5 w3-opacity ">What is Lapsett</span>
-      </div>
-    </div>
-    <div class="w3-half">
-      <div class="w3-row-padding" style="margin:0 -16px">
-         
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container w3-hover-shadow">
-              <iframe width="100%" height="245px" src="https://www.youtube.com/embed/rEMGjoox23w"
-              allowfullscreen="allowfullscreen"
-              mozallowfullscreen="mozallowfullscreen" 
-              msallowfullscreen="msallowfullscreen" 
-              oallowfullscreen="oallowfullscreen" 
-              webkitallowfullscreen="webkitallowfullscreen">
-              </iframe>
-
-  
-          
-            <span class="w3-display-bottomleft w3-margin  w3-padding  w3-theme-d5 w3-opacity w3-small">Lamu Visualization</span>
-          </div>
-        </div>
-        <div class="w3-half w3-margin-bottom">
-            <div class="w3-display-container w3-hover-shadow">
-                <iframe width="100%" height="245px" src="https://www.youtube.com/embed/ROu0d3BAk_Y"
-                allowfullscreen="allowfullscreen"
-                mozallowfullscreen="mozallowfullscreen" 
-                msallowfullscreen="msallowfullscreen" 
-                oallowfullscreen="oallowfullscreen" 
-                webkitallowfullscreen="webkitallowfullscreen">
-                </iframe>
-    
-            
-              <span class="w3-display-bottomleft w3-margin  w3-padding  w3-theme-d5 w3-opacity w3-small">Lamu Benefits most</span>
-            </div>
-          </div>
-          <div class="w3-half w3-margin-bottom">
-              <div class="w3-display-container w3-hover-shadow">
-                  <iframe width="100%" height="245px" src="https://www.youtube.com/embed/hMBh74lrsxQ"
-                  allowfullscreen="allowfullscreen"
-                  mozallowfullscreen="mozallowfullscreen" 
-                  msallowfullscreen="msallowfullscreen" 
-                  oallowfullscreen="oallowfullscreen" 
-                  webkitallowfullscreen="webkitallowfullscreen">
-                  </iframe>
-                  
-              
-                <span class="w3-display-bottomleft w3-margin  w3-padding  w3-theme-d5 w3-opacity w3-small">Lapsett ready by 2020</span>
-              </div>
-            </div>
-            <div class="w3-half w3-margin-bottom">
-                <div class="w3-display-container w3-hover-shadow">
-                    
-                    <iframe width="100%" height="245px" src="https://www.youtube.com/embed/QvYBCFoyak4"
-                    allowfullscreen="allowfullscreen"
-                    mozallowfullscreen="mozallowfullscreen" 
-                    msallowfullscreen="msallowfullscreen" 
-                    oallowfullscreen="oallowfullscreen" 
-                    webkitallowfullscreen="webkitallowfullscreen">
-                    </iframe>
-                   
-                
-                  <span class="w3-display-bottomleft w3-padding w3-margin w3-theme-d5 w3-opacity w3-small">View Undergoing Construction</span>
-                </div>
-              </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
-  
-  <section>
-  <div class="w3-row-padding w3-padding-64 w3-margintop w3-large w3-theme-l4 w3-container">
-      <h1 class="w3-center">Learn More <span class="w3-text-red">About Lamu</span> & The Lapsett</h1>
-      <div class="container"> 
-        <div class="">
-  <div class="w3-panel" style="width:100%;">
-    <div class="w3-">
-    <button onclick="myFunction('Demo1')" class="w3-btn  w3-block w3-white  w3-left-align"><strong>Lamu County</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo1" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <p>Lamu county occupies an area of 6,273.1 km² has a population of 101,539. The main settlers of lamu county are the Boni  somali ,  mijikenda and Kikuyus.</p>
-
-       <p>The main economical activities is fishing and tourism farming is now also becoming a serious income earner including  livestock </p>
-
-       <p>Lamu is the leading producer of cotton in Kenya , Trees also do very well. Fruit trees like cashew nuts, mango coconuts.</p>
-        <p> Most of the land is unoccupied due to the low density in population. However it is expected, within the ongoing construction of the port and other lapsett projects , the population will grow and with it the need to produce move food to feed the people.</p>
-         
-         
-     </div>
-    </div>
-    
-    <button onclick="myFunction('Demo2')" class="w3-btn  w3  w3-block w3-white w3-left-align  "><strong>Lamu Port Development</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo2" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <p>In <b>1975</b> the Kenya goverment decided to construct a  new port in lamu to complement the one in mombasa.</p>
-
-        <p>Lamu was choosen as a result of the sutability of lamu which has a deep natural harbour of 18m. This would see all the ocean faring vessels which cannot dock in Mombasa because of its depth docking in Lamu.</p>
-
-        <p>It was not until 2012 that the goverment of Kenya took the 1st step toward its realisation. IT saw the president of South Sudan and the prime minister of Ethiopia putting a commumeration stone at the place where the port would be constructed.</p>
-      
-         
-     </div>
-    </div>
-
-    <button onclick="myFunction('Demo3')" class="w3-btn  w3 w3-block w3-white w3-left-align "><strong>Lapsett Project</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo3" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <p>The whole project which is reffered to as the lapsset is expected to cost  ksh3.2 trion  it has the following components.</p>
-          <ol>
-          <li><h6>Lapsset Roads</h5>
-          <p>Lamu south sudan Ethiopia transport corridor (Lapsset)</p>
-          <p>road going all the way to juba in south sudan the other branching to Ethiopia from Isiolo throught moyale.
-          </p></li>
-          <li><p>Oil pipelie from south sudan through turkana to lamu </p></li>
-          <li><p>Oil Refinery</p></li>
-          <li><p>Coal find plant at Lamu</p></li>
-          <li><p>Resort cities at L.Turkana Isiolo and lamu</p></li>
-          <li><p>Two international airports at Lamu and Isiolo.</p></li> 
-          <li><p>Railway line linking juba Ethiopia and Nairobi from Lamu</p></li>
-          </ol>
-         
-     </div>
-    </div>
-    
-    <button onclick="myFunction('Demo4')" class="w3-btn   w3  w3-block w3-white w3-left-align"><strong>Types of land in Lamu</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo4" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <ol>
-          <li> <h2>Community Land</h2>
-          <p>Community land is under the control of the community occupying it. It is accessed through and agreement with the said community.</p> </li>
-          
-          <li><h2>Community Land</h2>
-          <p>Goverment (public) land is under the oversight of the county goverment.</p></li> 
-          
-          <li><h2>Private</h2>
-          <p>All private land is the titled land.</p>
-
-          <p>The goverment land around the port of Lamu is being availed to the public under what is called Hindi II settlement  scheme. To acquire land in the area, one has to be a bonifide squater  in the land which is under consideration far alination.</p> 
-
-          <p>To be a bonifide squater one has to occupy the land through tiling it. But has to have been allocated the same by the chief of the area in the first place.</p>
-          </li>
-        </ol>
-         
-     </div>
-    </div>
-
-  
-    <button onclick="myFunction('Demo5')" class="w3-btn  w3  w3-block w3-white w3-left-align"><strong>Lamu Features</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo5" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <h3>Lamu Features</h3>
-        <ul>
-          <li>Port 32 berths</li>
-          <li>International Airport</li>
-          <li>Oil Refinery</li>
-          <li>Port supporting 3 countries
-            <ol>
-              <li>Kenya</li>
-              <li>Ethiopia</li>
-              <li>South Sudan</li>
-            </ol>
-          </li>
-        </ul>
-         
-     </div>
-    </div>
-  
-    
-    <button onclick="myFunction('Demo6')" class="w3-btn  w3  w3-block w3-white w3-left-align"><strong>Hindi Phases</strong><span class="w3-right w3-hover-text-red">Learn More</span></button>
-    <div id="Demo6" class="w3-container w3-hide">
-      <div class="w3-container w3-padding  w3-left-text">
-        <h3>Feature Properties</h3>
-        <ul>
-          <li>Piped water in the area</li>
-          <li>Power (electricity)</li>
-          <li>Bondering Hindi phase I whose properties prices are in the region of 700K to 1.5m/acre</li>
-          <li>Along the lappset corridor</li>
-          <li>In the vicinity of the proposed Railway station</li>
-          <li>Boast a commercial node</li>
-        </ul>
-        <h3>Hindi phase II is for those who want more than an acre this area has higher risks but also the highest return</h3>
-     </div>
-     
-    </div>
-    <button class="w3-btn  w3-block w3-center w3-topbar w3-border-white w3-xxlarge  w3-border-orange"> 
-      [<a href="{% url 'blog-home' %}" class="w3-wide w3-margin w3-padding  w3-xlarge w3-white" style="text-decoration:none;">Discover<span class="w3-text-red">More</span></a>]</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-  <div class="container   w3-margin-bottom">
-      <div class="w3-panel w3-bottombar w3-border-theme">
-      <div class=" w3-third w3-center">
-          <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0726 776 796
-        </div>
-        <div class="w3-third w3-center">
-            <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 072 697 3915
-          </div>
-          <div class="w3-third w3-center">
-              <i class="fas fa-phone" style="font-size:18px;color:rgb(33, 79, 233);"></i> (+254) 0743 800 497
-            </div>
-        </div>
-        <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> we have much more to tell you about our properties below are our products category in lamu</p>
-      </div>    
-    
-  </section>
-  
-<script>
-      function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-          x.previousElementSibling.className = 
-          x.previousElementSibling.className.replace("w3-white", "w3-theme-d5");
-        } else { 
-          x.className = x.className.replace(" w3-show", "");
-          x.previousElementSibling.className = 
-          x.previousElementSibling.className.replace("w3-theme-d5", "w3-white");
-        }
-      }
-</script>     
-
- 
-    <div class="w3-container w3-padding-64 w3-margin">
-      <div class="w3-panel w3-hide">
-          <h1 class="w3-center w3-text-green">Frequently Asked Questions.</h1>
-      <blockquote class="w3-panel   w3-leftbar w3-border-grey">
-      <ul>
-        <li>First Without fear of contradiction we can confidently, say the Kenya Goverment Lapsett Project in  Lamu is the biggest investement of the century. The evidence is there proving this as a fact and the action is there with already three berths complete.
-        <li>Secondly the Lapsett director Mr. Silvester Kasuku assures that the Lapsett will be complete by 2020.That means we have two years before affodable land becomes unaffordable. The reason we are confident about this is; despite presently Lamu being marginally populated. The lapsett project alone employs 450,000 kenyans those translate to 450,000 households which can easily get to one million people as a result of the economic transition.This means business, hospitals, schools, housing with the latter being primary.</li>
-        <li>In finality Kwela offers YOU the opportunity to own prime land with title deed, but most importantly high return land  projected to icrease value by more than 300%. The deal gets even better we offer one year installment period and as low as ksh 5000 deposit to start.</li>
-      </ul>
-      </blockquote>
-      </div> 
-    </div>
- </div>
-
-  <section class="w3-theme-d5">
-    <h1 class=" w3-center w3-text-white w3-padding w3-margin">Our Product Range</h1>
-    <div class="w3-row-padding  w3-margin-bottom">
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-container w3-center  w3-large ">
-           <h1>Hindi Phase I</h1>
-           <h3>Titled Land</h3>
-           <p>700K per acre </p>
-           <p>400K per 1/2 acre</p>
-           <p>200k per 1/4 acre</p>
-           <hr class="w3-white">
-           <h1>Hindi Phase II</h1>
-            <h3>Untitled Land</h3>
-            <p>150K per acre</p>
-            <p>80K per 1/2 acre</p>
-            <p>50k per 1/2 acre</p>  
-          </div>
-        </div>
-       
-        <div class="w3-half w3-margin-bottom">
-          
-          <div class="w3-container w3-center w3-padding-64 w3-xxlarge">
-              <h1 class="w3-center">Lamu To Date</h1>
-              <iframe width="100%" height="270px" src="https://www.youtube.com/embed/gIHtjwDz9ZY"
-              allowfullscreen="allowfullscreen"
-              mozallowfullscreen="mozallowfullscreen" 
-              msallowfullscreen="msallowfullscreen" 
-              oallowfullscreen="oallowfullscreen" 
-              webkitallowfullscreen="webkitallowfullscreen">
-              </iframe>
-              
-        </div>
-      </div>
-    </div>  
-  </section>
- 
-
-
-   <!-- Listings -->
-<section id="listings" class="py-5" >
-    <div class="container">
-      <h1 class="w3-xxxlarge  w3-text-green w3-marginbottom text-center  mb-3">Our Products</h1>
-        <div class="row">
-          {% if listings %}
-            {% for listing in listings %}
-              <!-- Listing 1 -->
-              <div class="col-md-6 col-lg-4  mb-4">
-                <div class="card w3-border-white listing-preview w3-shadow">
-                  <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" style="width:100%; height:250px;">
-                  <div class="card-img-overlay w3-shadow ">
-                    <h2>
-                      <span class="badge w3-orange text-black">Kes{{ listing.price | intcomma }}</span>
-                    </h2>
-                  </div>
-                  <div class="card-body w3-white">
-                    <div class="listing-heading text-center">
-                      <h4 class="text-primary">{{ listing.title }}</h4>
-                      <p>
-                        <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
-                    </div>
-                    
-                    
-                    <div class="row py-2  ">
-                      <div class="col-6">
-                        <i class="fa fa-road text-dark"></i> Roads: {{ listing.roads }}</div>
-                      <div class="col-6">
-                        <i class="fas fa-tint text-info"></i> Water: {{ listing.water}}</div>
-                    </div>
-                    <div class="row py-2 ">
-                      <div class="col-6">
-                        <i class="fas fa-th-large w3-text-brown"></i> Size: {{ listing.lot_size }}</div>
-                      <div class="col-6">
-                        <i class="fa fa-lightbulb-o text-warning"></i> Electricity: {{ listing.electricity}}</div>
-                    </div>
+      <div class="w3-small w3-white">
+          <div class="card-body w3-hover-shadow w3-white">
+              <div class="listing-heading text-center">
+                <h6 class="text-primary"><b>{{ listing.title }}</b></h6>
                
-                    <div class="row py-2 ">
-                      <div class="col-6">
-                        <i class="fas fa-user text-danger"></i> {{ listing.realtor }}</div>
-                    </div>
-                    <div class="row  pb-2">
-                      <div class="col-12">
-                        <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
-                    </div>
-                  </div>
-                    
-                    <a href="{% url 'listing' listing.id %}" class="btn w3-theme-d5 w3-hover-green btn-block zoom">More Info</a>
-                  </div>
-                </div>
-              
-            {% endfor %}
-          {% else %}
-            <div class="col-md-12">
-              
-              <p>No Plots listings Available</p>
-            </div>
-          {% endif %}
-  
-        </div>
-      </div>
-      <div class=" w3-margin-top">
-          <div class="w3-container">
-    
-              <div class="container  w3-margin-bottom">
-                  <div class="w3-panel w3-bottombar w3-border-theme">
-                  <div class=" w3-third w3-center">
-                      <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0726 776 796
-                    </div>
-                    <div class="w3-third w3-center">
-                        <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 072 697 3915
-                      </div>
-                      <div class="w3-third w3-center">
-                          <i class="fas fa-phone" style="font-size:18px;color:rgb(44, 105, 236);"></i> (+254) 0743 800 497
-                        </div>
-                    </div>
-                    <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> we have the best Land Products in lamu. Upto 1 year Installments</p>
-                  </div>    
-            </div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-  
-      
-       <!-- TESTIMONIAL -->
-       <section id="testament w3-padding-64 w3-margin">
-         <h1 Class="w3-center w3-text-red"> What our Clients Are Saying</h1>
-              <div class="container">
-                   {% if testimonials %}
-                       
-                             {% for testimonial in testimonials %}
-                                  <div class="w3-panel">             
-                                       <div class="w3-container ">
-                                            <h4 class="w3-left-align" >{{testimonial.user.first_name|capfirst}} {{testimonial.user.last_name|capfirst}}</h4>
-                                            <p class="w3-left-align">{{testimonial.post_date}}</p>
-                                            <img src="{{ testimonial.testimonials_image.url}}" alt=" " class="w3-left w3-border w3-padding w3-circle" style="padding:2px; width:115px; height:100px;">
-                                            <p class="w3-left-align">{{testimonial.message|safe}}</p>
-                                       </div>
-                                  </div>
-                             {% endfor %}
-                   {% else %}                                    
-                   <p>There are no testimonies</p>
-                  {% endif %}   
+                <p>
+                  <i class="fas fa-map-marker text-secondary"></i> {{ listing.location }}, {{ listing.state }}</p>
+              </div>     
+              <div class="row py-2  ">
+                <div class="col-6">
+                  <i class="fa fa-road text-dark"></i> Roads: {{ listing.roads }}</div>
+                <div class="col-6">
+                  <i class="fas fa-tint text-info"></i> Water: {{ listing.water}}</div>
               </div>
-          </section>
- 
-          
-  <section id="services" class="py-5 bg-secondary text-white">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-4">
-          <i class="fas fa-comment fa-4x mr-4"></i>
-          <hr>
-          <h3>Consulting Services</h3>
-          <p>We at Kwela have been buying and selling plots for more than ten years. 
-            We know the do and dont's of everything to do with Land. That includes as
-            being victims in our days of amateurism don't just buy because it has a title we know better.
-          </p>
-        </div>
-        <div class="col-md-4">
-          <i class="fas fa-home fa-4x mr-4"></i>
-          <hr>
-          <h3>Plot Search</h3>
-          <p>Sometimes the kind of land your looking for it is too strategic few people are selling. 
-            That means few are advertising, thats where we come in we work with you to search it out so 
-            that you only buy what your looking for .</p>
-        </div>
-        <div class="col-md-4">
-          <i class="fas fa-suitcase fa-4x mr-4"></i>
-          <hr>
-          <h3>Selling</h3>
-          <p>Not everyone is a buyer we value the people who choose to sell land through us. 
-            Depending with location at times we too can be you customers. So come and join us today we can build faster and bigger.</p>
-        </div>
+              <div class="row py-2 ">
+                <div class="col-6">
+                  <i class="fas fa-th-large w3-text-brown"></i> Size: {{ listing.lot_size }}</div>
+                <div class="col-6">
+                  <i class="fa fa-lightbulb-o text-warning"></i> Power: {{ listing.electricity}}</div>
+              </div>
+              <div class="row py-2 ">
+                  <div class="col-6">
+                    <i class="fas fa-user text-danger"></i> {{ listing.realtor }}</div>
+                  <div class="col-6">
+                      <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
+                </div>
+              <div class="row py-2 ">
+                  <div class="col-6">
+                      <span class="btn w3-win8-cobalt w3-large text-black">Kes{{ listing.price | intcomma }}</span></div>
+                  <div class="col-6">
+                      <a href="{% url 'listing' listing.id %}" class="btn w3-right w3-border-amber w3-hover-amber">More Info</a></div>
+              </div>
+              
+            </div>
       </div>
     </div>
-    
-    
-  </section>
+      {% endfor %}
+      {% else %}
+      <div class="col-md-12">
+        
+        <p>No Plots listings Available</p>
+      </div>
+    {% endif %}
+
   
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div>
+      <a href="listings" class="btn w3-highway-yellow w3-border-orange w3-hover-white">View all Featured plots</a>
+  
+    </div>
+  </div>
+
+  <!-- Images of Me -->
+ 
+  <div class="w3-row-padding w3-padding-64" id="about">
+      <section class="w3-container jumbotron w3-theme-d5 w3-hover-black w3-hover-text-amber w3-wide w3-center w3-allerta">
+          <p class="w3-xxxlarge">Our Two Areas of Interest</p>
+      </section>
+    <div class="w3-col m6">
+      <h3 class="w3-center">Lamu</h3>
+      <img class="zoom" src="{% static 'img/lamu.jpg' %}" alt="Lamu" style="width:100%; height:300px;">
+    </div>
+    <div class="w3-col m6">
+        <h3 class="w3-center">Ruiru</h3>
+        <img class="zoom" src="{% static 'img/ruiru.png' %}" alt="Ruiru" style="width:100%; height:300px;">
+    </div>
+  </div>
+
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Why Lamu And Ruiru</b></h4>
+    <p>There are only two places in kenya that have had so similar fates. 2008 Ruiru woke up to the building of Thika Road and the Eastern Bypass. plots that sold for 
+      kes 19,000 payable in six months rocketed to Kes 1.5M in five years. 2019 Lamu is waking up and it will be the biggest opportunity ever to Kwela Lamu is the future. what is happening to Lamu is just a repition of Ruiru 2008.
+      <a href="lamu" class="w3-text-red" style="text-decoration:none;"> Learn More about Lamu here</a> Or even better hear about it from us directly. Just call and we will tell you all about it.
+      <div class="container   w3-margin-bottom">
+          <div class="w3-panel w3-bottombar w3-border-theme">
+          <div class=" w3-third w3-center">
+              <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0726 776 796
+            </div>
+            <div class="w3-third w3-center">
+                <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 072 697 3915
+              </div>
+              <div class="w3-third w3-center">
+                  <i class="fas fa-phone" style="font-size:18px;color:rgb(33, 79, 233);"></i> (+254) 0743 800 497
+                </div>
+            </div>
+            <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> we have much more to tell you about our properties, or just click below to view all our properties</p>
+          </div>  
+    </p>
+    <div class="w3-center w3-padding-32">
+        <div>
+          <a href="listings" class="btn w3-highway-yellow w3-border-orange w3-hover-white">View all Featured plots</a>
+      
+        </div>
+      </div>
+    <hr>
+    
+    <h4>Ruiru</h4>
+    <p>However for those who are still looking for a prime place to build. Ruiru is still the one place which is still affordable in Nairobi Metropolitan. You can get a plot for as low as Kes 400,000 meaning if you have a million its a good starting point.</p>
+    <!-- Progress bars / Skills -->
+    
+    </p>
+    <hr>
+ 
+<!-- End page content -->
+</div>
+
+
+
+
+
+
+<!-- TESTIMONIAL -->
+<section id="testament w3-padding-64 w3-margin">
+ 
+      <div class="container">
+            {% if testimonials %}
+            <h1 Class="w3-center w3-text-red"> What our Clients Are Saying</h1>
+                      {% for testimonial in testimonials %}
+                          <div class="w3-panel">             
+                                <div class="w3-container ">
+                                    <h4 class="w3-left-align" >{{testimonial.user.first_name|capfirst}} {{testimonial.user.last_name|capfirst}}</h4>
+                                    <p class="w3-left-align">{{testimonial.post_date}}</p>
+                                    <img src="{{ testimonial.testimonials_image.url}}" alt=" " class="w3-left w3-border w3-padding w3-circle" style="padding:2px; width:115px; height:100px;">
+                                    <p class="w3-left-align">{{testimonial.message|safe}}</p>
+                                </div>
+                          </div>
+                      {% endfor %}
+            {% else %}                                    
+            <p class="w3-center">Need Help We Are Here For You </p>
+          {% endif %}   
+      </div>
+  </section>
+ 
+<div>
+  
+
 
 {% endblock %}

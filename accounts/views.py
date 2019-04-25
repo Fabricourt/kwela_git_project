@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from listings.choices import price_choices, lot_size_choices, location_choices
 from contact.models import Sema
 from malipo.models import (Malipo, 
                           Malipo_two,
@@ -110,9 +111,10 @@ def dashboard(request):
   'malipo_nine': user_malipo_nine,
   'malipo_ten': user_malipo_ten,
   'malipo_eleven': user_malipo_eleven,
-  'malipo_twelve': user_malipo_twelve
-
- 
+  'malipo_twelve': user_malipo_twelve,
+  'location_choices': location_choices,
+  'lot_size_choices': lot_size_choices,
+  'price_choices': price_choices,
 }
   return render(request, 'accounts/dashboard.html', context)
   
