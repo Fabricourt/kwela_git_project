@@ -17,7 +17,7 @@
      
   {% for post in posts %}
   <div class="w3-content">
-      <div class="w3-row w3-margin w3-card">
+      <div class="w3-row w3-margin">
       
             
             <div class="w3-third w3-card w3-round">
@@ -26,7 +26,7 @@
             </div>
             <div class="w3-twothird  w3-left-align w3-container">
              
-                <div  class="w3-left-align w3-text-green w3-center w3-padding "><h4><strong>{{ post.title }}</strong></h4></div>
+                <div  class="w3-left-align w3-text- w3-center w3-padding "><h4><strong>{{ post.title }}</strong></h4></div>
                 <p class="w3-text-theme w3-small">{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }} {{ post.date_posted|date:"F d, Y" }} </p>
                 <p class="w3-left-align w3-small">{{ post.content|slice:"210"|safe }}
                 <span><a class="btn w3-border-blue w3-win8-cobalt w3-right w3-small w3-hover-white" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">Read More</a></span></p>
@@ -36,6 +36,8 @@
          
           </div>
     </div>
+
+  </div>
   {% endfor %}                
 {% endblock %}
 

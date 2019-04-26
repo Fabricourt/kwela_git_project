@@ -52,12 +52,7 @@ INSTALLED_APPS = [
     'ckeditor', 
     'contact',
     'wasifu',
-    'crispy_forms',
-
- 
-
-    
-    
+    'crispy_forms', 
 ]
 
 
