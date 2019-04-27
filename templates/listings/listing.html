@@ -11,7 +11,7 @@
 <!-- Top Bar -->
 {% include 'partials/_topbar.html' %}
 
-<div>
+<div class="w3-white">
 
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <section id="showcase-inner" class="py-5 text-white">
@@ -47,7 +47,7 @@
   {% include 'partials/_alerts.html' %}
 
   <!-- Listing -->
-  <section id="listing" class="py-4">
+  <section id="listing w3-white" class="py-4">
     <div class="container ">
       <div class="row">
         <div class="col-md-9">
@@ -147,7 +147,7 @@
             </div>
           </div>
 
-          <div class="">
+          <div class="w3-hide">
               <div class="w3-container w3-xlarge w3-hover-shadow w3-orange w3-padding-16">
                   <ol>
                       <li>Installments up to 1 year interest free</li>
@@ -162,9 +162,9 @@
                 {{ listing.description|safe }}
             </div>
           </div>
-          <h1 class="w3-center w3-text-red">Learn More About This Area Below</h1>
+         
   
-          <div class="w3-row-padding  w3-container">
+          <div class="w3-row-padding w3-hide  w3-container">
               <div class="container"> 
                 <div class="">
           <div class="w3-leftbar w3-border-green" style="width:100%;">
