@@ -11,7 +11,9 @@
 <!-- Top Bar -->
 {% include 'partials/_topbar.html' %}
 
-<div class="w3-white">
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
 
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <section id="showcase-inner" class="py-5 text-white">
@@ -302,13 +304,15 @@
       <div class="col-md-3">
         <div class="card mb-3">
           <img class="card-img-top" src="{{ listing.realtor.photo.url }}" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Property Realtor</h5>
-              <h6 class="text-secondary">{{ listing.realtor }}</h6>
-              <h6 class="text-secondary">{{ listing.realtor.phone }}</h6>
+            <div class=" w3-center w3-white">
+              <p></p>
+              <h5 class="card-title">Seller</h5>
+              <h4 class="text-primary font-weight-bold">{{ listing.realtor }}</h4>
+              <p>{{ listing.realtor.phone }}</p>
+              <p class="btn w3-black w3-button w3 w3-text-white btn-block w3-hover-white w3-border-black" data-toggle="modal" data-target="#inquiryModal">Book To View</p>
             </div>
             </div>
-          <button class="w3-theme-d5 btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Book To VIew</button>
+      
         </div>
       </div>
     </div>
@@ -365,5 +369,5 @@
       </div>
     </div>
   </div>
-</div>
+
 {% endblock %}
