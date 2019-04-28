@@ -8,12 +8,12 @@
 <!-- sidebar-->
 {% include 'partials/_sidebar.html' %}
 
-<!-- Top Bar -->
-{% include 'partials/_topbar.html' %}
+
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px">
-
+<div class="w3-main w3-margin" style="margin-left:300px">
+<!-- Top Bar -->
+{% include 'partials/_topbar.html' %}
 
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 <section id="showcase-inner" class="py-5 text-white">
@@ -49,12 +49,12 @@
   {% include 'partials/_alerts.html' %}
 
   <!-- Listing -->
-  <section id="listing w3-white" class="py-4">
+  <section id="listing w3-white" class="py-5">
     <div class="container ">
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
-          <img src="{{ listing.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+          <img src="{{ listing.photo_main.url }}" alt="" class="img-main w3-card img-fluid mb-3">
           <!-- Thumbnails -->
           <div class="row mb-5 thumbs">
             {% if listing.photo_1 %}
