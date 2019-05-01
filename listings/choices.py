@@ -1,7 +1,7 @@
-lot_size_choices = {
-  '40X80ft Approx':'40X80ft Approx',
-  '50X100ft Approx':'50X100ft Approx',
-  '100X100ft Approx':'100X100ft Approx',
+plot_size_choices = {
+  '40X80ft':'40X80ft',
+  '50X100ft':'50X100ft',
+  '100X100ft':'100X100ft',
   '1 Acre':'1 Acre',
   '2 Acre':'2 Acre',
   '3 Acre':'3 Acre',
@@ -27,13 +27,28 @@ price_choices = {
   '700000':'Kes700,000',
   '800000':'Kes800,000',
   '900000':'Kes900,000',
-  '1000000':'Kes1M+',
-  '10000000':'Kes10M+',
+  'Kes1,000,000':'Kes1,000,000',
+  'Kes5,000,000':'Kes5,000,000',
+  '10,000,000':'Kes10,000,000'
 }
 
 location_choices = {
-        'Ruiru': 'Ruiru',
-        'Lamu':'Lamu'
+        'Gikumari':'Gikumari',
+        'Kiratina':'Kiratina',
+     
         
-  
 }
+
+town_choices = {
+        'Ruiru':'Ruiru',
+        'Hindi':'Hindi',
+        
+        
+}
+
+county_choices = {
+        'Kiambu':'Kiambu',
+       
+        
+}
+

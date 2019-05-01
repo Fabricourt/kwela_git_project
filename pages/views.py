@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from listings.choices import price_choices, lot_size_choices, location_choices  
+from listings.choices import price_choices, plot_size_choices, location_choices, town_choices, county_choices  
 from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
@@ -19,8 +19,10 @@ def index(request):
     context = {
         'posts': posts,
         'listings': listings,
+        'county_choices': county_choices,
+        'town_choices': town_choices,  
         'location_choices': location_choices,
-        'lot_size_choices': lot_size_choices,
+        'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,
         'testimonials': testimonials,
     }
@@ -36,8 +38,10 @@ def about(request):
 
     context = {
         'realtors': realtors,
+        'county_choices': county_choices,
+        'town_choices': town_choices,  
         'location_choices': location_choices,
-        'lot_size_choices': lot_size_choices,
+        'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,
         'mvp_realtors': mvp_realtors
     }
@@ -45,9 +49,4 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 def lamu(request):
-    context = {
-        'location_choices': location_choices,
-        'lot_size_choices': lot_size_choices,
-        'price_choices': price_choices,
-    }
-    return render(request, 'pages/lamu.html', context)
+    return render(request, 'pages/lamu.html')
