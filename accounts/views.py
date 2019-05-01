@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from listings.choices import price_choices, plot_size_choices, location_choices, town_choices, county_choices
 from contact.models import Sema
 
 
@@ -74,12 +73,7 @@ def dashboard(request):
 
   context = {
   'contact': user_contact,
-  'county_choices': county_choices,
-  'town_choices': town_choices,  
-  'listings': paged_listings,
-  'location_choices': location_choices,
-  'plot_size_choices': plot_size_choices,
-  'price_choices': price_choices,
+  
 }
   return render(request, 'accounts/dashboard.html', context)
   
