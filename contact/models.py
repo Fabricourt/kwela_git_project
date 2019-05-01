@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime
 from realtors.models import Realtor
-from catalog.models import Owner, Buyer
 from ckeditor.fields import RichTextField
 from PIL import Image
 

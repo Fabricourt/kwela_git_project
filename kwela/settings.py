@@ -33,10 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'testimonials.apps.TestimonialsConfig',
-    'malipo.apps.MalipoConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
-    'catalog.apps.CatalogConfig',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
