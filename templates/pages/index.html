@@ -22,7 +22,7 @@
     {% for listing in listings %}
     <div class="w3-third  w3-margin-bottom w3-display-container">
         <img src="{{ listing.photo_main.url }}" alt="Norway" style="width:100%; height:200px;" class="w3-card-4 w3-round w3-hover-opacity">
-        <div class="w3-display-topleft w3-container"><span class="btn w3-margin-top w3-win8-cobalt w3-large text-black">Kes{{ listing.price | intcomma }}</span></div>
+        <div class="w3-display-topleft w3-container"><span class="btn w3-margin-top w3-win8-cobalt w3-large text-black">Kes{{ listing.price|intcomma }}</span></div>
       <div>
           <h2>
            
@@ -114,7 +114,7 @@
     </p>
     <div class="w3-center w3-padding-32">
         <div>
-          <a href="listings" class="btn w3-highway-yellow w3-border-orange w3-hover-white">View all Featured plots</a>
+          <a href="listings" class="btn w3-green w3-border-green w3-hover-white">View all Featured plots</a>
       
         </div>
       </div>
