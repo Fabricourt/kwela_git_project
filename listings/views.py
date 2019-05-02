@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import price_choices, plot_size_choices, location_choices, county_choices, town_choices
+from .choices import price_choices, plot_size_choices, location_choices, town_choices
 from django.http import HttpResponse
 from .models import Snippet
 from realtors.models import Realtor
@@ -16,7 +16,6 @@ def index(request):
 
   context = {
     'listings': paged_listings,
-    'county_choices': county_choices,
     'town_choices': town_choices,  
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
@@ -29,7 +28,6 @@ def listing(request, listing_id):
   listing = get_object_or_404(Listing, pk=listing_id)
 
   context = {
-    'county_choices': county_choices,
     'town_choices': town_choices,  
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
@@ -48,11 +46,6 @@ def search(request):
     if keywords:
       queryset_list = queryset_list.filter(description__icontains=keywords)
 
-# County
-  if 'county' in request.GET:
-    county = request.GET['county']
-    if county:
-      queryset_list = queryset_list.filter(county__iexact=county)
 
 # Town
   if 'town' in request.GET:
@@ -80,7 +73,6 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
-        'county_choices': county_choices,
         'town_choices': town_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,

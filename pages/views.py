@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from listings.choices import price_choices, plot_size_choices, location_choices, town_choices, county_choices  
+from listings.choices import price_choices, plot_size_choices, location_choices, town_choices
 from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
@@ -19,7 +19,6 @@ def index(request):
     context = {
         'posts': posts,
         'listings': listings,
-        'county_choices': county_choices,
         'town_choices': town_choices,  
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
@@ -38,7 +37,6 @@ def about(request):
 
     context = {
         'realtors': realtors,
-        'county_choices': county_choices,
         'town_choices': town_choices,  
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
