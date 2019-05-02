@@ -48,3 +48,4 @@ def about(request):
 
 def lamu(request):
     return render(request, 'pages/lamu.html')
+
