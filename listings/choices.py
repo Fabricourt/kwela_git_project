@@ -46,9 +46,4 @@ town_choices = {
         
 }
 
-county_choices = {
-        'Kiambu':'Kiambu',
-       
-        
-}
 

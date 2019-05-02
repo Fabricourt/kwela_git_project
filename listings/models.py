@@ -26,7 +26,7 @@ class Listing(models.Model):
   price = models.IntegerField()
   payment_plan = models.CharField(max_length=200, help_text='mode of payment required')
   water = models.CharField(max_length=100, help_text='the distance from water pipe or source')
-  roads = models.CharField(max_length=100, help_text='what the main road to the area is made of')
+  roads = models.CharField(max_length=100, help_text='the distance from the main road')
   electricity = models.CharField(max_length=100, help_text='distance from the closest transformer')                      
   plot_type = models.CharField(max_length=100)
   plot_size = models.CharField(max_length=100)

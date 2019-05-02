@@ -6,6 +6,8 @@
 {% block title %} | Home {% endblock %}
 
 {% block content %}
+<!--overlay-->
+{% include 'partials/overlay.html' %}
 
 <!-- sidebar-->
 {% include 'partials/_sidebar.html' %}
@@ -20,47 +22,11 @@
   <div class="w3-row-padding">
     {% if listings %}
     {% for listing in listings %}
-    <div class="w3-third  w3-margin-bottom w3-display-container">
-        <img src="{{ listing.photo_main.url }}" alt="Norway" style="width:100%; height:200px;" class="w3-card-4 w3-round w3-hover-opacity">
-        <div class="w3-display-topleft w3-container"><span class="btn w3-margin-top w3-win8-cobalt w3-large text-black">Kes{{ listing.price|intcomma }}</span></div>
-      <div>
-          <h2>
-           
-          </h2>
-        </div>
-      <div class="w3-small w3-white">
-          <div class="card-body w3-round w3-hover-shadow w3-white">
-              <div class="listing-heading text-center">
-                <h6 class="text-primary"><b>{{ listing.title }}</b></h6>
-                <p><i class="fas fa-map-marker text-secondary"></i>{{ listing.town }}-{{ listing.location }}</p>
-              </div>     
-              <div class="row py-2  ">
-                <div class="col-6">
-                  <i class="fa fa-road text-dark"></i> Roads: {{ listing.roads }}</div>
-                <div class="col-6">
-                  <i class="fas fa-tint text-info"></i> Water: {{ listing.water}}</div>
-              </div>
-              <div class="row py-2 ">
-                <div class="col-6">
-                  <i class="fas fa-th-large w3-text-brown"></i> Size: {{ listing.plot_size }}</div>
-                <div class="col-6">
-                  <i class="fa fa-lightbulb-o text-warning"></i> Power: {{ listing.electricity }}</div>
-              </div>
-              <div class="row py-2 ">
-                  <div class="col-6">
-                    <i class="fas fa-user text-danger"></i> {{ listing.realtor }}</div>
-                  <div class="col-6">
-                      <i class="fas fa-clock text-primary"></i> {{ listing.list_date | timesince }}</div>
-                </div>
-              <div class="row py-2 ">
-                  <div class="col-12"><a href="{% url 'listing' listing.id %}"><span class="btn w3-right w3-border-green w3-hover-green">More Info</span></a></div>
-              </div>
-              
-            </div>
-      </div>
-    </div>
-      {% endfor %}
-      {% else %}
+    <!--overlay-->
+        {% include 'partials/_listings.html' %}
+
+    {% endfor %}
+    {% else %}
       <div class="col-md-12">
         
         <p>No Plots listings Available</p>
@@ -71,7 +37,7 @@
   <!-- Pagination -->
   <div class="w3-center w3-padding-32">
     <div>
-      <a href="listings" class="btn w3-green w3-border-green w3-hover-white">View all Featured plots</a>
+      <a href="listings" class="btn w3-win8-cobalt w3-border-blue w3-hover-white">View all Featured plots</a>
   
     </div>
   </div>
@@ -79,7 +45,7 @@
   <!-- Images of Me -->
  
   <div class="w3-row-padding w3-padding-64" id="about">
-      <section class="w3-container jumbotron w3-green w3-hover-black w3-hover-text-amber w3-wide w3-center w3-allerta">
+      <section class="w3-container jumbotron bg-success text-light w3-wide w3-center w3-allerta">
           <p class="w3-xxxlarge">Our Two Areas of Interest</p>
       </section>
     <div class="w3-col m6">
@@ -114,7 +80,7 @@
     </p>
     <div class="w3-center w3-padding-32">
         <div>
-          <a href="listings" class="btn w3-green w3-border-green w3-hover-white">View all Featured plots</a>
+          <a href="listings" class="btn w3-win8-blue w3-border-blue w3-hover-white">View all Featured plots</a>
       
         </div>
       </div>
