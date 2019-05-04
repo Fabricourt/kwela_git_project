@@ -165,7 +165,7 @@
               <p></p>
               <h5 class="card-title">Seller</h5>
               <h4 class="text-primary font-weight-bold">{{ listing.realtor }}</h4>
-              <p>{{ listing.realtor.phone }}</p>
+             
               <p class="btn w3-black w3-button w3 w3-text-white btn-block w3-hover-white w3-border-black" data-toggle="modal" data-target="#inquiryModal">Book To View</p>
             </div>
             </div>
@@ -176,6 +176,7 @@
   </section>
 
   <!-- Inquiry Modal -->
+  {% if user.is_authenticated %}
   <div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -187,6 +188,9 @@
           </button>
         </div>
         <div class="modal-body">
+          <div>
+            <p>{{ listing.realtor.phone }}</p>
+          </div>
           <form action="{% url 'sema' %}" method="POST">
             {% csrf_token %}
             {% if user.is_authenticated %}
@@ -226,5 +230,5 @@
       </div>
     </div>
   </div>
-
+  {% endif %}
 {% endblock %}
