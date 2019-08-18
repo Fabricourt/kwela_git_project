@@ -8,7 +8,7 @@
       </button>
      
    
-      <span class="w3-btn w3-hide-large w3-circle w3-white w3-hover-amber  w3-large" onclick="w3_open()"><i class="fa fa-search w3-hover-text-black w3-text-green"></i> </span>
+
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
           <li
@@ -109,6 +109,7 @@
           {% else %}
           
             <li
+            {% if user.is_staff %}
             {% if 'register' in request.path %}
               class="nav-item active mr-3"
             {% else %}
@@ -117,6 +118,7 @@
             >
               <a class="nav-link" href="{% url 'register' %}">
                 <i class="fas fa-user-plus"></i> Register</a>
+            {% endif %}
             </li>
             <li
             {% if 'login' in request.path %}
