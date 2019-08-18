@@ -54,7 +54,8 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!-- Lightbox -->
 <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
-
+<!-- Color -->
+<link rel="stylesheet" href="{% static 'css/color.css' %}">
 <!-- w3.css -->
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <title>Plots of Land for Sale Kwela   {% block title %}  {% endblock %}</title>
@@ -62,9 +63,10 @@
 <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 </head>
 
-<body class="w3-light-grey w3-content" style="max-width:100%">
+<body class="w3-white w3-content" style="max-width:100%">
 
 <!-- NavBar -->
+{% include 'partials/_topbar.html' %}
 {% include 'partials/_navbar.html' %}
 
 
@@ -73,8 +75,8 @@
 {% block content %} <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="width:50px;">{% endblock %}
 
 <!-- Footer -->
-{% include 'partials/_footer.html' %}
 
+{% include 'partials/_footer.html' %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/menu.js"></script>
 

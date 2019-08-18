@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from listings.choices import price_choices, plot_size_choices, location_choices, town_choices
+from django.contrib.admin.views.decorators import staff_member_required
 from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
@@ -11,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:8]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-list_date').filter(is_published=True)[:3]
 
@@ -49,3 +50,14 @@ def about(request):
 def lamu(request):
     return render(request, 'pages/lamu.html')
 
+@staff_member_required
+def mobile(request):
+    return render(request, 'pages/mobile.html') 
+
+@staff_member_required
+def tablet(request):
+    return render(request, 'pages/tablet.html') 
+
+@staff_member_required
+def laptop(request):
+    return render(request, 'pages/laptop.html') 
