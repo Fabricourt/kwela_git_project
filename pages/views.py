@@ -47,7 +47,7 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 def lamu(request):
-    return render(request, 'pages/lamu.html')
+    return render(request, 'pages/Lamu.html')
 
 @staff_member_required
 def mobile(request):
