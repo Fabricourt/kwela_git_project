@@ -13,10 +13,10 @@
     
     .parallax {
       /* The image used */
-      background-image: url('https://cdn.pixabay.com/photo/2016/10/19/17/43/summer-1753537_960_720.jpg');
+      background-image: url('static/img/shamba.jpg');
     
       /* Full height */
-      height: 75%; 
+      height: 100%; 
     
       /* Create the parallax scrolling effect */
       background-attachment: fixed;
@@ -36,17 +36,17 @@
  
 <section class="parallax w3-display-container ">
   <div class=" text-center">
-    
-    <div class="home-search p-5 w3-theme-d5 w3-display-middle w3-opacity-min">
+   
+    <div class="home-search p-5 w3-display w3-black w3-opacity">
       <div class="overlay p-5">
-        <h1 class="display-4 mb-4">
+        <h1 class="display-4 mb-4 w3-hide-small w3-text-white">
          Searching Plots Just Got Easy
         </h1>
-        <p class="lead">The story of every house begins with a plot of Land</p>
+        <p class="lead w3-hide-small w3-text-white">The story of every house begins with a plot of Land</p>
         <div class="search">
           <form action="{% url 'search' %}">
              <!-- Form Row 1 -->
-             <div class="form-row">
+             <div class="form-row ">
               <div class="col-md-4 mb-3 ">
                 <label class="sr-only">Keywords</label>
                 <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
@@ -58,10 +58,10 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label class="sr-only">County</label>
+                <label class="sr-only">Town</label>
                 <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">County (All)</option>
-                  {% for key,value in state_choices.items %}
+                  <option selected="true" disabled="disabled">Town (All)</option>
+                  {% for key,value in town_choices.items %}
                     <option value="{{ key }}">{{ value }}</option>
                   {% endfor %}
                   </select>
@@ -70,10 +70,10 @@
               <!-- Form Row 2  -->
               <div class="form-row"> 
                 <div class="col-md-6 mb-3">
-                  <label class="sr-only">Lot size</label>
+                  <label class="sr-only">Plot size</label>
                   <select name="bedrooms" class="form-control">
                     <option selected="true" disabled="disabled">Plot Sizes (All)</option>
-                    {% for key,value in lot_size_choices.items %}
+                    {% for key,value in plot_size_choices.items %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                   </select>
@@ -87,11 +87,12 @@
                   </select>
                 </div>
               </div>
-              <button class="btn w3-amber btn-block mt-4" type="submit">Submit form</button>
+              <button class="btn w3-green btn-block mt-4" type="submit">Submit form</button>
             </form>
           </div>
         </div>
       </div>
+      
     </div>
   </section>
 <!--overlay-->
@@ -125,18 +126,16 @@
   <!-- Pagination -->
   <div class="w3-center w3-padding-32">
     <div>
-      <a href="listings" class="btn w3-win8-cobalt w3-border-blue w3-hover-white">View all Featured plots</a>
+      <a href="listings" class="btn w3-highway-blue w3-border-blue w3-hover-white">View all Featured plots</a>
   
     </div>
   </div>
 
   <!-- Images of Me -->
-  <section id="work" class="text-white text-center  w3-padding w3-theme-d5">
+  <section id="work" class="text-white text-center  w3-padding w3-theme-d5 parallax ">
      
-    <h2 class="display-4">
-      <hr class="w3-white">
-      Our Two Areas of Interest
-      <hr class="w3-white">
+    <h2 class="display-4 w3-padding-64 ">
+      <strong><b>Our Two Areas of Interest</b></strong>
     </h2>
   </section>
   <div class="w3-row-padding w3-padding container " id="about">
@@ -172,7 +171,7 @@
     </p>
     <div class="w3-center w3-padding-32">
         <div>
-          <a href="listings" class="btn w3-win8-blue w3-border-blue w3-hover-white">View all Featured plots</a>
+          <a href="listings" class="btn w3-highway-blue w3-border-blue w3-hover-white">View all Featured plots</a>
       
         </div>
       </div>
