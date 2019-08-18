@@ -44,7 +44,6 @@ def about(request):
         'price_choices': price_choices,
         'mvp_realtors': mvp_realtors
     }
-
     return render(request, 'pages/about.html', context)
 
 def lamu(request):
