@@ -9,13 +9,13 @@
 
 <!-- Navbar -->
 
-<div class="w3-white" >
+<div >
     <header class="w3-display-container w3-content w3-center" style="max-width:100%">
-        <img class="w3-image" src="{% static 'img/about.jpg' %}" alt="About Pic" width="100%" height="400">  
-        <div class="w3-display-topright w3-margin-top w3-margin-right w3-container"><img src="{% static 'img/logo.jpg' %}" alt="Kwela"  class="w3-border-black w3-center w3-round"></div>
+        <!--<img class="w3-image" src="{% static 'img/about.jpg' %}" alt="About Pic" width="100%" height="400">-->  
+   
 
    </header>
-  <section id="about" class="py-4">
+  <div id="about" class="py-4">
   
     <div class="container w3-white">
 
@@ -70,6 +70,7 @@
       
         </div>
         <div class="col-md-4 " >
+          <br><br><br>
             {% if mvp_realtors %}
               {% for realtor in mvp_realtors %}
               <div class="w3-center" style="font-family: arial; font-size: 18px;">
@@ -98,13 +99,13 @@
           </div>
         </div>
       </div>
-  </section>
+    </div>
 
   <!-- Work -->
-  <section id="work" class="text-white text-center w3-padding w3-theme-d5">
-      <hr class="w3-white">
+  <section id="work" class="text-white text-center w3-padding-64 w3-highway-green w3-opacity-min">
+     
     <h2 class="display-4">Our Team Of Realtors
-      <hr class="w3-white">
+      
     </h2>
     
  
