@@ -52,6 +52,9 @@ def about(request):
 def lamu(request):
     return render(request, 'pages/lamu.html')
 
+def comingsoon(request):
+    return render(request, 'pages/comingsoon.html')
+
 @staff_member_required
 def mobile(request):
     return render(request, 'pages/mobile.html') 
