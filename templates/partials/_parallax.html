@@ -1,0 +1,90 @@
+{% load static %}
+<style>
+        body, html {
+          height: 100%;
+        }
+        
+        .parallax {
+          /* The image used */
+          background-image: url('https://cdn.pixabay.com/photo/2017/03/27/13/08/airport-2178606_960_720.jpg');
+        
+          /* Full height */
+          height: 100%; 
+        
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        
+        /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+        @media only screen and (max-device-width: 1366px) {
+          .parallax {
+            background-attachment: scroll;
+          }
+        }
+        </style>
+     <!-- Showcase -->
+     
+    <section class="parallax w3-display-container ">
+      
+       
+        <div class="text-center home-search p-5 w3-display w3-black w3-opacity-min">
+          <div class="overlay p-5">
+            <h1 class="display-4 mb-4 w3-hide-small w3-text-white">
+             Searching Plots Just Got Easy
+            </h1>
+            <p class="lead w3-hide-small w3-text-white">The story of every Property begins with a plot of Land</p>
+            <div class="search">
+              <form action="{% url 'search' %}">
+                 <!-- Form Row 1 -->
+                 <div class="form-row ">
+                  <div class="col-md-4 mb-3 ">
+                    <label class="sr-only">Keywords</label>
+                    <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
+                  </div>
+    
+                  <div class="col-md-4 mb-3">
+                    <label class="sr-only">Location</label>
+                    <input type="text" name="Location" class="form-control" placeholder="Location">
+                  </div>
+    
+                  <div class="col-md-4 mb-3">
+                    <label class="sr-only">Town</label>
+                    <select name="state" class="form-control">
+                      <option selected="true" disabled="disabled">Town (All)</option>
+                      {% for key,value in town_choices.items %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Form Row 2  -->
+                  <div class="form-row"> 
+                    <div class="col-md-6 mb-3">
+                      <label class="sr-only">Plot size</label>
+                      <select name="bedrooms" class="form-control">
+                        <option selected="true" disabled="disabled">Plot Sizes (All)</option>
+                        {% for key,value in plot_size_choices.items %}
+                          <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <select name="price" class="form-control" id="type">
+                        <option selected="true" disabled="disabled">Max Price (Any)</option>
+                        {% for key,value in price_choices.items %}
+                        <option value="{{ key }}">{{ value }}</option>
+                      {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <button class="btn w3-green btn-block mt-4" type="submit">Submit form</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+       
+      </section>

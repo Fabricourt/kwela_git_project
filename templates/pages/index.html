@@ -6,217 +6,118 @@
 {% block title %} | Home {% endblock %}
 
 {% block content %}
-<style>
-    body, html {
-      height: 100%;
-    }
-    
-    .parallax {
-      /* The image used */
-      background-image: url('https://cdn.pixabay.com/photo/2015/11/07/11/54/barn-1031613_960_720.jpg');
-    
-      /* Full height */
-      height: 100%; 
-    
-      /* Create the parallax scrolling effect */
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    
-    /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
-    @media only screen and (max-device-width: 1366px) {
-      .parallax {
-        background-attachment: scroll;
-      }
-    }
-    </style>
- <!-- Showcase -->
- 
-<section class="parallax w3-display-container ">
-  <div class=" text-center">
-   
-    <div class="home-search p-5 w3-display w3-black w3-opacity-min">
-      <div class="overlay p-5">
-        <h1 class="display-4 mb-4 w3-hide-small w3-text-white">
-         Searching Plots Just Got Easy
-        </h1>
-        <p class="lead w3-hide-small w3-text-white">The story of every house begins with a plot of Land</p>
-        <div class="search">
-          <form action="{% url 'search' %}">
-             <!-- Form Row 1 -->
-             <div class="form-row ">
-              <div class="col-md-4 mb-3 ">
-                <label class="sr-only">Keywords</label>
-                <input type="text" name="keywords" class="form-control" placeholder="Keyword (search)">
-              </div>
 
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">Location</label>
-                <input type="text" name="Location" class="form-control" placeholder="Location">
-              </div>
 
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">Town</label>
-                <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">Town (All)</option>
-                  {% for key,value in town_choices.items %}
-                    <option value="{{ key }}">{{ value }}</option>
-                  {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <!-- Form Row 2  -->
-              <div class="form-row"> 
-                <div class="col-md-6 mb-3">
-                  <label class="sr-only">Plot size</label>
-                  <select name="bedrooms" class="form-control">
-                    <option selected="true" disabled="disabled">Plot Sizes (All)</option>
-                    {% for key,value in plot_size_choices.items %}
-                      <option value="{{ key }}">{{ value }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <select name="price" class="form-control" id="type">
-                    <option selected="true" disabled="disabled">Max Price (Any)</option>
-                    {% for key,value in price_choices.items %}
-                    <option value="{{ key }}">{{ value }}</option>
-                  {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <button class="btn w3-green btn-block mt-4" type="submit">Submit form</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-<!--overlay-->
-{% include 'partials/overlay.html' %}
+<!--parallax-->
+
+
 
 <!-- sidebar-->
 
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main  " >
-<!-- Top Bar -->
+<div class="w3-main  parallax" >
+       
+<!-- Page content -->
+<br><br><br><br>
+<div class="w3-content w3-padding-large w3-border w3-card-4 w3-margin-bottom   " style="max-width:1564px">
 
-  
+        <!-- Project Section -->
+        <div class="w3-container w3-padding-32 " id="projects">
+          <h3 class="w3-border-bottom   w3-border-amber  w3-padding-16 w3-bottombar ">Kwela Construction Connect</h3>
 
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-margin-top container">
-    {% if listings %}
-    {% for listing in listings %}
-    <!--overlay-->
-        {% include 'partials/_listings.html' %}
 
-    {% endfor %}
-    {% else %}
-      <div class="col-md-12">
-        
-        <p>No Plots listings Available</p>
-      </div>
-    {% endif %}
-    </div>
-  
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div>
-      <a href="listings" class="btn w3-highway-blue w3-border-blue w3-hover-white">View all Featured plots</a>
-  
-    </div>
-  </div>
-
-  <!-- Images of Me -->
-  <section id="work" class="text-white text-center  w3-padding w3-theme-d5 parallax ">
-     
-    <h2 class="display-4 w3-padding-64 ">
-      <strong><b>Our Two Areas of Interest</b></strong>
-    </h2>
-  </section>
-  <div class="w3-row-padding w3-padding container " id="about">
-    <div class="w3-col m6">
-      <h3 class="w3-center">Lamu</h3>
-      <img class="zoom" src="{% static 'img/lamu.jpg' %}" alt="Lamu" style="width:100%; height:300px;">
-    </div>
-    <div class="w3-col m6">
-        <h3 class="w3-center">Ruiru</h3>
-        <img class="zoom" src="{% static 'img/ruiru.png' %}" alt="Ruiru" style="width:100%; height:300px;">
-    </div>
-  </div>
-
-  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Why Lamu And Ruiru</b></h4>
-    <p>There are only two places in kenya that have had so similar fates. 2008 Ruiru woke up to the building of Thika Road and the Eastern Bypass. plots that sold for 
-      kes 19,000 payable in six months rocketed to Kes 1.5M in five years. 2019 Lamu is waking up and it will be the biggest opportunity ever to Kwela Lamu is the future. what is happening to Lamu is just a repition of Ruiru 2008.
-      <a href="lamu" style="text-decoration:none;"><button class="btn w3-round w3-amber w3-text-black"> Learn More about Lamu here</button></a> Or even better hear about it from us directly. Just call and we will tell you all about it.
-      <div class="container   w3-margin-bottom">
-          <div class="w3-panel w3-bottombar w3-border-theme">
-          <div class=" w3-third w3-center">
-              <i class="fas fa-phone" style="font-size:18px;color:green;"></i> (+254) 0743 800 497
-            </div>
-            <div class="w3-third w3-center">
-                <i class="fas fa-phone" style="font-size:18px;color:orange;"></i> (+254) 0726 776 796
-              </div>
-              <div class="w3-third w3-center">
-                  <i class="fas fa-phone" style="font-size:18px;color:rgb(33, 79, 233);"></i> (+254) 0726 973 915
-                </div>
-            </div>
-            <p class="w3-center w3-xlarge"><span class="w3-text-red w3-wide">Call Us</span> we have much more to tell you about our properties, or just click below to view all our properties</p>
-          </div>  
-    </p>
-    <div class="w3-center w3-padding-32">
-        <div>
-          <a href="listings" class="btn w3-highway-blue w3-border-blue w3-hover-white">View all Featured plots</a>
-      
+          <span class=" w3-right w3-center">
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Plots For Sale</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Houses For Sale & Rent</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Fundi</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Hardwares</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Plots For Sale</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Construction Materials Suppliers</span>
+          <span class="btn w3-border-theme w3-theme-d5 w3-opacity-min w3-margin-bottom w3-hover-amber w3-padding w3-card-4">Trucks & Pickups</span>
+          </span>
         </div>
-      </div>
-    <hr>
-    
-    <h4>Ruiru</h4>
-    <p>However for those who are still looking for a prime place to build. Ruiru is still the one place which is still affordable in Nairobi Metropolitan. You can get a plot for as low as Kes 400,000 meaning if you have a million its a good starting point.</p>
-    <!-- Progress bars / Skills -->
-    
-    </p>
-    <hr>
+      
+        <div class="w3-row-padding">
+          <div class="w3-col l3 m6 w3-margin-bottom">
+           
+            <div class="w3-display-container w3-card-4">
+            <a href="">
+              <div class="w3-display-topleft w3-card-4 w3-btn w3-green  w3-padding">
+                Plot For Sale
+              </div>
+              <img src="http://napleshomes-forsale.com/wp-content/uploads/2012/11/Naples-land-for-sale1.jpg" class="w3-border w3-card-4 w3-padding w3-theme-d5" alt="House" style="width:100%; height:270px;">
+            </a>
+            </div>
+          
+          </div>
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-display-container w3-card-4">
+            <a href="">
+              <div class="w3-display-topleft w3-btn w3-green w3-card-4 w3-padding">Fundi/Mason/Electrician/Plumber ..</div>
+              <img src="https://cdn.pixabay.com/photo/2017/10/26/17/51/under-construction-2891888_960_720.jpg" class="w3-border w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:100%; height:270px;">
+            </div>
+          </div>
+          <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container w3-card-4">
+                  <a href="">
+                  <div class="w3-display-topleft w3-btn w3-green w3-padding w3-card-4">Hardwares</div>
+                  <img src="https://cdn.pixabay.com/photo/2019/07/10/08/03/hardware-4328142_960_720.png" class="w3-border w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
+                </div>
+              </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-display-container w3-card-4">
+                <a href="">
+                <div class="w3-display-topleft w3-btn w3-green w3-card-4 w3-padding">Construction Material Suppliers</div>
+                <img src="https://cdn.pixabay.com/photo/2016/08/22/17/29/sandstone-from-obernkirchen-1612461_960_720.jpg" class="w3-border w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
+                </a>
+              </div>
+            </div>
+        </div>
+
+      
+        <div class="w3-row-padding">
+
+        <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container w3-card-4">
+                    <a href="">
+                    <div class="w3-display-topleft w3-btn w3-green w3-padding">Houses For Sale & Rent</div>
+                    <img src="https://cdn.pixabay.com/photo/2017/06/19/15/57/new-home-2419869_960_720.jpg" class="w3-border w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
+                    </a>
+                  </div>
+              </div>
+          
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-display-container w3-card-4">
+              <a href="">
+              <div class="w3-display-topleft w3-btn w3-green w3-padding w3-card-4">Support Women Making Ballast</div>
+              <img src="https://cdn.pixabay.com/photo/2017/09/10/06/54/gravel-2734539_960_720.jpg" class="w3-border  w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
+            </a>
+            </div>
+          </div>
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-display-container w3-card-4">
+              <a href="">
+              <div class="w3-display-topleft w3-btn w3-green w3-padding w3-card-4">Trucks & Pickups</div>
+              <img src="https://cdn.pixabay.com/photo/2014/10/09/20/10/tilt-trucks-482421_960_720.jpg" class="w3-border w3-theme-d5 w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
+            </a>
+            </div>
+            </a>
+          </div>
+          <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container w3-card-4">
+                  <a href="">
+                  <div class="w3-display-topleft w3-card-4 w3-btn w3-green w3-padding">Construction Machines & Equipments</div>
+                  <img src="https://cdn.pixabay.com/photo/2017/04/02/09/08/bulldozer-2195329_960_720.jpg" class="w3-border w3-card-4 w3-theme-d5 w3-padding" alt="House" style="width:100%; height:270px;">
+                </a>
+                </div> 
+              </div>
+        </div>
+      
+        
+  </div>
+  <br><br><br><br>
  
-<!-- End page content -->
-</div>
-
-
-
-
-
-
-<!-- TESTIMONIAL -->
-<section id="testament w3-padding-64 w3-margin">
- 
-      <div class="container">
-            {% if testimonials %}
-            <h1 Class="w3-center w3-text-red"> What our Clients Are Saying</h1>
-                      {% for testimonial in testimonials %}
-                          <div class="w3-panel">             
-                                <div class="w3-container ">
-                                    <h4 class="w3-left-align" >{{testimonial.user.first_name|capfirst}} {{testimonial.user.last_name|capfirst}}</h4>
-                                    <p class="w3-left-align">{{testimonial.post_date}}</p>
-                                    <img src="{{ testimonial.testimonials_image.url}}" alt=" " class="w3-left w3-border w3-padding w3-circle" style="padding:2px; width:115px; height:100px;">
-                                    <p class="w3-left-align">{{testimonial.message|safe}}</p>
-                                </div>
-                          </div>
-                      {% endfor %}
-            {% else %}                                    
-            <p class="w3-center">Need Help We Are Here For You </p>
-          {% endif %}   
-      </div>
-  </section>
- 
-<div>
-</div>
-</div>
 
 
 {% endblock %}

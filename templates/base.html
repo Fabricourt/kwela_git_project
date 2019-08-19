@@ -55,6 +55,7 @@
 <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
 <!-- Color -->
 <link rel="stylesheet" href="{% static 'css/w3-theme-brown.css' %}">
+<link rel="stylesheet" href="{% static 'css/w3-color-highway.css' %}">
 <!-- w3.css -->
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <title>Plots of Land for Sale Kwela   {% block title %}  {% endblock %}</title>
@@ -62,11 +63,12 @@
 <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 </head>
 
-<body class="w3-white w3-content" style="max-width:100%">
+<body class="w3-white w3-content parallax" style="max-width:100%">
 
 <!-- NavBar -->
 {% include 'partials/_topbar.html' %}
 {% include 'partials/_navbar.html' %}
+{% include 'partials/overlay.html' %}
 
 
 

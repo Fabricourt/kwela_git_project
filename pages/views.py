@@ -6,18 +6,21 @@ from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
 from blog.models import Post
+from abouts.models import About
 
 
 from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:8]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-list_date').filter(is_published=True)[:3]
 
 
     context = {
+        'abouts': abouts,
         'posts': posts,
         'listings': listings,
         'town_choices': town_choices,  
