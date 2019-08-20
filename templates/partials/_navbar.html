@@ -78,13 +78,13 @@
           {% if user.is_authenticated %}
      
             <li
-            {% if 'wasifu ' in request.path %}
+            {% if 'profile ' in request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
             {% endif %}
           >
-            <a class="nav-link w3-hide" href="{% url 'wasifu' %}">Profile</a>
+            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
           </li>
             
         </li>
@@ -95,7 +95,7 @@
               class="nav-item mr-3"
             {% endif %}
             >
-              <a class="nav-link w3-hide" href="{% url 'dashboard' %}">
+              <a class="nav-link" href="{% url 'dashboard' %}">
                [Dashboard]</a>
             </li>
             
@@ -111,7 +111,7 @@
           {% else %}
           
             <li
-            {% if user.is_staff %}
+            
             {% if 'register' in request.path %}
               class="nav-item active mr-3"
             {% else %}
@@ -120,7 +120,7 @@
             >
               <a class="nav-link" href="{% url 'register' %}">
                 <i class="fas fa-user-plus"></i> Register</a>
-            {% endif %}
+            
             </li>
             <li
             {% if 'login' in request.path %}

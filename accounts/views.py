@@ -2,10 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from contact.models import Sema
-
+from django.contrib.admin.views.decorators import staff_member_required
+from blog.models import Post
 
 
 def register(request):
+  posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+  context = {
+  'posts':posts,
+  }    
   if request.method == 'POST':
     # Get form values
     first_name = request.POST['first_name']
@@ -39,10 +44,14 @@ def register(request):
       messages.error(request, 'Passwords do not match')
       return redirect('register')
   else:
-    return render(request, 'accounts/register.html')
+    return render(request, 'accounts/register.html', context)
 
 
 def login(request):
+  posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+  context = {
+  'posts':posts,
+  }
   if request.method == 'POST':
     username = request.POST['username']
     password = request.POST['password']
@@ -57,7 +66,8 @@ def login(request):
       messages.error(request, 'Invalid credentials')
       return redirect('accounts/login')
   else:
-    return render(request, 'accounts/login.html')
+
+    return render(request, 'accounts/login.html', context)
 
 def logout(request):
   if request.method == 'POST':
@@ -68,14 +78,16 @@ def logout(request):
 
 
 def dashboard(request):
-  user_contact = Sema.objects.order_by('-contact_date').filter(user_id=request.user.id)
+    user_contact = Sema.objects.order_by('-contact_date').filter(user_id=request.user.id)
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
 
+    
+    context = {
+    'contact': user_contact,
+    'posts':posts,
+    }
 
-  context = {
-  'contact': user_contact,
-  
-}
-  return render(request, 'accounts/dashboard.html', context)
-  
+    return render(request, 'accounts/dashboard.html', context)
+    
 
 

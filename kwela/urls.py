@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from wasifu import views as wasifu_views
+from users import views as profile_views
 from contact.views import Contact
 from django.contrib.sitemaps.views import sitemap
 from listings.sitemaps import StaticViewSitemap
@@ -25,7 +25,7 @@ urlpatterns = [
     path('contact/', Contact, name="contact"),
     path('contact/', include('contact.urls')),
     path('admin/', admin.site.urls),
-    path('wasifu/', wasifu_views.wasifu, name='wasifu' ),
+    path('profile/', profile_views.profile, name='profile' ),
     path('testimonial/', testimonial, name='testimonial'),
     
 
