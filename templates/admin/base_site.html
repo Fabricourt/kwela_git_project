@@ -3,7 +3,7 @@
 
 {% block branding %}
   <h1 id="head" class  >
-      <img class="rounded-circle w3-padding account-img" src="{{ user.profile.image.url }}" style="width:100px;"> Admin Area
+      <a href="{% url 'profile' %}"><img  src="{{ user.profile.image.url }}" class="w3-circle w3-padding w3-card-4 w3-border  w3-card-4" style="width:45px; height:50px;"></a> Admin Area
   </h1>
 {% endblock %}
 {% block extrastyle %}
