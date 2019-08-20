@@ -71,6 +71,29 @@
 <!-- NavBar -->
 {% include 'partials/_topbar.html' %}
 {% include 'partials/_navbar.html' %}
+
+{% if user.is_authenticated %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container w3-card-4 w3-border w3-padding">
+      <div class="row text-center">
+        <div class="col-md-12">
+            <div class="w3-center ">
+              <a href="/profile">
+                <img  src="{{ user.profile.image.url }}" class="w3-circle w3-padding w3-card-4 w3-border w3-margin w3-card-4" style="width:150px; height:150px;">
+              </a>
+              </div>
+          <div class=" w3-text-black w3-white w3-padding w3-border w3-opacity-min w3-card-4"> 
+          <h1 class="display-4"> {{ user.username|capfirst }} Welcome To Kwela</h1>
+          <hr class="w3-amber" style="width:100%">
+          <p class="lead">It Is All About You</p>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+
 {% include 'partials/overlay.html' %}
 
 
