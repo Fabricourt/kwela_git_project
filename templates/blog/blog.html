@@ -6,39 +6,120 @@
 {% block title %} Kwela Info Hub {% endblock %}
 
 {% block content %}
-  <header class="w3-display-container w3-content w3-center" style="max-width:100%">
-      <img class="w3-image" src="{% static 'img/networks.jpg' %}" alt="Magical Lamu Beutiful Pic" width="100%" height="400">
-      <div class="w3-display-middle w3-highway-green w3-opacity-min w3-padding-large w3-border w3-wide w3-text-light-grey  w3-center">
-        <h1 class="w3-xlarge">Kwela Info Hub</h1>
-        <h5 style="white-space:nowrap">We Help You Understand Land Business</h5>
-        <p class="w3-small">You can't stop learning if you want to keep growing. You {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}  are the only reason we are doing this</p>
-      </div>
- </header>
-     
-  {% for post in posts %}
-  <div class="w3-content">
-      <div class="w3-row w3-margin">
-      
-            
-            <div class="w3-third w3-card w3-round">
 
-                <img src="{{ post.photo_blog.url}}" style="width:100%;min-height:200px">
+<div class="w3-content" style="max-width:1400px">
+
+    <!-- Header -->
+    <header class="w3-container  w3-card-4 w3-opacity-min w3-center w3-margin-top w3-padding-32"> 
+      <h1><b class="w3-amber w3-card-4 w3-wide">BLOG</b></h1>
+      <p> <span class="w3-highway-green w3-wide w3-margin"> Welcome to </span>  
+        <span class="w3-wide w3-margin w3-highway-blue w3-card-4"> Kwela Digital </span> </p>
+    </header>
+    
+    <!-- Grid -->
+    <div class="w3-row">
+    
+    <!-- Blog entries -->
+    <div class="w3-col l8 s12">  
+      <!-- Blog entry -->
+      {% for post in posts %}
+      <div class="w3-card-4 w3-margin w3-white">
+        <img src="{{ post.photo_blog.url}}" alt="Nature" style="width:100%">
+        <div class="w3-container">
+          <h3><b>{{ post.title }}</b></h3>
+          <h5>{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }} <span class="w3-opacity">{{ post.date_posted|date:"F d, Y" }}</span></h5>
+        </div>
+    
+        <div class="w3-container">
+          <p>{{ post.content|slice:"210"|safe }}</p>
+          <div class="w3-row">
+            <div class="w3-col m8 s12">
+              <p><a href="{% url 'post' post.id %}"><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></a></p>
             </div>
-            <div class="w3-twothird  w3-left-align w3-container">
-             
-                <div  class="w3-left-align w3-text- w3-center w3-padding "><h4><strong>{{ post.title }}</strong></h4></div>
-                <p class="w3-text-theme w3-small">{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }} {{ post.date_posted|date:"F d, Y" }} </p>
-                <p class="w3-left-align w3-small">{{ post.content|slice:"210"|safe }}
-                <span><a class="btn w3-border-blue w3-win8-cobalt w3-right w3-small w3-hover-white" href="{% url 'post-detail' post.id %}" style="text-decoration:none;">Read More</a></span></p>
-              
-             
-                </div> 
-         
+            <div class="w3-col m4 w3-hide-small">
+              <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-tag">0</span></span></p>
+            </div>
           </div>
+        </div>
+      </div>
+      {% endfor %}
+      <hr>
+    
+      <!-- Blog entry -->
+      <div class="w3-card-4 w3-margin w3-white">
+      <img src="https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg" alt="Norway" style="width:100%">
+        <div class="w3-container">
+          <h3><b>BLOG ENTRY</b></h3>
+          <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
+        </div>
+    
+        <div class="w3-container">
+          <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
+            tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+          <div class="w3-row">
+            <div class="w3-col m8 s12">
+              <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+            </div>
+            <div class="w3-col m4 w3-hide-small">
+              <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- END BLOG ENTRIES -->
     </div>
+    
+    <!-- Introduction menu -->
+    <div class="w3-col l4">  
+      <!-- Posts -->
+      <div class="w3-card w3-margin">
+        <div class="w3-container w3-padding">
+          <h4>Our MVP Posts</h4>
+        </div>
+        <ul class="w3-ul w3-hoverable w3-white">
+          {% for post in posts %}
+          <li class="w3-padding-16">
+            <a href="{% url 'post' post.id %}">
+            <img src="{{ post.photo_blog.url }}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+            <span class="w3-large">{{ post.title }} </span>
+            <span>{{ post.date_posted|date:"F d, Y" }}</span>
+            </a>
+          </li>
+          {% endfor %}
 
-  </div>
-  {% endfor %}                
+        </ul>
+      </div>
+      <hr> 
+     
+      <!-- Labels / tags -->
+      <div class="w3-card w3-margin">
+        <div class="w3-container w3-padding">
+          <h4>Tags</h4>
+        </div>
+        <div class="w3-container w3-white">
+        
+        <p>
+          {% for post in posts %}
+          <a href="{% url 'post' post.id %}"><span class="w3-tag w3-black w3-margin-bottom">{{ post.title }}</span></a> 
+
+          {% endfor %}
+        </p>
+       
+        </div>
+      </div>
+      
+    <!-- END Introduction Menu -->
+    </div>
+    
+    <!-- END GRID -->
+    </div><br>
+    
+    <!-- END w3-content -->
+    </div>
+    
+   
+
+             
 {% endblock %}
 
 

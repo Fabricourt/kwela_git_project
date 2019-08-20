@@ -4,17 +4,20 @@ from .choices import price_choices, plot_size_choices, location_choices, town_ch
 from django.http import HttpResponse
 from .models import Snippet
 from realtors.models import Realtor
+from blog.models import Post
 
 from.models import Listing
 
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+  posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
 
   paginator = Paginator(listings, 12)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
   context = {
+    'posts':posts,
     'listings': paged_listings,
     'town_choices': town_choices,  
     'location_choices': location_choices,
@@ -26,8 +29,10 @@ def index(request):
 
 def listing(request, listing_id):
   listing = get_object_or_404(Listing, pk=listing_id)
+  posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
 
   context = {
+    'posts':posts,
     'town_choices': town_choices,  
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
@@ -38,6 +43,7 @@ def listing(request, listing_id):
   return render(request, 'listings/listing.html', context)
 
 def search(request):
+  posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   queryset_list = Listing.objects.order_by('-list_date')
 
   #keywords
@@ -73,6 +79,7 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
+        'posts':posts,
         'town_choices': town_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,

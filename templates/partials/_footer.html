@@ -210,17 +210,17 @@ p, ul li, ol li {
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="kilimanjaro_part">
                             <h5>About Us</h5>
-                            <p>It includes rich features & contents. It's designed & developed based on One Page/ Multi-page Layout,blog themes,world press themes and blogspot. You can use any layout from any demo anywhere.</p>
-                            <p>webblogoverflow is completely creative, clean & 100% responsive website. Put your business into next level with Webublogoverflow.</p>
+                            <p>Kwela Group empowers its clients to grow through innovative real estate solutions. "Kwela", means 'to climb' in Bemba, a Bantu Language from Zambia. The name truly captrues the brand promise that we make to our clients: taking you higher.</p><br>
+                            <p>What makes us diffrent we do not sell we connect. Do not hestitate to give us a call tell us what is in your mind. If it's about a us you will definately get a good answer. If its about you we will definately listen</p>
                         </div>
                         <div class="kilimanjaro_part m-top-15">
                             <h5>Social Links</h5>
                             <ul class="kilimanjaro_social_links">
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
-                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i> Pinterest</a></li>
-                                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i> YouTube</a></li>
-                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+                                <li><a href="#"><i class="fa fa-facebook w3-text-blue" aria-hidden="true"></i> Facebook</a></li>
+                                <li><a href="#"><i class="fa fa-twitter w3-text-blue" aria-hidden="true"></i> Twitter</a></li>
+                                <li><a href="#"><i class="fa fa-pinterest w3-text-blue" aria-hidden="true"></i> Pinterest</a></li>
+                                <li><a href="#"><i class="fa fa-youtube w3-text-blue" aria-hidden="true"></i> YouTube</a></li>
+                                <li><a href="#"><i class="fa fa-linkedin w3-text-blue" aria-hidden="true"></i> Linkedin</a></li>
                             </ul>
                         </div>
                     </div>
@@ -228,57 +228,45 @@ p, ul li, ol li {
                         <div class="kilimanjaro_part">
                             <h5>Find Us</h5>
                             <ul class=" kilimanjaro_widget">
-                                <li><a href="#">Houses</a></li>
-                                <li><a href="#">Hardwares</a></li>
-                                <li><a href="#">Fundi</a></li>
-                                <li><a href="#">Plots</a></li>
-                                <li><a href="#">Sand Suppliers</a></li>
-                                <li><a href="#">Ballasts Suppliers</a></li>
-                                <li><a href="#">Transport</a></li>
-                                <li><a href="#">Stone Suppliers</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Houses Sale & Rent</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Hardwares</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Fundi</a></li>
+                                <li><a href="{% url 'listings' %}">Plots For Sale</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Material Suppliers</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Ballasts Women</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Trucks & Pickups</a></li>
+                                <li><a href="{% url 'comingsoon' %}">Stone Suppliers</a></li>
                             </ul>
                         </div>
 
                         <div class="kilimanjaro_part m-top-15">
                             <h5>Important Links</h5>
                             <ul class="kilimanjaro_links">
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms & Conditions</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Pricing</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Default Policy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy Policy</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Terms & Conditions</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>About</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Pricing</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Default Policy</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Privacy Policy</a></li>
+                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>FAQ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="kilimanjaro_part">
                             <h5>Latest News</h5>
+                            {% for post in posts %}
                             <div class="kilimanjaro_blog_area">
                                 <div class="kilimanjaro_thumb">
-								<img class="img-fluid" src="https://3.bp.blogspot.com/--C1wpaf_S4M/W7V__10nRoI/AAAAAAAAK24/1NSfapuYSIY0f0wzXY9NgoH0FjQLT07YACKgBGAs/s1600/maxresdefault.jpg" alt="">
+								<img class="img-fluid" src="{{ post.photo_blog.url }}" alt="">
 
                                 </div>
-                                <a href="#">Your Blog Title Goes Here</a>
-                                <p class="kilimanjaro_date">21 Jan 2018</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <a href="#">{{ post.title }}</a>
+                                <p class="kilimanjaro_date">{{ post.date_posted|date:"F d, Y" }}</p>
+                                <p>{{ post.content|slice:"50"|safe }}</p>
                             </div>
-                            <div class="kilimanjaro_blog_area">
-                                <div class="kilimanjaro_thumb">
-								<img class="img-fluid" src="https://3.bp.blogspot.com/--C1wpaf_S4M/W7V__10nRoI/AAAAAAAAK24/1NSfapuYSIY0f0wzXY9NgoH0FjQLT07YACKgBGAs/s1600/maxresdefault.jpg" alt="">
-                                </div>
-                                <a href="#">Your Blog Title Goes Here</a>
-                                <p class="kilimanjaro_date">21 Jan 2018</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </div>
-                            <div class="kilimanjaro_blog_area">
-                                <div class="kilimanjaro_thumb">
-								<img class="img-fluid" src="https://cdn.pixabay.com/photo/2013/09/14/19/53/city-182223_960_720.jpg" alt="">
-                                </div>
-                                <a href="#">Your Blog Title Goes Here</a>
-                                <p class="kilimanjaro_date">21 Jan 2018</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                            </div>
+                            {% endfor %}
+                            
+
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-3">
@@ -292,9 +280,25 @@ p, ul li, ol li {
                                 <h5>Email:</h5>
                                 <p>support@webblogoverflow.com <br> luckmoshy@gmail.com</p>
                             </div>
+                            <div class="kilimanjaro_single_contact_info">
+                                    <h5>Address:</h5>
+                                    <p>P.O Box 1404, 00232 <br>
+                                       Ruiru, Kenya
+
+                                    </p>
+                            </div>
+                            <div class="kilimanjaro_single_contact_info">
+                                    <h5>Offices:</h5>
+                                    <p>Biashara House<br>
+                                       Ruiru Bus Stage<br>
+                                       2nd floor 
+                                       rm 14
+
+                                    </p>
+                            </div>
                         </div>
                         <div class="kilimanjaro_part">
-                            <h5>Latest Works</h5>
+                            <!--<h5>Latest Works</h5>-->
                             <div class="kilimanjaro_works">
                                 <a class="kilimanjaro_works_img" href="img/gallery/1.jpg"><img src="img/gallery/1.jpg" alt=""></a>
                                 <a class="kilimanjaro_works_img" href="img/gallery/4.jpg"><img src="img/gallery/4.jpg" alt=""></a>

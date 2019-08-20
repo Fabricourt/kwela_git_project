@@ -16,7 +16,7 @@ def index(request):
     abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:8]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
-    posts = Post.objects.order_by('-list_date').filter(is_published=True)[:3]
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
 
 
     context = {
@@ -35,11 +35,12 @@ def index(request):
 def about(request):
     # Get all realtors
     realtors = Realtor.objects.order_by('-hire_date')
-
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     # Get MVP
     mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
 
     context = {
+        'posts':posts,
         'realtors': realtors,
         'town_choices': town_choices,  
         'location_choices': location_choices,
@@ -50,13 +51,24 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 def lamu(request):
-    return render(request, 'pages/lamu.html')
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+
+    context = {
+        'posts':posts
+    }
+    return render(request, 'pages/lamu.html', context)
 
 def comingsoon(request):
-    return render(request, 'pages/comingsoon.html')
+    posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+
+    context = {
+        'posts':posts
+    }
+    return render(request, 'pages/comingsoon.html', context)
 
 @staff_member_required
 def mobile(request):
+
     return render(request, 'pages/mobile.html') 
 
 @staff_member_required

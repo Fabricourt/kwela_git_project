@@ -38,17 +38,17 @@
    <div class="w3-container w3-card-4 w3-white w3-border w3-padding ">
      <div class="w3-margin ">
             
-    {% if object.author == user %}
+    {% if post.author == user %}
     <div>
       <a href="{% url 'blog-home' %}" class="btn  btn-sm mt-1 mb-1 w3-border-amber w3-highway-yellow w3-right w3-hover-white">Back To Blog</a>
-      <a class="btn btn-sm mt-1 mb-1  w3-border-green w3-highway-green w3-hover-white" href="{% url 'post-update' object.id %}">Update</a>
-      <a class="btn btn-sm mt-1 mb-1  w3-border-red w3-highway-red  w3-hover-white" href="{% url 'post-delete' object.id %}">Delete</a>
+      <a class="btn btn-sm mt-1 mb-1  w3-border-green w3-highway-green w3-hover-white" href="{% url 'post-update' post.id %}">Update</a>
+      <a class="btn btn-sm mt-1 mb-1  w3-border-red w3-highway-red  w3-hover-white" href="{% url 'post-delete' post.id %}">Delete</a>
     </div>
   {% endif %} 
-        <a class=" w3-xlarge" href="#" style="text-decoration:none;">Author: <span class="w3-text-red" >{{ object.author|capfirst }}<span></span></a>
-        <p class="text-muted ">{{ object.date_posted|date:"F d, Y" }}</p>
+        <a class=" w3-xlarge" href="#" style="text-decoration:none;">Author: <span class="w3-text-red" >{{ post.author|capfirst }}<span></span></a>
+        <p class="text-muted ">{{ post.date_posted|date:"F d, Y" }}</p>
         <br>  
-    <p class="article-content">{{ object.content|safe }}</p> 
+    <p class="article-content">{{ post.content|safe }}</p> 
   </div>  
   </div>
   <br><br>
