@@ -1,3 +1,4 @@
+{% load static %}
 <style>
         body, html {
           height: 100%;
@@ -5,7 +6,7 @@
         
         .parallax {
           /* The image used */
-          background-image: url('https://cdn.pixabay.com/photo/2013/04/28/06/43/architecture-107598_960_720.jpg');
+          background-image: url('{% static "img/background.jpg" %}');
         
           /* Full height */
           height: 100%; 
