@@ -7,6 +7,7 @@ from listings.models import Listing
 from realtors.models import Realtor
 from blog.models import Post
 from abouts.models import About
+from pages.models import Link
 
 
 from django.contrib.auth.decorators import login_required
@@ -17,10 +18,11 @@ def index(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:8]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-
+    links = Link.objects.order_by('link_date').filter(is_published=True)[:20]
 
     context = {
         'abouts': abouts,
+        'links': links,
         'posts': posts,
         'listings': listings,
         'town_choices': town_choices,  

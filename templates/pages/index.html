@@ -37,79 +37,26 @@
         <div class="w3-card-4">
         <div class="w3-row-padding">
           <br><br>
-          <div class="w3-col l3 m6 w3-margin-bottom">
+          
            
+            {% for link in links %}
+            <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container w3-card-4">
             <a href="{% url 'listings' %}">
               <div class="w3-display-topleft w3-card-4 w3-btn w3-theme-d5  w3-padding">
-                Plot For Sale
+                {{ link.link_name}}
               </div>
-              <img src="{% static 'img/plot.jpg' %}" class="w3-border w3-card-4 w3-padding " alt="House" style="width:100%; height:270px;">
+              <img src="{{ link.link_pic.url }}" class="w3-border w3-card-4 w3-padding " alt="House" style="width:100%; height:270px;">
             </a>
             </div>
+          </div>
+            {% endfor %}
           
-          </div>
-          <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container w3-card-4">
-            <a href="{% url 'fundis' %}">
-              <div class="w3-display-topleft w3-btn w3-theme-d5 w3-card-4 w3-padding">Fundi..</div>
-              <img src="{% static 'img/fundi.jpg' %}" class="w3-border  w3-card-4  w3-padding" alt="House" style="width:100%; height:270px;">
-            </div>
-          </div>
-          <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container w3-card-4">
-                  <a href="{% url 'comingsoon' %}">
-                  <div class="w3-display-topleft w3-btn w3-theme-d5 w3-padding w3-card-4">Hardwares</div>
-                  <img src="{% static 'img/hardware.png' %}" class="w3-border w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
-                </div>
-              </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container w3-card-4">
-                <a href="{% url 'comingsoon' %}">
-                <div class="w3-display-topleft w3-btn w3-theme-d5 w3-card-4 w3-padding">Material Suppliers</div>
-                <img src="{% static 'img/material.jpg' %}" class="w3-border  w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
-                </a>
-              </div>
-            </div>
         </div>
 
       
-        <div class="w3-row-padding">
-
-        <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container w3-card-4">
-                    <a href="{% url 'comingsoon' %}">
-                    <div class="w3-display-topleft w3-btn w3-theme-d5 w3-padding">Houses Sale & Rent</div>
-                    <img src="{% static 'img/home.jpg' %}" class="w3-border  w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
-                    </a>
-                  </div>
-              </div>
-          
-          <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container w3-card-4">
-              <a href="{% url 'comingsoon' %}">
-              <div class="w3-display-topleft w3-btn w3-theme-d5  w3-padding w3-card-4">Ballast Women</div>
-              <img src="{% static 'img/ballast_women.jpg' %}" class="w3-border   w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
-            </a>
-            </div>
-          </div>
-          <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container w3-card-4">
-              <a href="{% url 'comingsoon' %}">
-              <div class="w3-display-topleft w3-btn w3-theme-d5 w3-padding w3-card-4">Trucks & Pickups</div>
-              <img src="{% static 'img/truck.jpg' %}" class="w3-border  w3-card-4 w3-padding" alt="House" style="width:99%; height:270px;">
-            </a>
-            </div>
-            </a>
-          </div>
-          <div class="w3-col l3 m6 w3-margin-bottom">
-                <div class="w3-display-container w3-card-4">
-                  <a href="{% url 'comingsoon' %}">
-                  <div class="w3-display-topleft w3-card-4 w3-btn w3-theme-d5 w3-padding">Machines & Equipments</div>
-                  <img src="{% static 'img/machine.jpg' %}" class="w3-border w3-card-4  w3-padding" alt="House" style="width:100%; height:270px;">
-                </a>
-                </div> 
-              </div>
+       
+  
         </div>
         <br><br>
       </div>
