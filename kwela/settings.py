@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'ckeditor', 
     'contact',
     'crispy_forms', 
+    'fundis',
 ]
 
 

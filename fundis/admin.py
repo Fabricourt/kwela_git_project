@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Fundi
+
+admin.site.register(Fundi)
