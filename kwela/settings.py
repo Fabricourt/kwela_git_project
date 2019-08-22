@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'fundis',
     'machines',
     'msuppliers',
+    'trucks',
     'women',
 ]
 

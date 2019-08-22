@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .choices import price_choices,  town_choices, machine_e_choices
 from django.contrib.auth.models import User
 from blog.models import Post
-from .models import Machine
+from .models import Machine, Machine_e
 from pages.models import Background_image
 
 def machines(request):
@@ -17,10 +17,10 @@ def machines(request):
     page = request.GET.get('page')
     paged_machines = paginator.get_page(page)    
     context = {
-        'background_images':'background_images',
+        'background_images':background_images,
         'machines':paged_machines,
         'posts':posts,
-        'machine_e':'machine_e',
+        'machine_e_choices':machine_e_choices,
         'town_choices': town_choices,
         'price_choices': price_choices,
  
@@ -29,9 +29,9 @@ def machines(request):
 
 
 
-def machine(request, women_id):
+def machine(request, machine_id):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
-    machine = get_object_or_404(Machine, pk=msupplier_id)
+    machine = get_object_or_404(Machine, pk=machine_id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     context = {
         'background_images':background_images,
@@ -79,7 +79,7 @@ def findit(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
-        'background_images':'background_images',
+        'background_images':background_images,
         'posts':posts,
         'machine_e_choices': machine_e_choices,
         'town_choices': town_choices,

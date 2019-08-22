@@ -27,6 +27,7 @@ urlpatterns = [
     path('fundis/', include('fundis.urls')),
     path('women/', include('women.urls')),
     path('machines', include('machines.urls')),
+    path('trucks', include('trucks.urls')),
     path('msuppliers/', include('msuppliers.urls')),
     path('admin/', admin.site.urls),
     path('profile/', profile_views.profile, name='profile' ),

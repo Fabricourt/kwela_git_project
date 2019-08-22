@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class Machine_e(models.Model):
+class Truck_type(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False,)
  
     def __str__(self):
@@ -12,10 +12,10 @@ class Machine_e(models.Model):
 
 
 
-class Machine(models.Model):
+class Truck(models.Model):
     name = models.ForeignKey(User, on_delete= models.CASCADE)
     town = models.CharField(max_length=200, blank=True, null=True)
-    machine_e = models.ManyToManyField(Machine_e, help_text='Select machine and equipmens')
+    truck_type = models.ManyToManyField(Truck_type, help_text='Select The kind of Vehicle you need')
     price = models.CharField(max_length=200, blank=True, null=True)
     about_me = RichTextField(blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)

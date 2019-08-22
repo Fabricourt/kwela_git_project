@@ -34,10 +34,10 @@
           <div class="overlay w3-white w3-card-4 w3-opacity-min w3-round w3-xxlarge p-5">
          
             <div class="search">
-              <form class="w3-padding-64  " action="{% url 'searches' %}">
+              <form class="w3-padding-64  " action="{% url 'searchit' %}">
                       <h1 class="display-4 mb-4 w3-highway-yellow w3-padding w3-hide-small w3-text-black">
-                      Searching For A Fundi Just Got Easy
-                      <p class="lead w3-hide-small w3-text-black">A Good House Is Equal To A Good Fundi</p>
+                      Find Trucks & Pickups Here
+                      <p class="lead w3-hide-small w3-text-black">Transport Made Easy</p>
                       </h1>
                      
                  <!-- Form Row 1 -->
@@ -46,38 +46,43 @@
                     <label class="sr-only">Keywords</label>
                     <input type="text" name="keywords" class="form-control w3-border-green" placeholder="Keyword (search)">
                   </div>
-  
+
+                  <div class="col-md-6 mb-3 ">
+                    <label class="sr-only">Keywords</label>
+                    <input type="text" name="keywords" class="form-control w3-border-green" placeholder="Keyword (name)">
+                  </div>
     
-                  <div class="col-md-6 mb-3">
-                    <label class="sr-only">Town</label>
-                    <select name="town" class="form-control w3-border-green">
-                      <option selected="true" disabled="disabled">Town</option>
-                      {% for key,value in town_choices.items %}
-                        <option value="{{ key }}">{{ value }}</option>
-                      {% endfor %}
-                      </select>
-                    </div>
+                 
                   </div>
                   <!-- Form Row 2  -->
                   <div class="form-row"> 
-                    <div class="col-md-6 mb-3">
-                      <label class="sr-only">Skills</label>
-                      <select name="skill" class="form-control w3-border-green">
-                        <option selected="true" disabled="disabled">Skill</option>
-                        {% for key,value in skill_choices.items %}
-                          <option value="{{ key }}">{{ value }}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                     <label class="sr-only">Service Charge</label>
-                      <select name="service_charge" class="form-control w3-border-green" id="type">
-                        <option selected="true" disabled="disabled">Service Charge</option>
-                        {% for key,value in service_charge_choices.items %}
+                    <div class="col-md-4 mb-3">
+                     <label class="sr-only">Trucks & Pickups</label>
+                      <select name="truck_type" class="form-control w3-border-green" id="type">
+                        <option selected="true" disabled="disabled">Trucks & Pickups</option>
+                        {% for key,value in truck_type_choices.items %}
                         <option value="{{ key }}">{{ value }}</option>
                       {% endfor %}
                       </select>
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="sr-only">Hire Price</label>
+                         <select name="price" class="form-control w3-border-green" id="type">
+                           <option selected="true" disabled="disabled">Price</option>
+                           {% for key,value in price_choices.items %}
+                           <option value="{{ key }}">{{ value }}</option>
+                         {% endfor %}
+                         </select>
+                       </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="sr-only">Town</label>
+                      <select name="town" class="form-control w3-border-green">
+                        <option selected="true" disabled="disabled">Town</option>
+                        {% for key,value in town_choices.items %}
+                          <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                        </select>
+                      </div>
                   </div>
                   <button class="btn w3-highway-green btn-block mt-4 w3-wide w3-large" type="submit"><b>Submit</b></button>
                 </form>
