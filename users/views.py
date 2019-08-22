@@ -21,6 +21,7 @@ def register(request):
 
 @login_required
 def profile(request):
+    background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -37,6 +38,7 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
+        'background_images':'background_images',
         'u_form': u_form,
         'p_form': p_form
     }

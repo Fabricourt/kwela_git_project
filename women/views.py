@@ -9,6 +9,7 @@ from .models import Women
 
 
 def womens(request):
+    background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     womens = Women.objects.order_by('-created_on').filter(is_published=True)
 
@@ -16,6 +17,7 @@ def womens(request):
     page = request.GET.get('page')
     paged_womens = paginator.get_page(page)    
     context = {
+        'background_images':'background_images',
         'womens':paged_womens,
         'posts':posts,
         'town_choices': town_choices,
@@ -27,9 +29,11 @@ def womens(request):
 
 
 def women(request, women_id):
+    background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     women = get_object_or_404(Women, pk=women_id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     context = {
+        'background_images':'background_images',
         'women': women,
         'posts':posts,
     }
@@ -38,6 +42,7 @@ def women(request, women_id):
 
 # Create your views here.
 def find(request):
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   queryset_list = Women.objects.order_by('-created_on')
 
@@ -68,6 +73,7 @@ def find(request):
       queryset_list = queryset_list.filter(cost_of_ballast__lte=cost_of_ballast)
 
   context = {
+        'background_images':'background_images',
         'posts':posts,
         'town_choices': town_choices,
         'cost_of_ballast_choices': cost_of_ballast_choices,

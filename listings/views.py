@@ -11,12 +11,14 @@ from.models import Listing
 def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
   paginator = Paginator(listings, 12)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
   context = {
+    'background_images':'background_images',
     'posts':posts,
     'listings': paged_listings,
     'town_choices': town_choices,  
@@ -30,8 +32,10 @@ def index(request):
 def listing(request, listing_id):
   listing = get_object_or_404(Listing, pk=listing_id)
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
   context = {
+    'background_images':'background_images',
     'posts':posts,
     'town_choices': town_choices,  
     'location_choices': location_choices,
@@ -43,6 +47,7 @@ def listing(request, listing_id):
   return render(request, 'listings/listing.html', context)
 
 def search(request):
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   queryset_list = Listing.objects.order_by('-list_date')
 
@@ -79,6 +84,7 @@ def search(request):
       queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
+        'background_images':'background_images',
         'posts':posts,
         'town_choices': town_choices,
         'location_choices': location_choices,

@@ -7,8 +7,10 @@ from blog.models import Post
 
 
 def register(request):
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   context = {
+  'background_images':'background_images',
   'posts':posts,
   }    
   if request.method == 'POST':
@@ -49,7 +51,9 @@ def register(request):
 
 def login(request):
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+  background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   context = {
+  'background_images':'background_images',
   'posts':posts,
   }
   if request.method == 'POST':
@@ -80,9 +84,11 @@ def logout(request):
 def dashboard(request):
     user_contact = Sema.objects.order_by('-contact_date').filter(user_id=request.user.id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+    background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     
     context = {
+    'background_images':'background_images',
     'contact': user_contact,
     'posts':posts,
     }

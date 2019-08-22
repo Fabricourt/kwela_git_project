@@ -18,3 +18,10 @@ class Link(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+class Background_image(models.Model):
+    title = models.CharField(max_length=100)
+    background_image = models.ImageField(upload_to='links/%Y/%m/%d/', null=True, blank=True)
+    link_date = models.DateTimeField(default=timezone.now)
+    is_published = models.BooleanField(default=True)
+    def __str__(self):
+        return self.title
