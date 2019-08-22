@@ -51,29 +51,29 @@
 </style>
 <div class="container">
    <h3 class="pb-3 mb-4 font-italic border-bottom">
-    Material Suppliers
+    Machines & Equipments
    </h3>
    <div class="row">
-	{% for msupplier in msuppliers %}
+	{% for machine in machines %}
       <div class="col-md-6" style="height:300px;">
          <div class="card flex-md-row mb-4 shadow-sm h-md-250 w3-bottombar w3-hover-shadow w3-card-4">
 				<header class="w3-right w3-header w3-hide-large w3-card-4 w3-win8-crimson w3-container w3-padding w3-margin-top">
-						<img class="w3-card-4  card-img-right w3-circle w3-right w3-hide-large  flex-auto " alt="supplier pic" src="{{ msupplier.photo_main.url }}" style="width: 70px; height: 70px;">
+						<img class="w3-card-4  card-img-right w3-circle w3-right w3-hide-large  flex-auto " alt="supplier pic" src="{{ machine.photo_main.url }}" style="width: 70px; height: 70px;">
 				
 				</header>			 
             <div class="card-body  d-flex flex-column align-items-start">
-				<strong class="d-inline-block mb-2 text-primary">{% for material in msupplier.material.all %} {{ material }},{% if not forloop.last %}, {% endif %}{% endfor %} Suppliers
-					<span class="w3-text-red">{{ msupplier.name|capfirst }}</span> </strong> 
+				<strong class="d-inline-block mb-2 text-primary">{% for machine_e in machine.machine_e.all %} {{ machine_e }},{% if not forloop.last %}, {% endif %}{% endfor %} Suppliers
+					<span class="w3-text-red">{{ machine.name|capfirst }}</span> </strong> 
 				<hr class="w3-red" style="width:100%">
                <h6 class="mb-0">
-				{{ msupplier.phone1}} - {{ msupplier.phone2 }}
+				{{ machine.phone1}} - {{ machine.phone2 }}
                </h6>
-               <div class="mb-1 text-muted small">{{ msupplier.town}}</div>
-               <p class="card-text mb-auto">{{ msupplier.about_me|slice:"130"|safe }}....</p>
-			   <a class="btn btn-outline-primary btn-sm" role="button" href="{% url 'msupplier' msupplier.id %}">Continue reading</a>
+               <div class="mb-1 text-muted small">{{ machine.town}}</div>
+               <p class="card-text mb-auto">{{ machine.about_me|slice:"130"|safe }}....</p>
+			   <a class="btn btn-outline-primary btn-sm" role="button" href="{% url 'machine' machine.id %}">Continue reading</a>
 			  
             </div>
-            <img class="card-img-right flex-auto d-none d-lg-block " alt="Thumbnail [200x250]" src="{{ msupplier.photo_main.url }}" style="width: 200px; height: auto;">
+            <img class="card-img-right flex-auto d-none d-lg-block " alt="Thumbnail [200x250]" src="{{ machine.photo_main.url }}" style="width: 200px; height: auto;">
          </div>
 	  </div>
 	{% endfor %}
@@ -83,9 +83,9 @@
 
 <div class="row">
         <div class="col-md-12">
-          {% if msuppliers.has_other_pages %}
+          {% if machines.has_other_pages %}
             <ul class="pagination">
-              {% if msuppliers.has_previous %}
+              {% if machines.has_previous %}
                 <li class="page-item">
                   <a href="?page={{v.previous_page_number}}" class="page-link">&laquo;</a>
                 </li>
@@ -94,8 +94,8 @@
                   <a class="page-link">&laquo;</a>
                 </li>
               {% endif %}
-              {% for i in msuppliers.paginator.page_range %}
-                {% if msuppliers.number == i %}
+              {% for i in machines.paginator.page_range %}
+                {% if machines.number == i %}
                   <li class="page-item active">
                     <a class="page-link">{{i}}</a>
                   </li>
@@ -105,7 +105,7 @@
                   </li>
                 {% endif %}
               {% endfor %}
-              {% if msuppliers.has_next %}
+              {% if machines.has_next %}
                 <li class="page-item">
                   <a href="?page={{womens.next_page_number}}" class="page-link">&raquo;</a>
                 </li>

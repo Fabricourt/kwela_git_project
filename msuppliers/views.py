@@ -44,7 +44,7 @@ def msupplier(request, women_id):
 def findus(request):
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-  queryset_list = Women.objects.order_by('-created_on')
+  queryset_list = Msupplier.objects.order_by('-created_on')
 
   #keywords
   if 'keywords' in request.GET:
