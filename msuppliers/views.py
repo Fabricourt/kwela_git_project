@@ -2,46 +2,46 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .choices import cost_of_ballast_choices,  town_choices
+from .choices import price_choices,  town_choices
 from django.contrib.auth.models import User
 from blog.models import Post
-from .models import Women
+from .models import Msupplier
 from pages.models import Background_image
 
-def womens(request):
+def msuppliers(request):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-    womens = Women.objects.order_by('-created_on').filter(is_published=True)
+    msuppliers = Msupplier.objects.order_by('-created_on').filter(is_published=True)
 
-    paginator = Paginator(womens, 10)
+    paginator = Paginator(msuppliers, 10)
     page = request.GET.get('page')
-    paged_womens = paginator.get_page(page)    
+    paged_msuppliers = paginator.get_page(page)    
     context = {
         'background_images':'background_images',
-        'womens':paged_womens,
+        'msuppliers':paged_msuppliers,
         'posts':posts,
         'town_choices': town_choices,
-        'cost_of_ballast_choices': cost_of_ballast_choices,
+        'price_choices': price_choices,
  
     }
-    return render(request, 'womens/womens.html', context)
+    return render(request, 'msuppliers/msuppliers.html', context)
 
 
 
-def women(request, women_id):
+def msupplier(request, women_id):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
-    women = get_object_or_404(Women, pk=women_id)
+    msupplier = get_object_or_404(Msupplier, pk=msupplier_id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     context = {
-        'background_images':'background_images',
-        'women': women,
+        'background_images':background_images,
+        'msupplier': msupplier,
         'posts':posts,
     }
-    return render(request, 'womens/women.html', context)
+    return render(request, 'msuppliers/msupplier.html', context)
 
 
 # Create your views here.
-def find(request):
+def findus(request):
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   queryset_list = Women.objects.order_by('-created_on')
@@ -67,19 +67,19 @@ def find(request):
 
 
   # service charge
-  if 'cost_of_ballast' in request.GET:
-    cost_of_ballast = request.GET['cost_of_ballast']
-    if cost_of_ballast:
-      queryset_list = queryset_list.filter(cost_of_ballast__lte=cost_of_ballast)
+  if 'price' in request.GET:
+    price = request.GET['price']
+    if price:
+      queryset_list = queryset_list.filter(price__lte=price)
 
   context = {
         'background_images':'background_images',
         'posts':posts,
         'town_choices': town_choices,
-        'cost_of_ballast_choices': cost_of_ballast_choices,
-        'womens': queryset_list,
+        'price_choices': price_choices,
+        'msuppliers': queryset_list,
         'values': request.GET
 
   }
 
-  return  render(request, 'womens/find.html', context)
+  return  render(request, 'msuppliers/findus.html', context)

@@ -9,6 +9,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from pages.models import Background_image
 
 
 

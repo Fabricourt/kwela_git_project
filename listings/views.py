@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import Snippet
 from realtors.models import Realtor
 from blog.models import Post
-
+from pages.models import Background_image
 from.models import Listing
 
 def index(request):

@@ -5,6 +5,7 @@ from .choices import skill_choices, service_charge_choices,  town_choices
 from django.contrib.auth.models import User
 from .models import Fundi, Category
 from blog.models import Post
+from pages.models import Background_image
 
 
 def fundis(request):
