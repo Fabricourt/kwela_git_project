@@ -5,12 +5,12 @@ from django.urls import reverse
 class Link(models.Model):
     title = models.CharField(max_length=100)
     link_name = models.CharField(max_length=200)
+    link_url = models.CharField(max_length=200, blank=False, null=True)
     link_pic = models.ImageField(upload_to='links/%Y/%m/%d/', null=True, blank=True)
     link_date = models.DateTimeField(default=timezone.now)
     is_published = models.BooleanField(default=True)
     def __str__(self):
         return self.title
-
 
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:

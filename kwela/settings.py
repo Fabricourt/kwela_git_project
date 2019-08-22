@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'contact',
     'crispy_forms', 
     'fundis',
+    'women',
 ]
 
 

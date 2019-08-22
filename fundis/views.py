@@ -76,3 +76,4 @@ def searches(request):
   }
 
   return  render(request, 'fundis/searches.html', context)
+

@@ -13,12 +13,11 @@ class Category(models.Model):
 
 
 
-class Fundi(models.Model):
-    skill = models.CharField(max_length=200, blank=True, null=True)
-    fundi_name = models.ForeignKey(User, on_delete= models.CASCADE)
+class Women(models.Model):
+    name = models.ForeignKey(User, on_delete= models.CASCADE)
     town = models.CharField(max_length=200, blank=True, null=True)
-    service_charge = models.IntegerField()
-    resume = RichTextField(blank=True, null=True)
+    cost_of_ballast = models.IntegerField()
+    about_me = RichTextField(blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
     phone1 = models.CharField(max_length=100, blank=True, null=True)
     phone2 = models.CharField(max_length=100, blank=True, null=True)
@@ -37,15 +36,10 @@ class Fundi(models.Model):
     photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)    
     is_published = models.BooleanField(default=True)
     created_on = models.DateTimeField(default=timezone.now)
-  
-    class Meta:
-        ordering = ['-created_on']
-
     def __str__(self):
-        return self.skill
+        return self.town
 
-    def get_absolute_url(self):
-        return reverse('fundi-detail', kwargs={'pk': self.pk})
+  
 
     
         

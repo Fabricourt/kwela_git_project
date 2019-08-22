@@ -24,15 +24,6 @@
           </li>
          
           <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
             {% if 'contact' in request.path %}
               class="nav-item active mr-3"
             {% else %}
@@ -49,16 +40,6 @@
             <a class="nav-link" href="{% url 'listings' %}">Plots </a>
           </li>
           <li
-          {% if 'fundis' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-          <a class="nav-link" href="{% url 'fundis' %}">Ma-Fundi </a>
-        </li>
-           
-          <li
           {% if 'lamu' in request.path %}
             class="nav-item active mr-3"
           {% else %}
@@ -68,15 +49,27 @@
           <a class="nav-link " href="{% url 'lamu' %}">Lamu</a>
         </li>
           <li
-            {% if 'blog-home' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'blog-home' %}">Blog </a>
-          </li>
+          {% if 'fundis' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'fundis' %}">Ma-Fundi </a>
+        </li>
+        <li
+        {% if 'womens' in request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+      >
+        <a class="nav-link" href="{% url 'womens' %}">Women </a>
+      </li>
+   
+           
 
+        
          
           </li>
         </ul>
