@@ -5,19 +5,29 @@ price_choices = {
   '3000':'kes3,000',
   '4000':'kes4,000',
   '5000':'kes5,000',
-  '10000':'kes10,000',
-
-
+  '100000':'kes10000+',
+  '1m+':'kes1m+',
+  '10m+':'kes10m+',
+  '100m+':'kes100m+',
 }
 
-truck_type_choices = {
-    'Pickup':'Pickup',
-    'Trailer':'Trailer',
-    'Semi trailer':'Semi trailer',
-    'Truck 6 wheels':'Truck 6 wheels',
-    'Tipper 10 wheeels':'Tipper 10 wheels',
-    
-}
+
+
+
+bedroom_choices = {
+  '1':1,
+  '2':2,
+  '3':3,
+  '4':4,
+  '5':5,
+  '6':6,
+  '7':7,
+  '8':8,
+  '9':9,
+  '10':10
+  }
+
+
 
 
 town_choices = {
