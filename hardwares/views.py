@@ -45,8 +45,8 @@ def hardware(request, hardware_id):
 def searchall(request):
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-  queryset_list = Hardware.objects.all().order_by('-created_on')
-  queryset_list = Product.objects.all().order_by('-created_on')
+  queryset_list = Hardware.objects.order_by('-created_on')
+  #queryset_list = Product.objects.order_by('-created_on')
  
  
 
@@ -92,7 +92,7 @@ def searchall(request):
         'product_choices': product_choices,
         'town_choices': town_choices,
         'hardwares': queryset_list,
-        'products': queryset_list,
+        #'products': queryset_list,
         'values': request.GET
 
   }

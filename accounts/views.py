@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from contact.models import Sema
 from django.contrib.admin.views.decorators import staff_member_required
 from blog.models import Post
+from pages.models import Background_image
 
 
 def register(request):
