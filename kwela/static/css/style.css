@@ -39,7 +39,7 @@ img {
   margin-right: 0.4rem; }
 
 #showcase {
-  background: url(https://cdn.pixabay.com/photo/2019/07/06/10/21/meadow-4320155_960_720.jpg) no-repeat top center fixed/cover;
+  background: url(https://cdn.pixabay.com/photo/2018/09/28/01/54/landscape-3708301_960_720.jpg) no-repeat top center fixed/cover;
   position: relative;
   min-height: 650px;
   color: #fff;
@@ -55,7 +55,7 @@ img {
     left: 0;
     min-height: 400px;
     width: 100%;
-    background: rgba(51, 51, 51, 0.8); }
+    }
 
 #services {
   background: url(../img/building.jpg) no-repeat top center fixed/cover;

@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:8]
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:6]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     links = Link.objects.order_by('link_date').filter(is_published=True)

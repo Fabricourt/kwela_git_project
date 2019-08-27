@@ -27,7 +27,7 @@
         <img src="{{ post.photo_blog.url}}" alt="Nature" style="width:100%">
         <div class="w3-container">
           <h3><b>{{ post.title }}</b></h3>
-          <h5>{{ post.author.first_name|capfirst }} {{ post.author.last_name|capfirst }} <span class="w3-opacity">{{ post.date_posted|date:"F d, Y" }}</span></h5>
+          <a class="mr-2" href="{% url 'user-posts' post.author.username %}"><h5>{{ post.author.username|capfirst }} {{ post.author.last_name|capfirst }}</a> <span class="w3-opacity">{{ post.date_posted|date:"F d, Y" }}</span></h5>
         </div>
     
         <div class="w3-container">

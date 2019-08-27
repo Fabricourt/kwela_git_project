@@ -24,12 +24,14 @@
           </li>
          
           <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
+          {% if 'about' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link" href="{% url 'about' %}">About </a>
+        </li>
           <li
             {% if 'listings' in request.path %}
               class="nav-item active mr-3"
@@ -39,15 +41,33 @@
           >
             <a class="nav-link" href="{% url 'listings' %}">Plots </a>
           </li>
-          <!--<li
+          <li
           {% if 'lamu' in request.path %}
             class="nav-item active mr-3"
           {% else %}
             class="nav-item mr-3"
           {% endif %}
-        
-          <a class="nav-link " href="{% url 'lamu' %}">Lamu</a>>-->
+        >
+          <a class="nav-link " href="{% url 'lamu' %}">Lamu </a>
         </li>
+        <li
+        {% if 'about' in request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+      >
+        <a class="nav-link w3-hide" href="{% url 'about' %}">About </a>
+      </li>
+      <li
+      {% if 'blog-home' in request.path %}
+        class="nav-item active mr-3"
+      {% else %}
+        class="nav-item mr-3"
+      {% endif %}
+    >
+      <a class="nav-link " href="{% url 'blog-home' %}">Kwela Daily </a>
+    </li>
         <li
         {% if 'hardwares' in request.path %}
           class="nav-item active mr-3"
@@ -55,7 +75,7 @@
           class="nav-item mr-3"
         {% endif %}
       >
-        <a class="nav-link" href="{% url 'hardwares' %}">Hardwares </a>
+        <a class="nav-link w3-hide" href="{% url 'hardwares' %}">Hardwares </a>
       </li>
         </li>
           <li
@@ -65,7 +85,7 @@
             class="nav-item mr-3"
           {% endif %}
         >
-          <a class="nav-link" href="{% url 'fundis' %}">Ma-Fundi </a>
+          <a class="nav-link w3-hide" href="{% url 'fundis' %}">Construction WorkForce </a>
         </li>
         <li
         {% if 'houses' in request.path %}
@@ -74,7 +94,7 @@
           class="nav-item mr-3"
         {% endif %}
       >
-        <a class="nav-link" href="{% url 'houses' %}">Houses </a>
+        <a class="nav-link w3-hide" href="{% url 'houses' %}">Houses </a>
       </li>
         <li
         {% if 'womens' in request.path %}
@@ -83,7 +103,7 @@
           class="nav-item mr-3"
         {% endif %}
       >
-        <a class="nav-link" href="{% url 'womens' %}">Women </a>
+        <a class="nav-link w3-hide" href="{% url 'womens' %}">Women </a>
       </li>
       <li
       {% if 'msuppliers' in request.path %}
@@ -92,7 +112,7 @@
         class="nav-item mr-3"
       {% endif %}
     >
-      <a class="nav-link" href="{% url 'msuppliers' %}">Suppliers </a>
+      <a class="nav-link w3-hide" href="{% url 'msuppliers' %}">Suppliers </a>
     </li>
     <li
     {% if 'machines' in request.path %}
@@ -101,7 +121,7 @@
       class="nav-item mr-3"
     {% endif %}
   >
-    <a class="nav-link" href="{% url 'machines' %}">Machines </a>
+    <a class="nav-link w3-hide" href="{% url 'machines' %}">Machines </a>
   </li>
   <li
   {% if 'trucks' in request.path %}
@@ -110,7 +130,7 @@
     class="nav-item mr-3"
   {% endif %}
 >
-  <a class="nav-link" href="{% url 'trucks' %}">Transport </a>
+  <a class="nav-link w3-hide" href="{% url 'trucks' %}">Transport </a>
 </li>
  
    
