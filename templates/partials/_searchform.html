@@ -21,11 +21,18 @@
                           <input type="text" name="keywords" class="form-control w3-border-green" placeholder="Keyword (search)">
                         </div>
           
-                        <div class="col-sm mb-3">
-                          <label class="sr-only">Location</label>
-                          <input type="text" name="Location" class="form-control w3-border-green" placeholder="Location">
+                    <div class="col-sm mb-3">
+                        <label class="sr-only">Location</label>
+                        <select name="town" class="form-control w3-border-green">
+                          <option selected="true" disabled="disabled">Location (All)</option>
+                          {% for key,value in location_choices.items %}
+                            <option value="{{ key }}">{{ value }}</option>
+                          {% endfor %}
+                          </select>
                         </div>
-          
+
+
+
                         <div class="col-sm mb-3">
                           <label class="sr-only">Town</label>
                           <select name="town" class="form-control w3-border-green">
@@ -38,7 +45,7 @@
                         </div>
                         <!-- Form Row 2  -->
                         <div class="form-row"> 
-                          <div class="col-sm mb-3">
+                          <div class="col-sm-3 mb-3">
                             <label class="sr-only">Plot size</label>
                             <select name="plot_size" class="form-control w3-border-green">
                               <option selected="true" disabled="disabled">Plot Sizes (All)</option>
@@ -47,7 +54,16 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <div class="col-sm mb-3">
+                          <div class="col-sm-6 mb-3">
+                              <label class="sr-only">Company  </label>
+                              <select name="company" class="form-control w3-border-green">
+                                <option selected="true" disabled="disabled">Company (All)</option>
+                                {% for key,value in company_choices.items %}
+                                  <option value="{{ key }}">{{ value }}</option>
+                                {% endfor %}
+                                </select>
+                              </div>
+                          <div class="col-sm-3 mb-3">
                             <select name="price" class="form-control w3-border-green" id="type">
                               <option selected="true" disabled="disabled">Max Price (Any)</option>
                               {% for key,value in price_choices.items %}

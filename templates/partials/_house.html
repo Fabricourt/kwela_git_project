@@ -54,31 +54,25 @@
     Houses For Sale & Rent
    </h3>
    <div class="row">
+
 	{% for house in houses %}
-      <div class="col-md-6" style="height:300px;">
-         <div class="card flex-md-row mb-4 shadow-sm h-md-250 w3-bottombar w3-hover-shadow w3-card-4">
-				<header class="w3-right w3-header w3-hide-large w3-card-4 w3-win8-crimson w3-container w3-padding w3-margin-top">
-						<img class="w3-card-4  card-img-right w3-circle w3-right w3-hide-large  flex-auto " alt="supplier pic" src="{{ house.photo_main.url }}" style="width: 70px; height: 70px;">
-				
-				</header>			 
-            <div class="card-body  d-flex flex-column align-items-start">
-				<strong class="d-inline-block mb-2 text-primary">{% for house_type in house.house_type.all %} {{ house_type }},{% if not forloop.last %}, {% endif %}{% endfor %} 
-					<span class="w3-text-red">{{ house.name|capfirst }}</span> </strong> 
-				<hr class="w3-red" style="width:100%">
-               <h6 class="mb-0">
-				{{ house.phone1}} - {{ house.phone2 }}
-               </h6>
-               <div class="mb-1 text-muted small">{{ house.town}}</div>
-               <p class="card-text mb-auto">{{ house.about_me|slice:"130"|safe }}....</p>
-			   <a class="btn btn-outline-primary btn-sm" role="button" href="{% url 'house' house.id %}">Continue reading</a>
-			  
+      <div class="col-sm" style="height:300px;">
+        <div class="w3-border w3-card-4">
+            <a href="{% url 'profile' %}"><img src="{{ house.photo_main.url }}" class="w3-card-4 w3-shadow"  alt="Alps" style="width:100%; height:300px;"></a>
+            <div class="w3-container w3-center w3-white ">
+              <br>
+                <span class="w3-white w3-xlarge btn w3-round w3-margin-bottom w3-border w3-card-4" style="width:100%;" >
+                  <a style="text-decoration-line: none;" class="w3-text-black"  href="{% url 'house' house.id %}"> Details </a>
+                  <br>
+                </span>
+                <br>
             </div>
-            <img class="card-img-right flex-auto d-none d-lg-block " alt="Thumbnail [200x250]" src="{{ house.photo_main.url }}" style="width: 200px; height: auto;">
-         </div>
+        </div>
 	  </div>
 	{% endfor %}
-	</div>
-</div>
+  </div>
+
+
 
 
 <div class="row">

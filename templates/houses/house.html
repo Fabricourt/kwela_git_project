@@ -15,7 +15,7 @@
     
       <div class="w3-white w3-text-grey ">
         <div class="w3-display-container">
-          <img src="{{ house.photo_main.url }}" style="width:100%; height:350px" alt="Avatar" class="w3-card-4">
+          <a href="{% url 'profile' %}"><img src="{{ house.name.profile.image.url }}" style="width:100%; height:350px" alt="Avatar" class="w3-card-4"></a>
           <div class="w3-display-bottomleft w3-orange w3-opacity-min w3-container w3-text-black" style="width: 100%">
             <h2>{{ house.name.first_name|capfirst }} {{ house.name.last_name|capfirst }}</h2>
           </div>

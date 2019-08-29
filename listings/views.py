@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import price_choices, plot_size_choices, location_choices, town_choices
+from .choices import price_choices, plot_size_choices, location_choices, company_choices, town_choices
 from django.http import HttpResponse
 from .models import Snippet
 from realtors.models import Realtor
@@ -22,6 +22,7 @@ def index(request):
     'posts':posts,
     'listings': paged_listings,
     'town_choices': town_choices,  
+    'company_choices': company_choices,
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
     'price_choices': price_choices
@@ -38,6 +39,7 @@ def listing(request, listing_id):
     'background_images':'background_images',
     'posts':posts,
     'town_choices': town_choices,  
+    'company_choices': company_choices,
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
     'price_choices': price_choices,
@@ -66,10 +68,18 @@ def search(request):
 
 
   # Location
+  if 'company' in request.GET:
+    company = request.GET['company']
+    if company:
+      queryset_list = queryset_list.filter(Company__iexact=company)
+  
+
+    # Location
   if 'location' in request.GET:
     location = request.GET['location']
     if location:
       queryset_list = queryset_list.filter(location__iexact=location)
+
  
   # plot_size
   if 'plot_size' in request.GET:
@@ -87,6 +97,7 @@ def search(request):
         'background_images':'background_images',
         'posts':posts,
         'town_choices': town_choices,
+        'company_choices': company_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,

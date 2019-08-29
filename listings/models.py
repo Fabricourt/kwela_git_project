@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from realtors.models import Realtor
 from ckeditor.fields import RichTextField
+from companies.models import Company
 from django.utils.text import slugify
 
 
@@ -18,7 +19,8 @@ class Snippet(models.Model):
 
 
 class Listing(models.Model):
-  realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
+  realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING,  blank=True)
+  company = models.ForeignKey(Company, on_delete=models.DO_NOTHING,  blank=True)
   title = models.CharField(max_length=200, blank=True, null=True)
   town = models.CharField(max_length=200, blank=True, null=True)
   location = models.CharField(max_length=100, blank=True, null=True, help_text='particular name of the area as known to the locals' )

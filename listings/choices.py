@@ -27,9 +27,9 @@ price_choices = {
   '700000':'Kes700,000',
   '800000':'Kes800,000',
   '900000':'Kes900,000',
-  'Kes1,000,000':'Kes1,000,000',
-  'Kes5,000,000':'Kes5,000,000',
-  '10,000,000':'Kes10,000,000'
+  '1000000':'Kes1,000,000',
+  '5000000':'Kes5,000,000',
+  '10000000':'Kes10,000,000'
 }
 
 location_choices = {
@@ -47,3 +47,12 @@ town_choices = {
 }
 
 
+company_choices = {
+        'kwela':'Kwela Group Ltd',
+        'villa':'Villa Investment Ltd',
+        'landluck':'Landluck Investment Ltd',
+        'ngurish':'Ngurish Investment Ltd',
+        'getmore':'Getmore Investment Ltd'
+        
+        
+}
