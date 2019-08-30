@@ -7,7 +7,7 @@ from listings.models import Listing
 from realtors.models import Realtor
 from blog.models import Post
 from abouts.models import About
-from pages.models import Link, Background_image
+from pages.models import Property_link, Link, Background_image
 
 
 from django.contrib.auth.decorators import login_required
@@ -18,12 +18,18 @@ def index(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:6]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+
+    #property links
+    property_links =Property_link.objects.order_by('link_date').filter(is_published=True)
+
+    #construction link
     links = Link.objects.order_by('link_date').filter(is_published=True)
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     context = {
         'abouts': abouts,
         'background_images':'background_images',
+        'property_links':property_links,
         'links': links,
         'posts': posts,
         'listings': listings,

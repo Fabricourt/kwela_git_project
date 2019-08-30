@@ -19,8 +19,8 @@ class Snippet(models.Model):
 
 
 class Listing(models.Model):
-  realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING,  blank=True)
-  company = models.ForeignKey(Company, on_delete=models.DO_NOTHING,  blank=True)
+  realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING,  blank=True, null=True)
+  company = models.ForeignKey(Company, on_delete=models.DO_NOTHING,  blank=True, null=True)
   title = models.CharField(max_length=200, blank=True, null=True)
   town = models.CharField(max_length=200, blank=True, null=True)
   location = models.CharField(max_length=100, blank=True, null=True, help_text='particular name of the area as known to the locals' )
