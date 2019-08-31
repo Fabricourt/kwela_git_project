@@ -10,12 +10,28 @@ class Bedroom(models.Model):
     def __str__(self):
         return self.number
 
+class Bathroom(models.Model):
+    number = models.CharField(max_length=20, blank=True, null=True)
+ 
+    def __str__(self):
+        return self.number
+
+class Type_of_house(models.Model):
+    name = models.CharField(max_length=20, blank=True, null=True)
+ 
+    def __str__(self):
+        return self.name
+
 
 
 class House(models.Model):
+    is_4rent = models.BooleanField(default=False)
+    is_4sale = models.BooleanField(default=False)
     name = models.ForeignKey(User, on_delete= models.CASCADE)
     town = models.CharField(max_length=200, blank=True, null=True)
-    bedroom = models.ManyToManyField(Bedroom, help_text='Select The kind of House Your Posting your')
+    bedroom = models.ManyToManyField(Bedroom, help_text='Select how many bedrooms')
+    bathrooms = models.ManyToManyField(Bathroom, help_text='Select how many bathrooms')
+    type_of_house = models.ManyToManyField(Type_of_house, help_text='Select The kind of House Your Posting your')
     price = models.IntegerField(blank=True, null=True)
     about_me = RichTextField(blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
