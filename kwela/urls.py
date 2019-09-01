@@ -6,6 +6,10 @@ from users import views as profile_views
 from contact.views import Contact
 from django.contrib.sitemaps.views import sitemap
 from listings.sitemaps import StaticViewSitemap
+from companies.sitemaps import StaticViewSitemap
+from realtors.sitemaps import StaticViewSitemap
+from rentals.sitemaps import StaticViewSitemap
+from houses.sitemaps import StaticViewSitemap
 from testimonials.views import testimonial
 
 
@@ -18,7 +22,8 @@ sitemaps = {
 
 urlpatterns = [
     path('', include('pages.urls')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
     path('blog/',  include('blog.urls')),
     path('listings/', include('listings.urls')),
     path('accounts/', include('accounts.urls')),
