@@ -2,50 +2,52 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .choices import price_choices,  town_choices, bedroom_choices
+from .choices import price_choices,  town_choices, bedroom_choices, bathroom_choices, type_of_house_choices
 from django.contrib.auth.models import User
 from blog.models import Post
-from .models import House, Bedroom, Bathroom, Type_of_house
+from .models import Rental, Bedroom, Type_of_house, Bathroom
 from pages.models import Background_image
 
-def houses(request):
+def rentals(request):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-    houses = House.objects.order_by('-created_on').filter(is_published=True)
+    rentals = Rental.objects.order_by('-created_on').filter(is_published=True)
 
-    paginator = Paginator(houses, 10)
+    paginator = Paginator(rentals, 10)
     page = request.GET.get('page')
-    paged_houses = paginator.get_page(page)    
+    paged_rentals = paginator.get_page(page)    
     context = {
         'background_images':background_images,
-        'houses':paged_houses,
+        'rentals':paged_rentals,
         'posts':posts,
         'bedroom_choices':bedroom_choices,
+        'bathroom_choices':bathroom_choices,
+        'type_of_house_choices':type_of_house_choices,
         'town_choices': town_choices,
         'price_choices': price_choices,
  
     }
-    return render(request, 'houses/houses.html', context)
+    return render(request, 'rentals/rentals.html', context)
 
 
 
-def house(request, house_id):
+def rental(request, rental_id):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
-    house = get_object_or_404(House, pk=house_id)
+    rental = get_object_or_404(Rental, pk=rental_id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     context = {
         'background_images':background_images,
-        'house': house,
+        'rental': rental,
         'posts':posts,
     }
-    return render(request, 'houses/house.html', context)
+    return render(request, 'rentals/rental.html', context)
 
 
 # Create your views here.
-def searchus(request):
+def searchrentals(request):
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
-  queryset_list = House.objects.all().order_by('-created_on')
+  queryset_list = Rental.objects.all().order_by('-created_on')
  
  
 
@@ -70,12 +72,23 @@ def searchus(request):
     if town:
       queryset_list = queryset_list.filter(town__iexact=town)
 
-#  House
+#type_of_house_choices
+  if 'type_of_house_choices' in request.GET:
+    type_of_house_choices = request.GET['type_of_house_choices']
+    if type_of_house_choices:
+      queryset_list = queryset_list.filter(town__iexact=type_of_house_choices)
+
+#  Bedroom
   if 'bedroom' in request.GET:
     bedroom = request.GET['bedroom']
     if bedroom:
       queryset_list = queryset_list.filter(bedroom__lte=bedroom)
 
+#  Bathroom
+  if 'bathroom' in request.GET:
+    bathromm = request.GET['bathroom']
+    if bathroom:
+      queryset_list = queryset_list.filter(bathroom__lte=bathroom)
 
 
   # service charge
@@ -88,11 +101,13 @@ def searchus(request):
         'background_images':background_images,
         'posts':posts,
         'bedroom_choices': bedroom_choices,
+        'bathroom_choices': bathroom_choices,
+        'type_of_house_choices': type_of_house_choices,
         'town_choices': town_choices,
         'price_choices': price_choices,
-        'houses': queryset_list,
+        'rentals': queryset_list,
         'values': request.GET
 
   }
 
-  return  render(request, 'houses/searchus.html', context)
+  return  render(request, 'rentals/searchrentals.html', context)

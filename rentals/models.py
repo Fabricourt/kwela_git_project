@@ -24,7 +24,8 @@ class Type_of_house(models.Model):
 
 
 
-class House(models.Model):
+class Rental(models.Model):
+    is_4rent = models.BooleanField(default=False)
     name = models.ForeignKey(User, on_delete= models.CASCADE)
     town = models.CharField(max_length=200, blank=True, null=True)
     bedroom = models.ManyToManyField(Bedroom, help_text='Select how many bedrooms')
