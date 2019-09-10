@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
     'testimonials.apps.TestimonialsConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
@@ -52,6 +51,7 @@ INSTALLED_APPS = [
     'contact',
     'crispy_forms', 
     'fundis',
+    'home',
     'hardwares',
     'houses',
     'machines',

@@ -7,101 +7,54 @@
 
 {% block content %}
 
+{% include 'partials/_header.html' %}
+
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main  " >
-       
+ 
 <!-- Page content -->
-<br><br>
+
 <div class="w3-content w3-padding-large  w3-margin-bottom   " style="max-width:1564px">
 
-       <!-- Propertu section Section -->
-       <div class="w3-container w3-padding w3-card-4 " id="projects">
-        <h3 class="w3-border-bottom  w3-border-amber w3-padding-16 w3-bottombar">
-           
-         Kenya's Largest Property Market 
-        </h3>
-      
-        <span class="w3-center">
-        <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'listings' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Plots For Sale</a></span>
-        <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'houses' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Houses For Sale</a></span>
-        <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4 "><a href="{% url 'rentals' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Houses For Rent</a></span>
-        <!--<span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'comingsoon' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Realtors/Agents</a></span>-->
-        <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'companies' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Property Companies</a></span>
-        <!--<span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'msuppliers' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Surveyors</a></span>-->
-        <!--<span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'comingsoon' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;"></a>How To Join</span>
-        </span>
-        <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'comingsoon' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;"></a>Lawyers</span>-->
-      </span>
-
-      </div>
+    
 
       <br><br>
-      <div class="w3-card-4">
+      <div class=" container">
       <div class="w3-row-padding">
         <br><br>
-        
+        <header class="w3-bottombar w3-border-brown w3-margin-bottom">
+          <h1 class="w3-right w3-text-brown ">Plots of Land 4 Sale In Lamu</h1>
          
-          {% for property_link in property_links %}
-          <div class="w3-col l3 m6 w3-margin-bottom">
-          <div class="w3-display-container w3-card-4">
-          <a href="/{{property_link.link_url}}">
-            <div class="w3-theme-d2 w3-display-topleft w3-card-4 w3-btn  w3-padding">
-              {{ property_link.link_name}}
+        </header>
+        <br><br>
+     
+          {% if listings %}
+          {% for listing in listings %}
+          
+              <!--overlay-->
+              {% include 'partials/_listings.html' %}
+      
+          {% endfor %}
+          {% else %}
+            <div class="col-md-12">
+              
+              <p>No Plots listings Available</p>
             </div>
-            <img src="{{ property_link.link_pic.url }}" class="w3-border w3-card-4 w3-padding " alt="House" style="width:100%; height:270px;">
-          </a>
-          </div>
-        </div>
-        {% endfor %}
+          {% endif %}
+          <button class="btn w3-highway-green w3-border-green w3-hover-white  w3-xlarge w3-right w3-wide" style="width: 100%;"><b>View More</b></button>
+          <br><br>
         
+
+
+         
       </div>
       </div>
       <br><br>
 
 
-        <!--Construction Section
-        <div class="w3-container w3-padding w3-card-4" id="projects">
-          <h3 class="w3-border-bottom   w3-border-amber  w3-padding-16 w3-bottombar ">
-            Construction Section
-          </h3>
-          <span class="w3-center">
-
-        
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4 "><a href="{% url 'fundis' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Construction WorkForce</a></span>
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'hardwares' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Hardwares</a></span>
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'womens' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Ballast Women</a></span>
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'msuppliers' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Materials Suppliers</a></span>
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'trucks' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Trucks & Pickups</a></span>
-          
-          <span class="btn w3-border-blue w3-win8-cobalt w3-opacity-min w3-margin-bottom w3-hover-white w3-padding w3-card-4"><a href="{% url 'comingsoon' %}" class="w3-text-white w3-hover-text-black" style="text-decoration-line: none;">Machines & Equipments</a></span>
-        </span>
-        </div>
-
-        <br><br>
-        <div class="w3-card-4">
-        <div class="w3-row-padding">
-          <br><br>
-          
-           
-            {% for link in links %}
-            <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container w3-card-4">
-            <a href="/{{link.link_url}}">
-              <div class="w3-display-topleft w3-card-4 w3-btn w3-win8-red  w3-padding">
-                {{ link.link_name}}
-              </div>
-              <img src="{{ link.link_pic.url }}" class="w3-border w3-card-4 w3-padding " alt="House" style="width:100%; height:270px;">
-            </a>
-            </div>
-          </div>
-          {% endfor %}
-          
-        </div>
-        </div>
-   
-        <br><br>
-      </div>-->
+      
+      </div>
       <br><br>
     </div>
   

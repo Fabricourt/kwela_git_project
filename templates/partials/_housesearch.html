@@ -45,12 +45,12 @@
                  <div class="form-row ">
                   <div class="col-md-12 mb-3 ">
                     <label class="sr-only">Keywords</label>
-                    <input type="text" name="keywords" class="form-control w3-border-blue" placeholder="Keyword (search)">
+                    <input type="text" name="keywords" class="form-control w3-theme-d5" placeholder="Keyword (search)">
                   </div>
 
          <!-- <div class="col-md-6 mb-3 ">
                     <label class="sr-only">Keywords</label>
-                    <input type="text" name="keywords" class="form-control w3-border-blue" placeholder="Keyword (name)">
+                    <input type="text" name="keywords" class="form-control w3-theme-d5" placeholder="Keyword (name)">
                   </div>-->
     
                  
@@ -59,7 +59,7 @@
                   <div class="form-row"> 
                     <div class="col-md-4 mb-3">
                      <label class="sr-only">Bedrooms</label>
-                      <select name="bedroom" class="form-control w3-border-blue" id="type">
+                      <select name="bedroom" class="form-control w3-theme-d5" id="type">
                         <option selected="true" disabled="disabled">Bedrooms</option>
                         {% for key,value in bedroom_choices.items %}
                         <option value="{{ key }}">{{ value }}</option>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="sr-only">Hire Price</label>
-                         <select name="price" class="form-control w3-border-blue" id="type">
+                         <select name="price" class="form-control w3-theme-d5" id="type">
                            <option selected="true" disabled="disabled">Price</option>
                            {% for key,value in price_choices.items %}
                            <option value="{{ key }}">{{ value }}</option>
@@ -77,7 +77,7 @@
                        </div>
                     <div class="col-md-4 mb-3">
                       <label class="sr-only">Town</label>
-                      <select name="town" class="form-control w3-border-blue">
+                      <select name="town" class="form-control w3-theme-d5">
                         <option selected="true" disabled="disabled">Town</option>
                         {% for key,value in town_choices.items %}
                           <option value="{{ key }}">{{ value }}</option>

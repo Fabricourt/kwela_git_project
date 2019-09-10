@@ -45,14 +45,14 @@
                  <div class="form-row ">
                   <div class="col-md-4 mb-3 ">
                     <label class="sr-only">Keywords</label>
-                    <input type="text" name="keywords" class="form-control w3-border-blue" placeholder="Keyword (search)">
+                    <input type="text" name="keywords" class="form-control w3-theme-d5" placeholder="Keyword (search)">
                   </div>
 
     
              
                     <div class="col-md-4 mb-3">
                         <label class="sr-only">Company</label>
-                         <select name="price" class="form-control w3-border-blue" id="type">
+                         <select name="price" class="form-control w3-theme-d5" id="type">
                            <option selected="true" disabled="disabled">Company</option>
                            {% for key,value in company_name_choices.items %}
                            <option value="{{ key }}">{{ value }}</option>
@@ -61,7 +61,7 @@
                        </div>
                     <div class="col-md-4 mb-3">
                       <label class="sr-only">Town</label>
-                      <select name="town" class="form-control w3-border-blue">
+                      <select name="town" class="form-control w3-theme-d5">
                         <option selected="true" disabled="disabled">Town</option>
                         {% for key,value in town_choices.items %}
                           <option value="{{ key }}">{{ value }}</option>

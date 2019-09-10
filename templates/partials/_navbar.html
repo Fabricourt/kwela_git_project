@@ -2,7 +2,7 @@
 
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark  w3-card-4 w3-shadow w3-win8-cobalt  sticky-top " style="width:100%;">
+<nav class="navbar navbar-expand-lg navbar-dark  w3-card-4 w3-shadow w3-theme-d5  sticky-top " style="width:100%;">
     <div class="container">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,7 @@
           >
             <a class="nav-link" href="{% url 'index' %}">Home</a>
           </li>
-          <li
-          {% if 'companies' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-          <a class="nav-link" href="{% url 'companies' %}">Companies </a>
-        </li>
-      
+                
           <li
             {% if 'listings' in request.path %}
               class="nav-item active mr-3"
@@ -39,8 +30,39 @@
               class="nav-item mr-3"
             {% endif %}
           >
-            <a class="nav-link" href="{% url 'listings' %}">Plots 4 Sale </a>
+            <a class="nav-link" href="{% url 'listings' %}">Available Land In Lamu  </a>
           </li>
+          <li
+          {% if 'blog-home' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+          <a class="nav-link " href="{% url 'blog-home' %}">Lamu Blogger </a>
+        </li>
+        <li
+        {% if 'about' in request.path %}
+          class="nav-item active mr-3"
+        {% else %}
+          class="nav-item mr-3"
+        {% endif %}
+      >
+
+        <a class="nav-link " href="{% url 'about' %}">About us</a>
+      </li>
+      
+          <li
+          {% if 'companies' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+
+          <a class="nav-link w3-hide" href="{% url 'companies' %}">Companies </a>
+        </li>
+
  
 
       <li
@@ -50,7 +72,7 @@
         class="nav-item mr-3"
       {% endif %}
     >
-      <a class="nav-link " href="{% url 'houses' %}">Houses 4 Sale </a>
+      <a class="nav-link w3-hide" href="{% url 'houses' %}">Houses  </a>
     </li>
     <li
     {% if 'rentals' in request.path %}
@@ -59,17 +81,9 @@
       class="nav-item mr-3"
     {% endif %}
   >
-    <a class="nav-link " href="{% url 'rentals' %}">Rentals </a>
+    <a class="nav-link w3-hide" href="{% url 'rentals' %}">Rentals </a>
   </li>
-      <li
-      {% if 'blog-home' in request.path %}
-        class="nav-item active mr-3"
-      {% else %}
-        class="nav-item mr-3"
-      {% endif %}
-      >
-      <a class="nav-link " href="{% url 'blog-home' %}">Blog </a>
-    </li>
+  
         <li
         {% if 'hardwares' in request.path %}
           class="nav-item active mr-3"
@@ -137,7 +151,7 @@
               class="nav-item mr-3"
             {% endif %}
           >
-            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-link w3-hide" href="{% url 'profile' %}">Profile</a>
           </li>
             
         </li>
@@ -148,7 +162,7 @@
               class="nav-item mr-3"
             {% endif %}
             >
-              <a class="nav-link" href="{% url 'dashboard' %}">
+              <a class="nav-link w3-hide" href="{% url 'dashboard' %}">
                [Dashboard]</a>
             </li>
             

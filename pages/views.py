@@ -8,6 +8,7 @@ from realtors.models import Realtor
 from blog.models import Post
 from abouts.models import About
 from pages.models import Property_link, Link, Background_image
+from home.models import Topbar,header_carousel_pics, Footer
 
 
 from django.contrib.auth.decorators import login_required
@@ -15,9 +16,12 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:6]
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    header_carousel_picss = header_carousel_pics.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
 
     #property links
     property_links =Property_link.objects.order_by('link_date').filter(is_published=True)
@@ -30,6 +34,9 @@ def index(request):
         'abouts': abouts,
         'background_images':'background_images',
         'property_links':property_links,
+        'topbars': topbars,
+        'header_carousel_picss': header_carousel_picss,
+        'footers': footers,
         'links': links,
         'posts': posts,
         'listings': listings,
@@ -44,13 +51,20 @@ def index(request):
 
 def about(request):
     # Get all realtors
+
+    abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
     realtors = Realtor.objects.order_by('-hire_date')
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
     # Get MVP
     mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     context = {
+        'abouts': abouts,
+        'topbars': topbars,
+        'footers': footers,
         'posts':posts,
         'background_images':'background_images',        
         'realtors': realtors,
