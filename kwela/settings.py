@@ -47,19 +47,23 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sitemaps',
     'abouts',
+    'booking',
     'ckeditor', 
     'contact',
     'crispy_forms', 
     'fundis',
+    'gallerys',
     'home',
     'hardwares',
     'houses',
     'machines',
     'msuppliers',
     'trucks',
+    'team',
     'women',
     'companies',
     'rentals',
+    
 ]
 
 

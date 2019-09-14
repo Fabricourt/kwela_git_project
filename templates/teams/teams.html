@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} | The Team {% endblock %}
+{% block content %}
+
+
+
+<style>
+ /* .profile {
+      font-family: tahoma;
+      height: 100vh;
+      background-image: url(https://source.unsplash.com/1600x900/?farming);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+    } */
+    
+    .our-team {
+      padding: 30px 0 40px;
+      margin-bottom: 30px;
+      background-color: #ffffff;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .our-team .picture {
+      display: inline-block;
+      height: 130px;
+      width: 130px;
+      margin-bottom: 50px;
+      z-index: 1;
+      position: relative;
+    }
+    
+    .our-team .picture::before {
+      content: "";
+      width: 100%;
+      height: 0;
+      border-radius: 50%;
+      background-color: #2196f3;
+      position: absolute;
+      bottom: 135%;
+      right: 0;
+      left: 0;
+      opacity: 0.9;
+      transform: scale(3);
+      transition: all 0.3s linear 0s;
+    }
+    
+    .our-team:hover .picture::before {
+      height: 100%;
+    }
+    
+    .our-team .picture::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #2196f3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    .our-team .picture img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      transform: scale(1);
+      transition: all 0.9s ease 0s;
+    }
+    
+    .our-team:hover .picture img {
+      box-shadow: 0 0 0 14px #f7f5ec;
+      transform: scale(0.7);
+    }
+    
+    .our-team .title {
+      display: block;
+      font-size: 15px;
+      color: #4e5052;
+      text-transform: capitalize;
+    }
+    
+    .our-team .social {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: #2196f3;
+      position: absolute;
+      bottom: -100px;
+      left: 0;
+      transition: all 0.5s ease 0s;
+    }
+    
+    .our-team:hover .social {
+      bottom: 0;
+    }
+    
+    .our-team .social li {
+      display: inline-block;
+    }
+    
+    .our-team .social li a {
+      display: block;
+      padding: 10px;
+      font-size: 17px;
+      color: white;
+      transition: all 0.3s ease 0s;
+      text-decoration: none;
+    }
+    
+    .our-team .social li a:hover {
+      color: #2196f3;
+      background-color: #f7f5ec;
+    }
+    </style>
+
+
+<!-- Image header -->
+
+{% if teamheads %}
+{% for teamhead in teamheads %}
+<header class="w3-display-container w3-wide" id="home">
+
+  <img class="w3-image" src="{{ teamhead.team_header.url }}" alt="{{ head.title }}" style="width:100%; height:70vh">
+
+  <div class="w3-display-middle w3-padding-large">
+    <h1 class="w3-text-white">{{ teamhead.logo_short_name }}</h1>
+    <h1 class="w3-jumbo w3-text-white "><b>
+      {{ teamhead.motivational_statement }}</b></h1>
+    
+  </div>
+</header>
+{% endfor %}
+{% endif %}
+ 
+<section class="w3-light-grey w3-padding-64">
+  
+
+    <div class="container">
+        <div class="row">
+          {% for team in teams %}
+            {% include 'partials/_teams.html' %}
+          {% endfor %}
+
+          
+       
+        </div>
+      </div>
+</section>
+
+{% endblock content %}

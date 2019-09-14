@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="col-12 col-sm-6  col-md-4 col-lg-3 w3-third">
+        <div class="our-team w3-card w3-hover-shadow ">
+          <div class="picture">
+            <img class="img-fluid w3-border-white" src="{{ team.team.profile.image.url }}" style="width:130px; height:130px;">
+          </div>
+          <div class="team-content">
+            <h3 class="name">{{ team.team.username }}</h3>
+            <h4 class="title">{{ team.job_title }}</h4>
+            <h5 class="w3-topbar w3-border-aqua w3-small">{{ team.email }}</h5>
+          </div>
+          <ul class="social">
+            <li><a href="{{ team.facebook }}" target=_blank class="fa fa-facebook" aria-hidden="true"></a></li>
+            <li><a href="{{ team.twitter }}" target=_blank class="fa fa-twitter" aria-hidden="true"></a></li>
+            <li><a href="{{ team.instagram }}" target=_blank class="fa fa-instagram" aria-hidden="true"></a></li>
+            <li><a href="{{ team.linkedin }}" target=_blank class="fa fa-linkedin" aria-hidden="true"></a></li>
+          </ul>
+        </div>
+      </div>

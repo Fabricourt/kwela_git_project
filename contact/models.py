@@ -3,25 +3,22 @@ from datetime import datetime
 from realtors.models import Realtor
 from ckeditor.fields import RichTextField
 from PIL import Image
-
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Contact(models.Model):
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
+    name = models.ForeignKey(User, on_delete= models.CASCADE,blank=True, null=True)
     email = models.EmailField()
-    message = RichTextField()
-    contact_date = models.DateTimeField(default=datetime.now, blank=True)
-    image = models.ImageField(upload_to='contact_pics')
-
-        
+    phone = models.CharField(max_length=100)
+    header = models.CharField(max_length=300, blank=True, null=True )
+    message = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)    
+    is_published = models.BooleanField(default=True)
 
     def __str__(self):
-     return f'{self.first_name}  {self.last_name}  {self.contact_date}'
-     
-    def save(self, **kwargs):
-        super().save()
-
+        return f' Names// {self.name.first_name}-{self.name.last_name} --Desc//  {self.name.header} --Email//  {self.email}-- Phone//  {self.phone} '
+ 
 
 
 class Sema(models.Model):

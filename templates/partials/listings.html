@@ -1,0 +1,42 @@
+
+      <br><br>
+      <div class=" container">
+      <div class="w3-row-padding">
+        <br><br>
+        <header class="w3-bottombar w3-border-brown w3-margin-bottom">
+          <h1 class="w3-right w3-text-brown ">Plots of Land 4 Sale In Lamu</h1>
+         
+        </header>
+        <br><br>
+     
+          {% if listings %}
+          {% for listing in listings %}
+          
+              <!--overlay-->
+              {% include 'partials/_listings.html' %}
+              
+          {% endfor %}
+          <button class="btn w3-highway-green w3-border-green w3-hover-white  w3-xlarge w3-right w3-wide" style="width: 100%;"><b>View More</b></button>
+          {% else %}
+            <div class="col-md-12">
+              
+              <p>......</p>
+            </div>
+          {% endif %}
+          
+          <br><br>
+        
+
+
+         
+      </div>
+      </div>
+      <br><br>
+
+
+      
+      </div>
+      <br><br>
+    </div>
+  
+ 

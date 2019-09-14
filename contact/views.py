@@ -4,26 +4,31 @@ from django.core.mail import send_mail
 from .models import Sema
 from .forms import ContactForm
 from django.contrib.auth.decorators import login_required
+from home.models import Topbar,  Footer
+
 
 @login_required
-def Contact(request):
-    template ="contact.html"
-
+def contact(request):
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+    template = "contact/contact.html"
     if request.method == "POST":
-        form = ContactForm(request.POST)
+        form =ContactForm(request.POST)
 
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your message has been sent')
+            return redirect('contact')
+      
     else:
         form = ContactForm()
-
+    
     context ={
-      
+        'topbars': topbars,
+        'footers': footers,
         'form': form,
     }
-
-    messages.success(request, 'Your message has been sent')
-    return render (request, template, context)
+    return render(request, template, context)
    
 
 

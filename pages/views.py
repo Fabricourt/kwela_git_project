@@ -6,16 +6,19 @@ from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
 from blog.models import Post
-from abouts.models import About
+from abouts.models import About, Proposal
 from pages.models import Property_link, Link, Background_image
 from home.models import Topbar,header_carousel_pics, Footer
+from booking.models import Bookspot
+from booking.forms import BookspotForm
+from django.contrib import messages, auth
 
 
 from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
+    
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
@@ -31,7 +34,7 @@ def index(request):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     context = {
-        'abouts': abouts,
+        'proposals': proposals,
         'background_images':'background_images',
         'property_links':property_links,
         'topbars': topbars,
@@ -95,6 +98,44 @@ def comingsoon(request):
         'posts':posts
     }
     return render(request, 'pages/comingsoon.html', context)
+
+
+def getland(request):
+    proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+    context = {
+        'proposals':proposals,
+        'topbars': topbars,
+        'footers': footers,
+    }
+    return render(request, 'pages/getland.html', context) 
+
+
+def howtojoin(request):
+    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
+  
+
+    if request.method == "POST":
+        form = BookspotForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+    else:
+
+        form = BookspotForm()
+        messages.success(request, 'Your Booking having sent out successfully')
+    
+    context = {
+        'form': form,
+        'bookspots': bookspots, 
+    }    
+
+    return render(request, 'pages/howtojoin.html', context) 
+
+
+def faq(request):
+    return render(request, 'pages/faq.html') 
 
 @staff_member_required
 def mobile(request):
