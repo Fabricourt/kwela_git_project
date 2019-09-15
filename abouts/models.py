@@ -22,3 +22,26 @@ class Proposal(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class Howtojoin(models.Model):
+    title  = models.CharField(max_length=120)
+    image   = models.ImageField(upload_to='image/', blank=True, null=True)
+    content = RichTextField(null=True, blank=True)
+    reload = models.DateTimeField(default=timezone.now)
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Faq(models.Model):
+    title  = models.CharField(max_length=120)
+    image   = models.ImageField(upload_to='image/', blank=True, null=True)
+    content = RichTextField(null=True, blank=True)
+    reload = models.DateTimeField(default=timezone.now)
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title

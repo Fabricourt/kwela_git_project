@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'hardwares',
     'houses',
     'machines',
+    'members',
     'msuppliers',
     'trucks',
     'team',

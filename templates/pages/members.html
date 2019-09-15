@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+
+{% block title %} Welcome {% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="w3-container">
+        <h1 class="w3-center "><span class="w3-text-red w3-Xxxlarge">M</span>embers</h1>
+ 
+        {% if bookspots %}
+        <table class="w3-table w3-striped">
+            <tr>
+            <th class="w3-camo-black">Name</th>
+            <th class="w3-camo-black">Id Number</th>
+            <th class="w3-camo-black">Email</th>
+            <th class="w3-camo-black">Phone Number</th>
+            <th class="w3-camo-black">Approval</th>
+            
+            
+            </tr>
+            <h6 class="w3-center"><i>below are all booked dates from when the truck and sound systems are hired to when they are returned, please pick only dates that have not been booked</i> </h6>
+            <hr class="w3-green" style="padding:3px;">
+            
+            {% for bookspot in bookspots %}
+            
+            <tr>
+            <td>{{bookspot.first_name}} {{bookspot.last_name}}</td>
+
+            {% if user.is_staff %}
+            <td>{{bookspot.id_number}}</td>
+            {% else %}
+            <td>##############</td>
+            {% endif %}
+
+            {% if user.is_staff %}
+            <td>{{bookspot.phone_number}}</td>
+            {% else %}
+            <td>*************</td>
+            {% endif %}
+
+            <td>
+                {% if bookspot.approved%}
+                <span class="w3-green w3-button ">Registered</span>
+                {% else %}
+                <span class="w3-red w3-button ">Waiting.....</span>
+                {% endif %}
+    
+            </td>
+            
+            </tr>
+            {% endfor %}
+    
+    {% else %}
+    <style>.w3-lobster {font-family: "Lobster", serif;}</style>
+    <div class="alert alert-primary w3-wide w3-animate-fading w3-center w3-content" role="alert">
+            <h4 class="w3-lobster">No Bookings Have Been Made Yet!</h4>
+            
+    </div>
+    
+    
+    {% endif %}
+    
+        </table>
+        
+        </div>
+
+
+
+</section>
+
+
+
+{% endblock %}

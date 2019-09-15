@@ -1,24 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from listings.choices import price_choices, plot_size_choices, location_choices, town_choices
 from django.contrib.admin.views.decorators import staff_member_required
 from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
 from blog.models import Post
-from abouts.models import About, Proposal
+from abouts.models import About, Proposal, Howtojoin, Faq
 from pages.models import Property_link, Link, Background_image
 from home.models import Topbar,header_carousel_pics, Footer
 from booking.models import Bookspot
 from booking.forms import BookspotForm
 from django.contrib import messages, auth
-
-
+from users.models import Profile
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    
+    proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
@@ -54,7 +55,6 @@ def index(request):
 
 def about(request):
     # Get all realtors
-
     abouts = About.objects.order_by('-reload').filter(is_published=True)[:1]
     realtors = Realtor.objects.order_by('-hire_date')
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
@@ -102,10 +102,17 @@ def comingsoon(request):
 
 def getland(request):
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
+    howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
+    faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
+    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+
     context = {
-        'proposals':proposals,
+        'proposals': proposals,
+        'faqs': faqs,
+        'howtojoins': howtojoins,
+        'bookspots': bookspots, 
         'topbars': topbars,
         'footers': footers,
     }
@@ -113,7 +120,12 @@ def getland(request):
 
 
 def howtojoin(request):
+    proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
+    howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
+    faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
     bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
   
 
     if request.method == "POST":
@@ -126,16 +138,57 @@ def howtojoin(request):
         form = BookspotForm()
         messages.success(request, 'Your Booking having sent out successfully')
     
+    
+  
+
     context = {
+        'faqs': faqs,
         'form': form,
+        'howtojoins': howtojoins,
         'bookspots': bookspots, 
+        'topbars': topbars,
+        'footers': footers,
     }    
 
     return render(request, 'pages/howtojoin.html', context) 
 
 
 def faq(request):
-    return render(request, 'pages/faq.html') 
+    proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
+    howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
+    faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
+    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+
+    context = {
+        'faqs': faqs,
+        'howtojoins': howtojoins,
+        'bookspots': bookspots, 
+        'topbars': topbars,
+        'footers': footers,
+    }
+    return render(request, 'pages/faq.html', context) 
+
+@login_required
+def members(request):
+    profiles = Profile.objects.order_by('-reload').filter(is_published=True)
+
+    
+    context = {
+        'profiles': paged_profiles,
+    }
+    return render(request, 'pages/members.html', context) 
+
+@login_required
+def member(request):
+    profiles = Profile.objects.order_by('-reload').filter(is_published=True)
+    profile = get_object_or_404(Profile, pk=profile_id)
+  
+    context = {
+        'profiles': paged_profiles,
+    }
+    return render(request, 'pages/members.html', context) 
 
 @staff_member_required
 def mobile(request):

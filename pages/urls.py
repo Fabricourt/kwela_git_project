@@ -10,6 +10,7 @@ urlpatterns = [
     path('getland', views.getland, name='getland'), 
     path('howtojoin', views.howtojoin, name='howtojoin'), 
     path('faq', views.faq, name='faq'), 
+    path('members', views.members, name='members'),
     path('mobile', views.mobile, name='mobile'), 
     path('tablet', views.tablet, name='tablet'),
     path('laptop', views.laptop, name='laptop'),
