@@ -13,7 +13,7 @@ from home.models import Topbar,header_carousel_pics, Footer
 from booking.models import Bookspot
 from booking.forms import BookspotForm
 from django.contrib import messages, auth
-from users.models import Profile
+from members.models import Member
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -172,21 +172,29 @@ def faq(request):
 
 @login_required
 def members(request):
-    profiles = Profile.objects.order_by('-reload').filter(is_published=True)
+    members = Member.objects.order_by('timestamp').filter(is_published=True)
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
 
     
     context = {
-        'profiles': paged_profiles,
+        'members': members,
+        'topbars': topbars,
+        'footers': footers,
     }
     return render(request, 'pages/members.html', context) 
 
 @login_required
 def member(request):
-    profiles = Profile.objects.order_by('-reload').filter(is_published=True)
-    profile = get_object_or_404(Profile, pk=profile_id)
+    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
+    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+    members = Member.objects.order_by('-timestamp').filter(is_published=True)
+    member = get_object_or_404(Member, pk=member_id)
   
     context = {
-        'profiles': paged_profiles,
+        'members': members,
+        'topbars': topbars,
+        'footers': footers,
     }
     return render(request, 'pages/members.html', context) 
 
