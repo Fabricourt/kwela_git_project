@@ -39,17 +39,12 @@
             <td>##############</td>
             {% endif %}
 
-            {% if user.is_staff %}
             <td>{{member.email}}</td>
-            {% else %}
-            <td>@@@@@@@@</td>
-            {% endif %}
+           
 
-            {% if user.is_staff %}
+           
             <td>{{member.phone}}</td>
-            {% else %}
-            <td>*************</td>
-            {% endif %}
+          
 
             <td>
                 {% if member.approved%}

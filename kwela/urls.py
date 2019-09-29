@@ -43,6 +43,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', profile_views.profile, name='profile' ),
     path('testimonial/', testimonial, name='testimonial'),
+    
+
    
     
 
