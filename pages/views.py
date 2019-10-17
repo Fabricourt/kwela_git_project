@@ -152,7 +152,7 @@ def howtojoin(request):
 
     return render(request, 'pages/howtojoin.html', context) 
 
-
+@login_required
 def faq(request):
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
     howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
