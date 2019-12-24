@@ -12,6 +12,7 @@ company_name_choices = {
      'landluck':'Landluck Investments Ltd',
      'getmore':'Getmore Investments Ltd',
      'ngurish':'Ngurish Investements Ltd',
-     'villa':'Villa care Investments Ltd'
+     'villa':'Villa care Investments Ltd',
+     'goshen':'Goshen'
 
 }

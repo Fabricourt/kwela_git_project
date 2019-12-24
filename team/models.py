@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 
 
 
+
 class Team(models. Model):
     team = models.ForeignKey(User, on_delete=models.CASCADE)
     team_header = models.ImageField(upload_to='team_header/', blank=True, null=True)

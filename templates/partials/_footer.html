@@ -13,7 +13,7 @@
     z-index: 1;
 	}
 	.foo_top_header_one {
-    background-color: #15151e;
+    background-color: #151e1a;
     color: #fff;
 }
 .section_padding_100_70 {
@@ -202,7 +202,8 @@ p, ul li, ol li {
 </style>
 
         <!--footer-->
-<footer class="kilimanjaro_area">
+<footer class="kilimanjaro_area ">
+   
         <!-- Top Footer Area Start -->
         <div class="foo_top_header_one section_padding_100_70">
             <div class="container">
@@ -210,8 +211,8 @@ p, ul li, ol li {
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="kilimanjaro_part">
                             <h5>About Us</h5>
-                            <p>Jamii Kilimo empowers its clients to grow through innovative High-Tech solutions aimed at your growth, success and profit.</p><br>
-                            <p>At the core Jamiikilimo goal is to help young people acquire Land and farm successfully applying latest technology for high yield, thus creating food sustainability and in the process creating wealth</p>
+                            <p>LanDPlanet empowers its clients to grow through innovative High-Tech solutions aimed at your growth, success and profit.</p><br>
+                            <p>At the core LanDPlanet goal is to help young people acquire Land and farm successfully applying latest technology for high yield, thus creating food sustainability and in the process creating wealth</p>
                         </div>
                         <div class="kilimanjaro_part m-top-15">
                             <!----><h5>Social Links</h5>
@@ -240,18 +241,25 @@ p, ul li, ol li {
                         <div class="kilimanjaro_part m-top-15">
                             <h5>Important Links</h5>
                             <ul class="kilimanjaro_links">
-                                <li><a href="{% url 'blog-home' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Blog</a></li>
+                                    <li class=""><a href="{% url 'profile' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Profile</a></li>
+                                <li><a href="{% url 'blog-home' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>LanDPlanet News Updates</a></li>
                                 <li><a href="{% url 'about' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>About</a></li>
-                               <li><a href="{% url 'getland' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>100 acres project</a></li>
-                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Terms & Conditions</a></li>
-                                <li><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Privacy Policy</a></li>
+                                <li class=""><a href="{% url 'teams' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Team</a></li>
+                                <li class=""><a href="{% url 'photos' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Gallery</a></li>
+                                <li><a href="{% url 'getland' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>100 acres project</a></li>
+                                <li class="w3-hide"><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Terms & Conditions</a></li>
+                                <li class="w3-hide"><a href="{% url 'comingsoon' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>Privacy Policy</a></li>
                                 <li><a href="{% url 'faq' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>FAQ</a></li>
-                                <li><a href="{% url 'howtojoin' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>How To Join</a></li>
+                                <li class="w3-hide"><a href="{% url 'howtojoin' %}"><i class="fa fa-angle-right w3-text-blue" aria-hidden="true"></i>How To Join</a></li>
                                 {% if user.is_staff %}
                                 <li>
                                   <a href="{% url 'register' %}">
-                                    <i class="fas fa-user-plus w3-text-blue"></i> Register</a>
+                                    <i class="fas fa-user-plus w3-text-red"></i> Register</a>
                                 </li>
+                                <li>
+                                    <a href="/admin" target="_blank">
+                                      <i class="fas fa-star w3-text-amber"></i> Admin</a>
+                                  </li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -283,7 +291,7 @@ p, ul li, ol li {
                             </div>
                             <div class="kilimanjaro_single_contact_info">
                                 <h5>Email:</h5>
-                                <p>support@jamiikilimo.com <br> jamiikilimo@gmail.com</p>
+                                <p>support@LanDPlanet.com <br> LanDPlanet@gmail.com</p>
                             </div>
                             <div class="kilimanjaro_single_contact_info">
                                     <h5>Address:</h5>
@@ -322,9 +330,10 @@ p, ul li, ol li {
             <div class="container">
                 <div class="row">
                     <div class="col-12 w3-blue w3-card-4  w3-panel w3-padding w3-opacity-min ">
-                        <p class="w3-wide">© All Rights Reserved by <a href="#">Kwela.co.ke<i class="fa fa-love"></i></a></p>
+                        <p class="w3-wide">© All Rights Reserved by <a href="#">LandPlanet.co.ke<i class="fa fa-love"></i></a></p>
                     </div>
                 </div>
             </div>
         </div>
+       
     </footer>

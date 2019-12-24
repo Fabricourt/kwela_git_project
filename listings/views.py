@@ -13,7 +13,7 @@ def index(request):
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
-  paginator = Paginator(listings, 12)
+  paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
 
@@ -67,11 +67,13 @@ def search(request):
       queryset_list = queryset_list.filter(town__iexact=town)
 
 
-  # Location
+  # Company - you have to access the exact name of the foreignkey in main model and call it at the middle...
   if 'company' in request.GET:
     company = request.GET['company']
     if company:
-      queryset_list = queryset_list.filter(Company__iexact=company)
+      queryset_list = queryset_list.filter(company__company_name__iexact=company)
+
+    
   
 
     # Location

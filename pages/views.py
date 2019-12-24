@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from listings.choices import price_choices, plot_size_choices, location_choices, town_choices
+from listings.choices import price_choices, plot_size_choices, location_choices, town_choices,company_choices
 from django.contrib.admin.views.decorators import staff_member_required
 from testimonials.models import Testimonial
 from listings.models import Listing
@@ -45,6 +45,7 @@ def index(request):
         'posts': posts,
         'listings': listings,
         'town_choices': town_choices,  
+        'company_choices': company_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,
@@ -73,6 +74,7 @@ def about(request):
         'realtors': realtors,
         'town_choices': town_choices,  
         'location_choices': location_choices,
+        'company_choices': company_choices,
         'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,
         'mvp_realtors': mvp_realtors

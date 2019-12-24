@@ -49,31 +49,31 @@
     opacity: 0.8;
 }
 </style>
-<div class="container">
+<div class="container ">
    <h3 class="pb-3 mb-4 font-italic border-bottom">
    Property Companies
    </h3>
    <div class="row">
-	{% for company in companies %}
-      <div class="col-md-6" style="height:300px;">
+	{% for company in companys %}
+      <div class="col-md-6" style="height:320px;">
          <div class="card flex-md-row mb-4 shadow-sm h-md-250 w3-bottombar w3-hover-shadow w3-card-4">
 				<header class="w3-right w3-header w3-hide-large w3-card-4 w3-win8-crimson w3-container w3-padding w3-margin-top">
 						<img class="w3-card-4  card-img-right w3-circle w3-right w3-hide-large  flex-auto " alt="supplier pic" src="{{ company.photo_main.url }}" style="width: 70px; height: 70px;">
 				
 				</header>			 
             <div class="card-body  d-flex flex-column align-items-start">
-				<strong class="d-inline-block mb-2 text-primary">{% for machine_e in company.machine_e.all %} {{ machine_e }},{% if not forloop.last %}, {% endif %}{% endfor %} 
-					<span class="w3-text-red">{{ company.name|capfirst }}</span> </strong> 
+				<strong class="d-inline-block mb-2 text-primary"> 
+					<span class="w3-text-red">{{ company.company_name|capfirst }}</span> </strong> 
 				<hr class="w3-red" style="width:100%">
                <h6 class="mb-0">
 				{{ company.phone1}} - {{ company.phone2 }}
                </h6>
                <div class="mb-1 text-muted small">{{ company.town}}</div>
-               <p class="card-text mb-auto">{{ company.about_me|slice:"130"|safe }}....</p>
-			   <a class="btn btn-outline-primary btn-sm" role="button" href="{% url 'company' company.id %}">Continue reading</a>
+               <p class="card-text mb-auto">{{ company.about_company|slice:"100"|safe }}....</p>
+			   <a class="btn btn-outline-primary btn-sm w3-small" role="button" href="{% url 'company' company.id %}">Continue reading</a>
 			  
             </div>
-            <img class="card-img-right flex-auto d-none d-lg-block " alt="Thumbnail [200x250]" src="{{ company.photo_main.url }}" style="width: 200px; height: auto;">
+            <img class="card-img-right flex-auto d-none d-lg-block " alt="Thumbnail [200x250]" src="{{ company.photo_main.url }}" style="width: 200px; height: 300px;">
          </div>
 	  </div>
 	{% endfor %}

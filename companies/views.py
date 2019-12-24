@@ -8,6 +8,7 @@ from blog.models import Post
 from .models import Company
 from pages.models import Background_image
 
+
 def companies(request):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
@@ -20,7 +21,7 @@ def companies(request):
         'background_images':background_images,
         'companys':paged_companys,
         'posts':posts,
-        'company_name_choices':company_name_choices,
+        'company_choices':company_choices,
         'town_choices': town_choices,
    
     }
@@ -28,9 +29,9 @@ def companies(request):
 
 
 
-def company(request, rental_id):
+def company(request, company_id):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
-    company = get_object_or_404(Companys, pk=company_id)
+    company = get_object_or_404(Company, pk=company_id)
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     context = {
         'background_images':background_images,
@@ -38,6 +39,9 @@ def company(request, rental_id):
         'posts':posts,
     }
     return render(request, 'companies/company.html', context)
+
+
+
 
 
 # Create your views here.
@@ -67,7 +71,7 @@ def companysearch(request):
 #Company name
   if 'company_name' in request.GET:
     company_name_choices = request.GET['company_name_choices']
-    if company_name:
+    if company_name_choices:
       queryset_list = queryset_list.filter(company_name__iexact=company_name_choices)
 
 

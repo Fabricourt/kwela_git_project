@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'women',
     'companies',
     'rentals',
+    'records',
     
 ]
 
@@ -170,17 +171,18 @@ MESSAGE_TAGS = {
 }
 
 
+"""
 # Email config
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-# Actual Gmail address env variable.
-#EMAIL_HOST_USER='pwagiatha3@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+#Actual Gmail address env variable.
+EMAIL_HOST_USER='mfalme20303@gmail.com'
 # Actual Gmail password env variable.
-##EMAIL_USE_TLS=True
+EMAIL_USE_TLS=True
 
-#EMAIL_BACKEND = 'django.core.mail.backends.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.EmailBackend'
 
-
+"""
 
 
 

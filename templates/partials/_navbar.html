@@ -2,7 +2,7 @@
 
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark  w3-card-4 w3-shadow w3-blue  sticky-top " style="width:100%;">
+<nav class="navbar navbar-expand-lg navbar-dark  w3-card-4 w3-shadow w3-highway-green  sticky-top " style="width:100%;">
     <div class="container">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,17 @@
           >
             <a class="nav-link" href="{% url 'index' %}">Home</a>
           </li>
-                
+         
+          <li
+          {% if 'listings' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+        >
+          <a class="nav-link " href="{% url 'listings' %}">Plots </a>
+        </li>
+     
 
 
         <li
@@ -33,27 +43,28 @@
         {% endif %}
       >
 
-        <a class="nav-link " href="{% url 'about' %}">About </a>
+        <a class="nav-link " href="{% url 'about' %}">About</a>
       </li>
       <li
-      {% if 'contact' in request.path %}
+      {% if 'team' in request.path %}
         class="nav-item active mr-3"
       {% else %}
         class="nav-item mr-3"
       {% endif %}
       >
-      <a class="nav-link " href="{% url 'contact' %}">Contact</a>
+      <a class="nav-link " href="{% url 'teams' %}">Team</a>
     </li>
 
       <li
-      {% if 'listings' in request.path %}
+      {% if 'photos' in request.path %}
         class="nav-item active mr-3"
       {% else %}
         class="nav-item mr-3"
       {% endif %}
-    >
-      <a class="nav-link w3-hide" href="{% url 'listings' %}">Find Land In Lamu  </a>
+      >
+      <a class="nav-link" href="{% url 'photos' %}">Gallery</a>
     </li>
+   
 
 
       
@@ -143,6 +154,46 @@
         
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
+   
+
+          <li
+          {% if 'members' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+          <a class="nav-link  w3-hide" href="{% url 'members' %}">Members</a>
+        </li>          
+          <li
+          {% if 'photos' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+          <a class="nav-link w3-hide " href="{% url 'photos' %}">Gallery</a>
+        </li>
+          <li
+          {% if 'team' in request.path %}
+            class="nav-item active mr-3"
+          {% else %}
+            class="nav-item mr-3"
+          {% endif %}
+          >
+          <a class="nav-link  w3-hide" href="{% url 'teams' %}">Team</a>
+        </li>
+            <li
+            {% if 'profile ' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link w3-hide" href="{% url 'profile' %}">Profile</a>
+          </li>
+            
+        </li>
           <li
           {% if 'blog-home' in request.path %}
             class="nav-item active mr-3"
@@ -152,44 +203,7 @@
           >
           <a class="nav-link " href="{% url 'blog-home' %}">News</a>
         </li>
-          <li
-          {% if 'members' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link " href="{% url 'members' %}">Members</a>
-        </li>          
-          <li
-          {% if 'photos' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link " href="{% url 'photos' %}">Gallery</a>
-        </li>
-          <li
-          {% if 'team' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link " href="{% url 'teams' %}">Team</a>
-        </li>
-            <li
-            {% if 'profile ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link " href="{% url 'profile' %}">Profile</a>
-          </li>
-            
-        </li>
+        
             <li
             {% if 'dashboard' in request.path %}
               class="nav-item active mr-3"
@@ -197,9 +211,18 @@
               class="nav-item mr-3"
             {% endif %}
             >
-              <a class="nav-link w3-hide" href="{% url 'dashboard' %}">
+              <a class="nav-link" href="{% url 'dashboard' %}">
                [Dashboard]</a>
             </li>
+            <li
+            {% if 'contact' in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+            >
+            <a class="nav-link " href="{% url 'contact' %}">Contact</a>
+          </li>
             
             <li class="nav-item mr-3">
               <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">

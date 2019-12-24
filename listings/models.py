@@ -4,6 +4,8 @@ from realtors.models import Realtor
 from ckeditor.fields import RichTextField
 from companies.models import Company
 from django.utils.text import slugify
+from django.urls import reverse
+
 
 
 class Snippet(models.Model):
@@ -21,6 +23,7 @@ class Snippet(models.Model):
 class Listing(models.Model):
   realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING,  blank=True, null=True)
   company = models.ForeignKey(Company, on_delete=models.DO_NOTHING,  blank=True, null=True)
+  slug = models.SlugField(blank=True, null=True, unique=True) 
   title = models.CharField(max_length=200, blank=True, null=True)
   town = models.CharField(max_length=200, blank=True, null=True)
   location = models.CharField(max_length=100, blank=True, null=True, help_text='particular name of the area as known to the locals' )
@@ -41,9 +44,15 @@ class Listing(models.Model):
   photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
   is_published = models.BooleanField(default=True)
   list_date = models.DateTimeField(blank=True, null=True)
+  
   def __str__(self):
     return self.title
 
+  def get_absolute_url(self):
+        return reverse('listing_detail', kwargs={'slug': self.slug}) # new
 
 
-
+  def save(self, *args, **kwargs): # new
+    if not self.slug:
+        self.slug = slugify(self.title)
+    return super().save(*args, **kwargs)

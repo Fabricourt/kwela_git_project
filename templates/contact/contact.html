@@ -10,7 +10,7 @@
   <!-- Alerts -->
   {% include 'partials/_alerts.html' %}
 <!-- Contact -->
-<div class="w3-container w3-margin-bottom w3-content" id="contact" style="margin-bottom:100px;">
+<div class="w3-container w3-white w3-margin-bottom w3-content" id="contact" style="margin-bottom:100px;">
     <!--TopBar-->
         <h2>Contact</h2>
         {% for footer in footers %}
@@ -23,8 +23,8 @@
       
         <form method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}
                         
-            <div class="form-row ">
-                    <hr class="w3-padding w3-dark-grey"  style="width: 100%; ">
+            <div class="form-row w3-light-grey">
+                    <hr class="w3-padding w3-teal"  style="width: 100%; ">
                     <div class="form-group  col-md-3 mb-0">
                         {{ form.name|as_crispy_field }}
                     </div>
@@ -37,7 +37,7 @@
             </div>
               <!-- Alerts -->
   {% include 'partials/_alerts.html' %}
-            <div class="form-group w3-padding  col-md-110 mb-0 w3-dark-grey" ">
+            <div class="form-group w3-padding  col-md-110 mb-0 w3-teal ">
                     {{ form.message|as_crispy_field }}
             </div>
             <div class="w3-right w3-section"  class="form-actions">

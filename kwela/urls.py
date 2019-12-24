@@ -28,6 +28,7 @@ urlpatterns = [
     path('blog/',  include('blog.urls')),
     path('listings/', include('listings.urls')),
     path('accounts/', include('accounts.urls')),
+    path('contact/', include('contact.urls')),
     path('contact/', contact_views.contact, name='contact'),
     path('companies/', include('companies.urls')),
     path('fundis/', include('fundis.urls')),
@@ -43,8 +44,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', profile_views.profile, name='profile' ),
     path('testimonial/', testimonial, name='testimonial'),
-    
-
+    path('records/', include('records.urls')),
    
     
 

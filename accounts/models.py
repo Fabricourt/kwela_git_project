@@ -4,6 +4,12 @@ from PIL import Image
 from ckeditor.fields import RichTextField
 from django.utils import timezone
 
+
+
+
+
+
+"""
 class Location(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
 
@@ -61,7 +67,7 @@ class Account(models.Model):
     def save(self, **kwargs):
         super().save()
  
-
+"""
  
 
  

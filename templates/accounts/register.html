@@ -10,14 +10,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="w3-card-4 w3-opacity-min w3-border w3-padding ">
-            <div class="w3-padding  w3-card-4 w3-highway-green">
+          <div class="w3-card-4 w3-light-grey w3-border w3-padding ">
+            <div class="w3-padding  w3-card-4 w3-white">
                
               <h4>
                 <i class="fas fa-user-plus"></i> Register</h4>
                 
             </div>
-            <div class="card-body w3-hover-shadow w3-white w3-text-black">
+            <div class="card-body w3-white w3-text-black">
               <!-- Alerts -->
               {% include 'partials/_alerts.html' %}
               <form action="{% url 'register' %}" method="POST">
@@ -46,7 +46,7 @@
                   <label for="password">Confirm Password</label>
                   <input type="password" name="password2" class="form-control w3-light-blue" required>
                 </div>
-                <input type="submit" value="Register" class="btn w3-highway-blue w3-hover-white w3-theme-d5 btn-block">
+                <input type="submit" value="Register" class="btn w3-highway-blue w3-hover-white w3-text-green w3-white w3-card-4 w3-shadow btn-block">
               </form>
             </div>
           </div>

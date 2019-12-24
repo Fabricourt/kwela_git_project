@@ -17,7 +17,7 @@ class Contact(models.Model):
     is_published = models.BooleanField(default=True)
 
     def __str__(self):
-        return f' Names// {self.name.first_name}-{self.name.last_name} --Desc//  {self.name.header} --Email//  {self.email}-- Phone//  {self.phone} '
+        return f' Names// {self.name.first_name}-{self.name.last_name} --Desc//  {self.name.email} --Email//  {self.email}-- Phone//  {self.phone} '
  
 
 

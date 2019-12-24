@@ -18,7 +18,7 @@ class Profile(models.Model):
     is_published = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f' username--> {self.user.username} ---Fullnames--> {self.user.first_name}-{self.user.last_name} '
 
     def save(self, **kwargs):
         super().save()

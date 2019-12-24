@@ -7,23 +7,120 @@
 
 {% block content %}
 <div class="w3-text-white">
-<header class="w3-container  w3-padding-large w3-center w3-xxlarge "  style="background-color:  #15151e;">
+<header class="w3-container  w3-padding-large w3-center w3-xxlarge"  style=" background-color: #151e1a; opacity: 0.95;">
   <br>
-  <h1 class=" container w3-text-white">Welcome To <span class="w3-text-blue">Jamii</span><span class="w3-text-green">Kilimo</span>  Initiative</h1>
+  <h1 class=" container w3-text-white">Welcome To <span class="w3-text-blue">Land</span><span class="w3-text-green">Planet</span> </h1>
 <hr class="w3-amber" style="width:100%">
-  <h2 class="w3-text-amber"> The Greatest Oppotunity for Every person  to Farm and Own Land </h2>
-<h3><a href="{% url 'howtojoin' %}" style="text-decoration-line: none;"><span class="btn btn-outline-success w3-text-blue w3-hover-text-white"> --Join Us-- </span> </a>Become Part of  the 100acre Project </h3>
-<h5><span class="w3-text-blue">Jamii</span><span class="w3-text-green">Kilimo </span>Creating Wealth & Food Sustainability</h5>
-<h6><a href="{% url 'howtojoin' %}" style="text-decoration-line: none;"><span class="btn btn-success"> Understand How It Works </span> <sp</h6>
-<br><br>
-<h1>Currently @ 25 Members</h1>
+  <h2 class="w3-text-amber"> The Greatest Oppotunity for Every person  to Own Land </h2>
+
+  <h3><a href="{% url 'listings' %}" style="text-decoration-line: none;"><span class="btn btn-outline-success w3-text-amber w3-hover-text-white"> --Find Land-- </span> </a>Find the right plot for you </h3>
+<!--search form-->
+<form class="w3-padding-64  " action="{% url 'search' %}">
+  <div class=" w3-opacity-min w3-text-white">   
+  <h1 class="display-4 mb-4  w3-padding  w3-hide w3-text-white ">
+       Find The Kind Of Plot Your Looking For
+        <hr class="w3-amber" style="width:100%">
+        <p class="lead l w3-text-amber">The story of every Property begins with a plot of Land</p>
+        </h1>
+
+      </div>       
+   <!-- Form Row 1 -->
+   <div class="form-row">
+     
+    <div class="col-sm mb-6 w3-margin-bottom ">
+      <label class="sr-only">Keywords</label>
+      <input type="text" name="keywords" class="form-control w3-border-blue" placeholder="Keyword (search)">
+    </div>
+    <div class="col-sm mb-3">
+      <label class="sr-only">Company  </label>
+      <select name="company" class="form-control w3-border-blue">
+        <option selected="true" disabled="disabled">Company (All)</option>
+        {% for key,value in company_choices.items %}
+          <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+        </select>
+      </div>
+<div class="col-sm mb-6 w3-margin-bottom">
+    <label class="sr-only">Location</label>
+    <select name="town" class="form-control w3-border-blue">
+      <option selected="true" disabled="disabled">Location (All)</option>
+      {% for key,value in location_choices.items %}
+        <option value="{{ key }}">{{ value }}</option>
+      {% endfor %}
+      </select>
+    </div>
+    
+    <br>
+    
+    
+      <div class="col-sm mb-3">
+        <label class="sr-only">Plot size</label>
+        <select name="plot_size" class="form-control w3-border-blue">
+          <option selected="true" disabled="disabled">Plot Sizes (All)</option>
+          {% for key,value in plot_size_choices.items %}
+            <option value="{{ key }}">{{ value }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+        <div class="col-sm mb-3">
+      <label class="sr-only">Town</label>
+      <select name="town" class="form-control w3-border-blue">
+        <option selected="true" disabled="disabled">Town (All)</option>
+        {% for key,value in town_choices.items %}
+          <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <div class="col-sm mb-3">
+        <select name="price" class="form-control w3-border-blue" id="type">
+          <option selected="true" disabled="disabled">Max Price (Any)</option>
+          {% for key,value in price_choices.items %}
+          <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+        </select>
+      </div>
+    </div>
+    <button class="btn w3-blue w3-hover-green   w3-text-white btn-block mt-4 w3-wide w3-large" type="submit"><b>Submit</b></button>
+  </form>
+
+  
+  <h5><span class="w3-text-blue">Land</span><span class="w3-text-green">Planet</span> Rising Up Together</h5>
+  <h6><a href="{% url 'faq' %}" style="text-decoration-line: none;"><span class="btn btn-success"> Get Your Questions answered</span> <sp</h6>
+  <br><br>
+  <h1 class="w3-text-white">Over a 100 Plots Sold</h1>
+
 </header>
 </div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main  " >
-<!-- Page content -->
-  <div class="w3-content w3-padding-large  w3-margin-bottom   " style="max-width:1564px">
+   
+        <!--parallax-->
+      
+        <br><br><br><br>
+        
+          <!-- First Photo Grid-->
+    <div class="w3-row-padding container w3-light-grey">
+      {% if listings %}
+        {% for listing in listings %}
+            <!--overlay-->
+            {% include 'partials/_listings.html' %}
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12">
+          
+          <p>No Plots listings Available</p>
+        </div>
+      {% endif %}
+      <button class="btn w3-blue w3-hover-teal   w3-text-white btn-block mt-4 w3-wide w3-large" type="submit">
+        <a href="{% url 'listings' %}" style="text-decoration-line: none; color:white"><b>More Plots Available Here</b></a></button>
+      <br><br>
+    </div>
+<br>
+
+<!-- Page content 
+  <div class="w3-content w3-padding-large  w3-margin-bottom  w3-hide " style="max-width:1564px">
     <br><br>
       <div class="container">
         <div class="w3-row-padding row">
@@ -43,7 +140,8 @@
         </div>
       </div>
     <br><br>
-  </div>
-</div>
+  </div>-->
+
+
 
 {% endblock %}

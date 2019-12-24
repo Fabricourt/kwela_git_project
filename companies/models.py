@@ -3,7 +3,8 @@ from datetime import datetime
 from ckeditor.fields import RichTextField
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 
 
@@ -11,6 +12,8 @@ from django.contrib.auth.models import User
 class Company(models.Model):
     contact_person = models.ForeignKey(User, on_delete= models.CASCADE)
     company_name = models.CharField(max_length=200, blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True) 
+    logo = models.ImageField(upload_to='company_logos/%Y/%m/%d/', blank=True)
     town = models.CharField(max_length=200, blank=True, null=True)
     exact_location_name = models.CharField(max_length=200, blank=True, null=True)
     about_company = RichTextField(blank=True, null=True)
@@ -36,6 +39,11 @@ class Company(models.Model):
         return self.company_name
 
 
+    def get_absolute_url(self):
+        return reverse('company_detail', kwargs={'slug': self.slug}) # new
 
-    
-        
+
+    def save(self, *args, **kwargs): # new
+        if not self.slug:
+            self.slug = slugify(self.company_name)
+        return super().save(*args, **kwargs)
