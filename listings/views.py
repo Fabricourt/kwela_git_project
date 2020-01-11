@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import price_choices, plot_size_choices, location_choices, company_choices, town_choices
+from .choices import price_choices, plot_size_choices, location_choices,  town_choices
 from django.http import HttpResponse
 from .models import Snippet
 from realtors.models import Realtor
@@ -12,7 +12,7 @@ def index(request):
   listings = Listing.objects.order_by('-list_date').filter(is_published=True)
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
-
+ 
   paginator = Paginator(listings, 6)
   page = request.GET.get('page')
   paged_listings = paginator.get_page(page)
@@ -22,7 +22,6 @@ def index(request):
     'posts':posts,
     'listings': paged_listings,
     'town_choices': town_choices,  
-    'company_choices': company_choices,
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
     'price_choices': price_choices
@@ -34,19 +33,34 @@ def listing(request, listing_id):
   listing = get_object_or_404(Listing, pk=listing_id)
   posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
+  is_favourite = False
+  if listing.favourite.filter(id=request.user.id).exists():
+    is_favourite = True
 
   context = {
-    'background_images':'background_images',
+   'listing': listing,
+    'background_images':background_images,
     'posts':posts,
     'town_choices': town_choices,  
-    'company_choices': company_choices,
     'location_choices': location_choices,
     'plot_size_choices': plot_size_choices,
     'price_choices': price_choices,
-    'listing': listing
+    'is_favourite': is_favourite,
   }
 
   return render(request, 'listings/listing.html', context)
+
+
+
+def favourite_listing(request, id):
+  listing = get_object_or_404(Listing, id=id)
+  if listing.favourite.filter(id=request.user.id).exists():
+    listing.favourite.remove(request.user)
+  else:
+    listing.favourite.add(request.user)
+  return HttpResponseRedirect(Listing.get_absolute_url())
+
+#url 'listing' listing.id
 
 def search(request):
   background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
@@ -67,13 +81,6 @@ def search(request):
       queryset_list = queryset_list.filter(town__iexact=town)
 
 
-  # Company - you have to access the exact name of the foreignkey in main model and call it at the middle...
-  if 'company' in request.GET:
-    company = request.GET['company']
-    if company:
-      queryset_list = queryset_list.filter(company__company_name__iexact=company)
-
-    
   
 
     # Location
@@ -99,7 +106,6 @@ def search(request):
         'background_images':'background_images',
         'posts':posts,
         'town_choices': town_choices,
-        'company_choices': company_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,

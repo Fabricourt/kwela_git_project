@@ -1,0 +1,59 @@
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container">
+  <h2>Tabs</h2>
+  <p>Tabs are perfect for single page web applications, or for web pages capable of displaying different subjects. Click on the links below.</p>
+</div>
+
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button" onclick="openCity('Viewed_listing')">Listings</button>
+  <button class="w3-bar-item w3-button" onclick="openCity('reciepts')">reciepts</button>
+  <button class="w3-bar-item w3-button" onclick="openCity('accounts')">accounts</button>
+</div>
+
+<div id="Viewed_listing" class="w3-container city">
+ 
+  <section id="dashboard" class="py-4">
+    <div class="container ">
+
+      {% include 'partials/_viewedlistings.html' %}
+
+    </div>
+  </section>
+</div>
+
+<div id="reciepts" class="w3-container city" style="display:none">
+ <br>    <br>   <br>   <br>   <br> 
+  <p class= "btn w3-margin w3-border-blue w3-round w3-hover-white w3-hover-shadow w3-blue w3-block"><a href="http://localhost:8000/clients_payments/user/{{user.username}}">
+  
+  </a>Kindly Follow Your Payments  Here (click the button)</p> 
+  <br>    <br>   <br>   <br>   <br>   
+</div>
+
+<div id="accounts" class="w3-container w3-hide city" style="display:none">
+  <h2>accounts</h2>
+  <p>Here is Your Full Payment Accounts.</p>
+  {% include 'partials/_paymenttable.html' %}
+</div>
+
+<script>
+function openCity(cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(cityName).style.display = "block";  
+}
+</script>
+
+</body>
+</html>

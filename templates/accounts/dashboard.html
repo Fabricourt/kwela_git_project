@@ -1,37 +1,23 @@
 {% extends 'base.html' %}
-
-{% block title %}  | {{ user.username|capfirst }}  {% endblock %}
 {% load humanize %}
+{% load static %}
+{% block title %}  | {{ user.username|capfirst }}  {% endblock %}
+
 {% block content %}
 
 
-<section class="py-5 text-white">
+<section class="py-5 front">
+  
+
     <div class="container ">
       <div class="row text-center">
         <div class="col-md-12">
             <div class="w3-center ">
 
               </div>
-          <div class="w3-highway-blue w3-padding w3-border w3-opacity-min w3-card-4"> 
-          <h1 class="display-4"> Dashboard</h1>
-          <p class="lead">Here you will find all the contacts you made</p>
-                 <!-- Breadcrumb -->
-        <section id="bc" class="mt-3 ">
-            <div class="w3-panel">
-            
-              <nav >
-              
-                <ol class="breadcrumb ">
-                    <br>
-                  <li class="breadcrumb-item w3-large w3-card-4 w3-round w3-block btn  w3-hover-shadow w3-white">
-                    <a href="{% url 'profile' %}">Visit Your Profile Here</a>
-                  </li>
-       
-                  <li class="breadcrumb-item active">{{ listing.title }}</li>
-                </ol>
-              </nav>
-            </div>
-          </section>
+          <div> 
+          <br><br><br>
+            <h1 class="display-4 w3-left w3-text-white"> Dashboard</h1>
           </div>  
         </div>
       </div>
@@ -40,66 +26,30 @@
    
       </div>
     </section>
+
+    <section>
+    <br><br><br>
+      <article >
+        <div class="w3-center">
+          <div class="w3-bar">
+            <a href="{% url 'profile' %}"><button class="w3-button w3-margin-bottom w3-black" style="width:300px"> (click  button) to access your Profile </button></a>
+            <a href="http://localhost:8000/clients_payments/user/{{user.username}}" ><button class="w3-button w3-margin-bottom  w3-amber" style="width:300px">(click  button) to access payments</button></a>
+          </div>
+          </div>
+        
+        <br>     
+        
+        <div class="container">
+           {% include 'partials/_viewedlistings.html' %}
+        </div>  
+      
+  
+      </article>
+    </section>
+   
   </section>
  
 
-    
-<section id="dashboard" class="py-4">
-<div class="container ">
-<div class="row">
-<div class="col-md-12">
-  <div>
  
-
-  {% if contact %}
-  </div>
-  <h4 class="w3-padding w3-margin w3-right-align">Viewed listings</h4>
-
-  <div class="w3-responsive">
-      <table class="table w3-table-all">
-    
-      <thead>
-    
-        <tr class="w3-white w3-card-4 w3-bottombar w3-border-black">
-          <th  scope="col">Date of Contact</th>
-          <th  scope="col">#</th>
-          <th  scope="col">Property</th>
-          <th  scope="col">Message</th>
-          <th ></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for sema in contact %}
-          <tr class="w3-border">
-            <td>{{ sema.contact_date }}</td>
-            <td>{{ sema.id }}</td>
-            <td>{{ sema.listing }}</td>
-            <td>{{ sema.message}}</td>
-            <td class="">
-              <a class="btn  w3-green" href="{% url 'listing' sema.listing_id %}">View Listing</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% else %}
-    <p>You have not made any inquiries</p>
-  {% endif %}
-  <br>   <br>   <br>
-<!-- payment table-->
- 
-      </div>
-       
-
-                
- 
-        
-        <!--end of malipo-->
-    </div>
-    </div> 
-  </div>
-
-</section> 
 
   {% endblock %}

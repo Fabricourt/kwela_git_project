@@ -1,273 +1,220 @@
 {% load static %}
 
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark  w3-card-4 w3-shadow w3-highway-green  sticky-top " style="width:100%;">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-        
-      </button>
-     
-   
-
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-         
-          <li
-          {% if 'listings' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-          <a class="nav-link " href="{% url 'listings' %}">Plots </a>
-        </li>
-     
-
-
-        <li
-        {% if 'about' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-      >
-
-        <a class="nav-link " href="{% url 'about' %}">About</a>
-      </li>
-      <li
-      {% if 'team' in request.path %}
-        class="nav-item active mr-3"
-      {% else %}
-        class="nav-item mr-3"
-      {% endif %}
-      >
-      <a class="nav-link " href="{% url 'teams' %}">Team</a>
-    </li>
-
-      <li
-      {% if 'photos' in request.path %}
-        class="nav-item active mr-3"
-      {% else %}
-        class="nav-item mr-3"
-      {% endif %}
-      >
-      <a class="nav-link" href="{% url 'photos' %}">Gallery</a>
-    </li>
-   
-
-
-      
-          <li
-          {% if 'companies' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-
-          <a class="nav-link w3-hide" href="{% url 'companies' %}">Companies </a>
-        </li>
-
+  <nav class="navbar fixed-top w3-win8-cobalt navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+      <span>
+     <a class="navbar-brand" href="{% url 'index' %}">
+      <img style="width:40px; height:40px" src="{% static 'img/android-icon-48x48.png' %}" class="w3-circle" /></span> 
  
-
-      <li
-      {% if 'houses' in request.path %}
-        class="nav-item active mr-3"
-      {% else %}
-        class="nav-item mr-3"
-      {% endif %}
-    >
-      <a class="nav-link w3-hide" href="{% url 'houses' %}">Houses  </a>
-    </li>
-    <li
-    {% if 'rentals' in request.path %}
-      class="nav-item active mr-3"
-    {% else %}
-      class="nav-item mr-3"
-    {% endif %}
-  >
-    <a class="nav-link w3-hide" href="{% url 'rentals' %}">Rentals </a>
-  </li>
-  
-        <li
-        {% if 'hardwares' in request.path %}
-          class="nav-item active mr-3"
-        {% else %}
-          class="nav-item mr-3"
-        {% endif %}
-      >
-        <a class="nav-link w3-hide" href="{% url 'hardwares' %}">Hardwares </a>
-      </li>
-        </li>
-          <li
-          {% if 'fundis' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-          <a class="nav-link w3-hide" href="{% url 'fundis' %}">Construction WorkForce </a>
-        </li>
-        
-
-      <li
-      {% if 'msuppliers' in request.path %}
-        class="nav-item active mr-3"
-      {% else %}
-        class="nav-item mr-3"
-      {% endif %}
-    >
-      <a class="nav-link w3-hide" href="{% url 'msuppliers' %}">Suppliers </a>
-    </li>
-    <li
-    {% if 'machines' in request.path %}
-      class="nav-item active mr-3"
-    {% else %}
-      class="nav-item mr-3"
-    {% endif %}
-  >
-    <a class="nav-link w3-hide" href="{% url 'machines' %}">Machines </a>
-  </li>
-  <li
-  {% if 'trucks' in request.path %}
-    class="nav-item active mr-3"
-  {% else %}
-    class="nav-item mr-3"
-  {% endif %}
->
-  <a class="nav-link w3-hide" href="{% url 'trucks' %}">Transport </a>
-</li>
-
-          </li>
-        </ul>
-        
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-   
-
-          <li
-          {% if 'members' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link  w3-hide" href="{% url 'members' %}">Members</a>
-        </li>          
-          <li
-          {% if 'photos' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link w3-hide " href="{% url 'photos' %}">Gallery</a>
-        </li>
-          <li
-          {% if 'team' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link  w3-hide" href="{% url 'teams' %}">Team</a>
-        </li>
-            <li
-            {% if 'profile ' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link w3-hide" href="{% url 'profile' %}">Profile</a>
-          </li>
+              <span>LanDPlanet<span>
+          </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="fa fa-bars mfa-white"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                  <ul class="navbar-nav">
+                      <li
+                        {% if '/' == request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                      >
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                      </li>
+                     
+                      <li
+                      {% if 'listings' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item mr-3"
+                      {% endif %}
+                    >
+                      <a class="nav-link " href="{% url 'listings' %}">All Plots </a>
+                    </li>
+                 
             
-        </li>
-          <li
-          {% if 'blog-home' in request.path %}
-            class="nav-item active mr-3"
-          {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-          >
-          <a class="nav-link " href="{% url 'blog-home' %}">News</a>
-        </li>
-        
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'dashboard' %}">
-               [Dashboard]</a>
-            </li>
-            <li
-            {% if 'contact' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-            <a class="nav-link " href="{% url 'contact' %}">Contact</a>
-          </li>
             
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
-          {% else %}
-           {% if user.is_staff %}
-            <li
-           
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
+                    <li
+                    {% if 'about' in request.path %}
+                      class="nav-item active mr-3"
+                    {% else %}
+                      class="nav-item mr-3"
+                    {% endif %}
+                  >
             
-            </li>
-            {% endif %}
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
+                    <a class="nav-link " href="{% url 'about' %}">About</a>
+                  </li>
 
-                Login</a>
-            </li>
-          {% endif %}
-        
-         
-          
+                  <li
+                    {% if 'photos' in request.path %}
+                      class="nav-item active mr-3"
+                    {% else %}
+                      class="nav-item mr-3"
+                    {% endif %}
+                  >
+            
+                    <a class="nav-link " href="{% url 'photos' %}">Gallery</a>
+                  </li>
+                   <li
+                        {% if 'contact' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                        <a class="nav-link " href="{% url 'contact' %}">Contact</a>
+                      </li>
+
+                  <li
+                  {% if 'team' in request.path %}
+                    class="nav-item active mr-3"
+                  {% else %}
+                    class="nav-item mr-3"
+                  {% endif %}
+                  >
+                  <a class="nav-link w3-hide " href="{% url 'teams' %}">Team</a>
+                </li>
+ 
+                  <li
+                  {% if 'houses' in request.path %}
+                    class="nav-item active mr-3"
+                  {% else %}
+                    class="nav-item mr-3"
+                  {% endif %}
+                >
+                  <a class="nav-link w3-hide" href="{% url 'houses' %}">Houses  </a>
+                </li>
+                <li
+                {% if 'rentals' in request.path %}
+                  class="nav-item active mr-3"
+                {% else %}
+                  class="nav-item mr-3"
+                {% endif %}
+              >
+                <a class="nav-link w3-hide" href="{% url 'rentals' %}">Rentals </a>
+              </li>
+              
+                    
+                    
+            
+                      </li>
+                    </ul>
+                    
+                    <ul class="navbar-nav ml-auto">
+                      {% if user.is_authenticated %}
+               
                 
-           
-         
-        </ul>
-    </div>
-  </div>
-</nav>
+                      <li
+                      {% if 'photos' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item mr-3"
+                      {% endif %}
+                      >
+                      <a class="nav-link w3-hide " href="{% url 'photos' %}">Gallery</a>
+                    </li>
+                      <li
+                      {% if 'team' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item mr-3"
+                      {% endif %}
+                      >
+                      <a class="nav-link  w3-hide" href="{% url 'teams' %}">Team</a>
+                    </li>
+                        <li
+                        {% if 'profile ' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                      >
+                        <a class="nav-link w3-hide" href="{% url 'profile' %}">Profile</a>
+                      </li>
+                        
+                    </li>
+                      <li
+                      {% if 'blog-home' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item mr-3"
+                      {% endif %}
+                      >
+                      <a class="nav-link " href="{% url 'blog-home' %}">News</a>
+                    </li>
+                    
+                        <li
+                        {% if 'dashboard' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                          <a class="nav-link" href="{% url 'dashboard' %}">
+                           [Dashboard]</a>
+                        </li>
+                       
+                        
+                        <li class="nav-item mr-3">
+                          <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                          </a>
+                          <form action="{% url 'logout' %}" method="POST" id="logout">
+                            {% csrf_token %}
+                            <input type="hidden">
+                          </form>
+                        </li>
+                      {% else %}
+                       {% if user.is_staff %}
+                        <li
+                       
+                        {% if 'register' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                          <a class="nav-link" href="{% url 'register' %}">
+                            <i class="fas fa-user-plus"></i> Register</a>
+                        
+                        </li>
+                        <li
+                       
+                        {% if 'payment' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                          <a class="nav-link" href="{% url 'payment' %}">
+                            <i class="fas fa-user-plus"></i> Payments</a>
+                        
+                        </li>
+                        {% endif %}
+                        <li
+                        {% if 'login' in request.path %}
+                          class="nav-item active mr-3"
+                        {% else %}
+                          class="nav-item mr-3"
+                        {% endif %}
+                        >
+                          <a class="nav-link" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt"></i>
+            
+                            Login</a>
+                        </li>
+                      {% endif %}
+                    
+                     
+                      
+                            
+                       
+                     
+                    </ul>
+
+          </div>
+
+      </div>
+  </nav>

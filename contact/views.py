@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from home.models import Topbar,  Footer
 
 
-@login_required
+
 def contact(request):
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]

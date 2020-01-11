@@ -1,23 +1,25 @@
 {% load static %}
 
 {% if photos %}
-
+<br><br><br>
 <div class="w3-container container" >
  <span class="w3-right w3-padding-large w3-xxlarge w3-margin-top"><span class="w3-text-blue">LanD</span><span class="w3-text-green">Planet</span>   Album</span>
  <br><br><br>
- <hr class="w3-amber" style="width:100%">
+ <hr class="w3-theme" style="width:100%">
   <div class="w3-row w3-margin-top ">
     {% for photo in photos %}
     <div class="w3-third">
-      <div class=" w3-card-4 card w3-round  w3-margin" >
+      <div class=" w3-card-4 card w3-round  w3-margin " >
          <img src="{{ photo.photo_main.url }}"  style="width:100%; height:370px; ">
-         <a href="{% url 'photo' photo.id %}"><button  class="w3-camo-black w3-large w3-margin-top w3-margin-bottom w3-text-white col-sm-12 w3-hover-text-green">{{ photo.title }}</button></a>
+         <a href="{% url 'photo' photo.id %}"><button  class="w3-2019-evening-blue w3-large w3-margin-top w3-margin-bottom w3-text-white w3-border w3-border-white col-sm-12 w3-hover-text-green">{{ photo.title }}</button></a>
      
       </div>
     </div>
     {% endfor %}
+    <br>   <br>
   </div>
 
 </div>
+ <br><br><br>
 {% endif %}
 

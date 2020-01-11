@@ -31,13 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'testimonials.apps.TestimonialsConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
     'accounts.apps.AccountsConfig',
+    'admin_interface',
+    'colorfield',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,24 +50,21 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sitemaps',
     'abouts',
-    'booking',
+    'clients',
+    'client_payments',
     'ckeditor', 
     'contact',
     'crispy_forms', 
-    'fundis',
     'gallerys',
     'home',
-    'hardwares',
     'houses',
-    'machines',
-    'members',
-    'msuppliers',
-    'trucks',
     'team',
-    'women',
-    'companies',
-    'rentals',
-    'records',
+    'rentals', 
+    'payments',
+    'plotz',
+    'google_analytics' 
+   
+    
     
 ]
 
@@ -86,7 +86,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -94,6 +93,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 
+            ],
+            'loaders': [
+                'apptemplates.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
@@ -109,13 +113,13 @@ WSGI_APPLICATION = 'kwela.wsgi.application'
 DATABASES = { 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
+        'NAME': 'kwela',
         'USER': 'postgres',
         'PASSWORD': 'kamau2030',
         'HOST': 'localhost'
     }
 }
-
+ 
 
 
 # Password validation
@@ -259,6 +263,45 @@ CKEDITOR_CONFIGS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+JET_SIDE_MENU_COMPACT = False
+
+JET_DEFAULT_THEME = 'green'
+
+JET_THEMES = [
+    {
+        'theme': 'default', # theme folder name
+        'color': '#47bac1', # color of the theme's button in user menu
+        'title': 'Default' # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
+
+JET_CHANGE_FORM_SIBLING_LINKS = True
 
 try:
     from .local_settings import *

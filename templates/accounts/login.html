@@ -5,39 +5,38 @@
 {% block title %} | Account Login {% endblock %}
 
 {% block content %}
-<div class="w3-center">
-    <img  src="{{ user.profile.image.url }}" style="width:150px">
-    </div>
 
 
 
-<section id="login" class=" py-5">
+
+<section id="login" class=" py-5 parallax">
+<br><br><br><br>
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mx-auto w3-light-grey ">
+        <div class="col-md-6 mx-auto w3-opacity-min">
           <div class="w3-card-4 w3-white w3-border w3-shadow w3-padding">
-            <div class=" w3-card-4 w3-padding w3-white ">
+            <div class=" w3-card-4 w3-padding  ">
 
               <h4>
                 <i class="fas fa-sign-in-alt"></i> Login</h4>
             </div>
-            <div class="card-body w3-white">
+            <div class="card-body w3-highway-blue">
               <!-- Alerts -->
               {% include 'partials/_alerts.html' %}
                 <form action="{% url 'login' %}" method="POST">
                   {% csrf_token %}
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" name="username" class="form-control w3-light-blue" required>
+                  <input type="text" name="username" class="form-control w3-white" required>
                 </div>
 
                 <div class="form-group">
                   <label for="password2">Password</label>
-                  <input type="password" name="password" class="form-control w3-light-blue" required>
+                  <input type="password" name="password" class="form-control w3-white" required>
                 </div>
                
 
-                <input type="submit" value="Login" class="btn w3-hover-white w3-text-green w3-white w3-card-4 w3-shadow btn-block">
+                <input type="submit" value="Login" class="btn w3-hover-white w3-wide w3-hover-text-green w3-text-text w3-theme w3-card-4 w3-shadow btn-block">
               </form>
             </div>
           </div>

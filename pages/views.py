@@ -3,29 +3,31 @@ from django.http import HttpResponse
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from listings.choices import price_choices, plot_size_choices, location_choices, town_choices,company_choices
 from django.contrib.admin.views.decorators import staff_member_required
-from testimonials.models import Testimonial
 from listings.models import Listing
 from realtors.models import Realtor
+from team.models import Team
 from blog.models import Post
 from abouts.models import About, Proposal, Howtojoin, Faq
 from pages.models import Property_link, Link, Background_image
 from home.models import Topbar,header_carousel_pics, Footer
-from booking.models import Bookspot
-from booking.forms import BookspotForm
 from django.contrib import messages, auth
-from members.models import Member
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from contact.forms import ContactForm
 
 
 def index(request):
+    teams = Team.objects.order_by('-timestamp').filter(is_published=True)
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
-    testimonials = Testimonial.objects.order_by('-post_date').filter(is_published=True)[:3]
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:6]
     posts = Post.objects.order_by('-date_posted').filter(is_published=True)[:3]
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     header_carousel_picss = header_carousel_pics.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
+
+   
+    #listings prime plots
+    mvp_listings = Listing.objects.all().filter(is_mvp=True)
 
     #property links
     property_links =Property_link.objects.order_by('link_date').filter(is_published=True)
@@ -34,6 +36,21 @@ def index(request):
     links = Link.objects.order_by('link_date').filter(is_published=True)
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
+
+  
+    if request.method == "POST":
+        form =ContactForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message has been sent')
+            return redirect('index')
+      
+    else:
+        form = ContactForm()
+    
+   
+   
     context = {
         'proposals': proposals,
         'background_images':'background_images',
@@ -45,11 +62,13 @@ def index(request):
         'posts': posts,
         'listings': listings,
         'town_choices': town_choices,  
-        'company_choices': company_choices,
         'location_choices': location_choices,
         'plot_size_choices': plot_size_choices,
         'price_choices': price_choices,
-        'testimonials': testimonials,
+        'mvp_listings': mvp_listings,
+        'teams': teams,
+        'form': form
+       
     }
     return render(request, 'pages/index.html', context)
 
@@ -63,6 +82,7 @@ def about(request):
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
     # Get MVP
     mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
+
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     context = {
@@ -106,7 +126,6 @@ def getland(request):
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
     howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
     faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
-    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
 
@@ -114,7 +133,6 @@ def getland(request):
         'proposals': proposals,
         'faqs': faqs,
         'howtojoins': howtojoins,
-        'bookspots': bookspots, 
         'topbars': topbars,
         'footers': footers,
     }
@@ -125,29 +143,15 @@ def howtojoin(request):
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
     howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
     faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
-    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
   
 
-    if request.method == "POST":
-        form = BookspotForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-    else:
-
-        form = BookspotForm()
-        messages.success(request, 'Your Booking having sent out successfully')
-    
-    
-  
 
     context = {
         'faqs': faqs,
         'form': form,
-        'howtojoins': howtojoins,
-        'bookspots': bookspots, 
+        'howtojoins': howtojoins, 
         'topbars': topbars,
         'footers': footers,
     }    
@@ -159,46 +163,20 @@ def faq(request):
     proposals = Proposal.objects.order_by('-reload').filter(is_published=True)[:1]
     howtojoins = Howtojoin.objects.order_by('-reload').filter(is_published=True)[:1]
     faqs = Faq.objects.order_by('-reload').filter(is_published=True)[:1]
-    bookspots = Bookspot.objects.order_by('-timestamp').filter(is_published=True)
     topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
     footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
 
     context = {
         'faqs': faqs,
         'howtojoins': howtojoins,
-        'bookspots': bookspots, 
         'topbars': topbars,
         'footers': footers,
     }
     return render(request, 'pages/faq.html', context) 
 
-@login_required
-def members(request):
-    members = Member.objects.order_by('timestamp').filter(is_published=True)
-    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
-    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
 
-    
-    context = {
-        'members': members,
-        'topbars': topbars,
-        'footers': footers,
-    }
-    return render(request, 'pages/members.html', context) 
 
-@login_required
-def member(request):
-    topbars = Topbar.objects.order_by('-reload').filter(is_published=True)[:1]
-    footers = Footer.objects.order_by('-reload').filter(is_published=True)[:1]
-    members = Member.objects.order_by('-timestamp').filter(is_published=True)
-    member = get_object_or_404(Member, pk=member_id)
-  
-    context = {
-        'members': members,
-        'topbars': topbars,
-        'footers': footers,
-    }
-    return render(request, 'pages/members.html', context) 
+
 
 @staff_member_required
 def mobile(request):

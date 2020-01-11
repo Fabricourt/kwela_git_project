@@ -63,10 +63,10 @@ a  {
 </style>
 </head>
 <body>
-    <p><span><a href="/">Home</a></span> / <span><a href="/mobile">Mobile</a></span> / <span><a href="/tablet">Tablet</a></span> / <span><a href="/laptop">Laptop</a></span></p>
+    <p><span><a href="{% url 'index' %}">Home</a></span> / <span><a href="{% url 'mobile' %}">Mobile</a></span> / <span><a href="{% url 'tablet' %}">Tablet</a></span> / <span><a href="{% url 'laptop' %}">Laptop</a></span></p>
 <div class="laptop">
   <div class="content">
-    <iframe src="/" style="width:100%;border:none;height:100%" />
+    <iframe src="{% url 'index' %}" style="width:100%;border:none;height:100%" />
   </div>
 </div>
 

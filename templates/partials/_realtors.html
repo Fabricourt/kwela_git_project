@@ -7,7 +7,7 @@
               <div class="w3-card-4 w3-border-theme  w3-white w3-small">
                   <img src="{{ realtor.photo.url }}" alt="Realtor"  style="width:100%; height:200px;">
                   <p></p>
-                  <h2 class="w3-xlarge">{{ realtor.name }}</h2>
+                  <h2 class="w3-xlarge">{{ realtor.first_name|capfirst }} {{ realtor.last_name|capfirst }}</h2>
                   <p>Kwela Group Limited</p>
                   <p class="w3-text-grey">  <i class="fas fa-award w3-text-red  mb-3"></i> Realtor </p>
                   

@@ -1,0 +1,62 @@
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container w3-content">
+  <h2>{{user.payment.user}} Payments Table</h2>
+
+
+  <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for names.." id="myInput" onkeyup="myFunction()">
+  <div class="w3-responsive">
+  <table class="w3-table-all w3-margin-top" id="myTable">
+    <tr>
+		<th style="width:25%;">Plot No</th>
+		<th style="width:25%;">Date</th>
+		<th style="width:25%;">Total Amount Paid</th>
+		<th style="width:25%;">Balance</th>
+	  
+	</tr>
+	{% for payment in payments %}
+    <tr>
+      <td>{{ payment.plot }}</td>
+	  <td>{{ payment.date_posted }}</td>
+	  <td>{{ payment.total_amount_paid|intcomma }}</td>
+	  <td>{{ payment.current_balance|intcomma }}</td> 
+    </tr>
+    {% endfor %}
+  
+  
+  </table>
+</div>
+ 
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>

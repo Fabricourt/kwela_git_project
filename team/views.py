@@ -39,3 +39,4 @@ def team(request, team_id):
   }
 
   return render(request, 'teams/team.html', context)
+

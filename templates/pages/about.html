@@ -3,42 +3,105 @@
 {% block title %} |About {% endblock %}
 {% block content %}
 
-
-<section>
-{% if abouts %}
- <!-- About Section -->
- 
-        <!-- Breadcrumb -->
-        <section id="bc" class="mt-3">
-                <div class="container">
-                  <nav >
-                    <ol class="breadcrumb w3-white">
-              
-                      <li class="breadcrumb-item">
-                        <a href="{% url 'photos' %}">Gallery</a>
-                      </li>
-                      <li class="breadcrumb-item">
-                          <a href="{% url 'teams' %}">Our Team</a>
-                        </li>
-                      
-                    </ol>
-                  </nav>
+    
+<section class="galeria">
+    <div class="sesgoarriba"></div>
+    <div class="imagenes">
+        <img src="https://cdn.trendir.com/wp-content/uploads/old/house-design/2015/11/12/malibu-beach-house-ocean-side.jpg" alt="" class="img-fluid">
+ <div class="enmica">
+            <h2>About us</h2>
                 </div>
-              </section>
-<div  id="about">
-
- 
-    {% for about in abouts %}
-      <div class="w3-content w3-container w3-padding-large w3-light-grey">
-          
-          <hr class="bg-success" style="width:100%">
-          <p class="w3-large">{{about.content|safe }}</p>
-      </div>
-    {% endfor %}
-
-{% endif %}
-
-      <hr>
-</div>
+            <div>
+        </div>
+    </div>
+   
+    <div class="sesgoabajo"></div>
+    
 </section>
-    {% endblock %}
+
+    
+      <section id="about" class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <h2>We Search For The Perfect Plot</h2>
+              {% if abouts %}
+              <!-- About Section -->
+              
+                   
+             <div  id="about">
+             
+              
+                 {% for about in abouts %}
+                   <div class="w3-content w3-container w3-padding-large ">
+                       
+                       <hr class="bg-success" style="width:100%">
+                       <p class="w3-large">{{about.content|safe }}</p>
+                   </div>
+                 {% endfor %}
+             
+             {% endif %}
+             
+                   <hr>
+             </div>
+            </div>
+            <div class="col-md-4">
+                {% if mvp_realtors %}
+                  {% for realtor in mvp_realtors %}
+                  <div class="card">
+                      <img class="card-img-top" style="width: 100%; height: 420px;" src="{{ realtor.photo.url }}" alt="Seller of the month">
+                      <div class="card-body">
+                        <h5 class="card-title">Seller Of The Month</h5>
+                        <h6 class="text-secondary">{{ realtor.name }}</h6>
+                        <p class="card-text">{{ realtor.description }}
+                        </p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+      </section>
+    
+      <!-- Work -->
+      <section id="work" class="bg-dark w3-padding-large text-white text-center">
+       
+        <h2 class="display-4">We Work For You</h2>
+        <hr class="w3-aqua">
+        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
+      </section>
+      
+      <!-- Team -->
+      <section id="team" class="py-5">
+          <div class="container">
+            <h2 class="text-center w3-padding w3-margin wow fadeInUp">Our Realtors </h2>
+            <div class="row text-center">
+              {% if realtors %}
+                {% for realtor in realtors %}
+                <div class="col-md-4 wow fadeInLeft" data-wow-duration="1.4s>
+                    <img class="card-img-top" style="width: 100%; height: 420px;" src="{{ realtor.photo.url }}" alt="Seller of the month">
+                    <img  style="width:200px; height:200px;" src="{{ realtor.photo.url }}" alt="" class=" w3-padding w3-border rounded-circle mb-3">
+                    <h4>{{ realtor.first_name }}, {{ realtor.first_name }}</h4>
+                    <p class="text-success">
+                      <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+                    <hr>
+                    <p>
+                      <i class="fas fa-phone w3-text-green"></i> {{ realtor.phone_1 }}<br>
+                      <span class="w3-center">Whatsapp</span><br>
+                      <i class="fab fa-whatsapp w3-text-green"></i> {{ realtor.whatsapp_phone }}
+                    
+                    </p>
+                    <p>
+                      <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="col-md-12">
+                  <p>No Realtors Available</p>
+                </div>
+              {% endif %}       
+            </div>
+          </div>
+        </section>
+      {% endblock %}

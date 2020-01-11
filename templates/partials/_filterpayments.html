@@ -1,0 +1,79 @@
+{% load humanize %}
+
+
+<div class="w3-container">
+  <h2>Filter</h2>
+  <input class="w3-input w3-border w3-padding" type="text" placeholder="Search for user, reciepts, dates, payments...." id="myInput" onkeyup="myFunction()">
+  <ul class="w3-ul " id="myUL">
+    {% for payment in payments %}
+    <li class="w3-bar w3-margin-top w3-card-4 w3-white w3-round"> 
+      
+
+              <img src="{{ payment.user.profile.image.url }}" class="w3-bar-item w3-circle w3-border w3-padding " style="width:80px; height:80px" >
+              <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">X</span>
+               <div class="w3-bar-item ">
+               <h4 class="btn w3-white w3-block">{{ payment.title }}</a></h4>
+               <span class="w3-large"><a class="mr-2" href="{% url 'user-payments' payment.user.username %}">{{ payment.user|capfirst }}</a>
+               <br>
+              
+   
+               <table class="table table-sm">
+                 <thead class="w3-border-brown w3-bottombar">
+               
+                   <tr>
+                     <th scope="col">#</th>
+                     <th scope="col" >KES</th>
+                   
+                   </tr>
+                 </thead>
+                 <tbody>
+                  
+                   <tr >
+                     <h3>Payment Made</h3>
+                     <th scope="row"> Reciept </th>
+                     <td colspan="2" >{{payment.reciept_number}}</td>
+                     
+                   </tr>
+                   <tr>
+                     <th scope="row">  Date</th>
+                     <td colspan="2" >{{payment.date_posted}}</td>
+                     
+                   </tr>
+                   <th scope="row"> Payment</th>
+                      <td class=" w3-text-red"><strong>{{payment.amount_paid|intcomma}}</strong></td>
+                   </tr>
+                   <tr class="">
+                     <th scope="row"> -</th>
+                     <td class="w3-block btn w3-hover-shadow  colspan="2"><a class="article-title" href="{% url 'payment-detail' payment.id %}" style="text-decoration:none;">View Details</a></td>
+                   </tr>
+                 </tbody>
+               </table>
+             </span>  <small class="text-muted" >{{ payment.date_posted}} {{payment.total_amount_paid|intcomma}}</small>
+               
+           
+        </div>
+   </li>
+       {% endfor %}
+    
+
+  </ul>
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+

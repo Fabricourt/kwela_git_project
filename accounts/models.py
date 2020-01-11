@@ -72,4 +72,3 @@ class Account(models.Model):
 
  
 
- 

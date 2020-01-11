@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+<div class="w3-center w3-margin-bottom">
+  <div class="w3-bar">
+    <br><br>
+    <button class="mb-3 w3-margin-top w3-padding w3-large  w3-round w3-black">Number of times you  have paid   <b class="w3-white  "> ({{ page_obj.paginator.count|apnumber }})</b></button>
+   
+    </div>
+  </div>
+
+
+  <!--Partials -->
+    <div>
+      {% include 'partials/_filterpayments.html' %}
+      
+    </div>
+
+    
+    <div class="container col-sm-9 w3-border-green w3-topbar w3-bottombar  w3-margin-top w3-panel">
+      {% if is_paginated %}
+    
+        {% if page_obj.has_previous %}
+          <a  href="?page=1">First</a>
+          <a  href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <a  href="?page={{ num }}">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <ahref="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a  href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    
+      {% endif %}
+      </div>
+{% endblock content %}

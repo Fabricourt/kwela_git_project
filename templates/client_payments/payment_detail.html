@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+<div class="container">
+    
+     <div class="w3-content  w3-margin">
+       <ol class="w3-ul w3-card-4 w3-white w3-round w3-border-black">
+
+         <li class="w3-bar ">
+           <img src="{{ payment.user.profile.image.url }}" class="w3-bar-item w3-circle w3-border w3-padding " style="width:80px; height:80px" >
+           <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">X</span>
+            <div class="w3-bar-item ">
+            <h4 class="btn w3-white w3-block">{{ object.title }}</a></h4>
+            <span class="w3-large"><a class="mr-2" href="{% url 'user-payments' payment.user.username %}">{{ payment.user|capfirst }}</a></span>
+            <p>payment for plot No: <span class="w3-large">{{object.plot}}</span></p>
+           
+            <br>
+           
+
+            <table class="table table-sm w3-right">
+              <thead >
+            
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">KES</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+              
+                
+                  
+                <tr >
+                  <h3>Payment Made</h3>
+                  <th scope="row"> Reciept Number</th>
+                  <td colspan="2" class="w3-right">{{object.reciept_number|intcomma}}</td>
+                  
+                </tr>
+                <tr>
+                  <th scope="row"> Reciept Date</th>
+                  <td colspan="2" class="w3-right">{{object.date_posted}}</td>
+                  
+                </tr>
+                <th scope="row">Reciept Payment</th>
+                   <td class="w3-right">{{object.amount_paid|intcomma}}</td>
+                </tr>
+
+                <tr class="w3-border-brown w3-topbar">
+                  <th scope="row">Buying Price</th>
+                  <td class="w3-right">{{object.buying_price|intcomma}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"> Amount Paid To Date</th>
+                  <td class="w3-right w3-text-green"><strong>{{object.total_amount_paid|intcomma}}</strong></td>
+  
+                </tr>  
+      
+                <tr>
+                  <th scope="row"> Balance</th>
+                  <td colspan="2" class="w3-right w3-text-red"><strong>{{object.current_balance|intcomma}}</strong></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+      
+
+          </div>
+         </li>
+        
+       </ol>
+     </div>
+     {% if object.author == user %}
+     <div>
+       <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+       <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+     </div>
+     {% endif %}
+     </div>
+     {% endblock content %}

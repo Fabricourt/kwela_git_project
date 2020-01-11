@@ -8,7 +8,7 @@
 
 
 <style>
- /* .profile {
+ .profile {
       font-family: tahoma;
       height: 100vh;
       background-image: url(https://source.unsplash.com/1600x900/?farming);
@@ -16,7 +16,7 @@
       background-position: center;
       display: flex;
       align-items: center;
-    } */
+    } 
     
     .our-team {
       padding: 30px 0 40px;
@@ -41,7 +41,7 @@
       width: 100%;
       height: 0;
       border-radius: 50%;
-      background-color: #2196f3;
+      background-color: #3e65ff;
       position: absolute;
       bottom: 135%;
       right: 0;
@@ -60,7 +60,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background-color: #2196f3;
+      background-color:#3e65ff;
       position: absolute;
       top: 0;
       left: 0;
@@ -83,7 +83,7 @@
     .our-team .title {
       display: block;
       font-size: 15px;
-      color: #4e5052;
+      color: #3e65ff;
       text-transform: capitalize;
     }
     
@@ -91,7 +91,7 @@
       width: 100%;
       padding: 0;
       margin: 0;
-      background-color: #2196f3;
+      background-color: #3e65ff;
       position: absolute;
       bottom: -100px;
       left: 0;
@@ -116,7 +116,7 @@
     }
     
     .our-team .social li a:hover {
-      color: #2196f3;
+      color: #3e65ff;
       background-color: #f7f5ec;
     }
     </style>
@@ -124,25 +124,23 @@
 
 <!-- Image header -->
 
-{% if teamheads %}
-{% for teamhead in teamheads %}
-<header class="w3-display-container w3-wide" id="home">
 
-  <img class="w3-image" src="{{ teamhead.team_header.url }}" alt="{{ head.title }}" style="width:100%; height:70vh">
 
-  <div class="w3-display-middle w3-padding-large w3-center w3-black w3-opacity-min">
-    <h1 class="w3-text-white">{{ teamhead.logo_short_name }}</h1>
-    <h1 class="w3-jumbo w3-text-white "><b>
-      {{ teamhead.motivational_statement }}</b></h1>
-    
-  </div>
-</header>
-{% endfor %}
-{% endif %}
  
-<section class="w3-light-grey w3-padding-64">
-  
-
+<section class=" w3-padding-64">
+  <div class="w3-jumbotron w3-win8-cobalt w3-center w3-panel w3-padding-large".>
+  <h1 class=" w3-margin-top">Our Team</h1>
+</div>
+  {% if teamheads %}
+  {% for teamhead in teamheads %}
+  <div class="w3-center w3-padding">
+    <h1 class="w3-text-black">{{ teamhead.logo_short_name }}</h1>
+    <h1 class="w3-jumbo w3-text-black "><b>
+      {{ teamhead.motivational_statement }}</b></h1>
+  </div>
+  {% endfor %}
+  {% endif %}
+  <br>
     <div class="container">
         <div class="row">
           {% for team in teams %}

@@ -27,7 +27,10 @@
                           <div class="col-md-12">
                               
                             
-                            <p class="lead w3-xxlarge">{{ user.email }}
+                            <p class="lead w3-xxlarge">{{ user.email }} 
+                              <br>
+                         {{user.profile.phone}}
+                         
                             <hr class="w3-amber" style="width:100%">
                             Manage your Profile account</p>
                           </div>
@@ -41,9 +44,11 @@
                   <img class="rounded-circle account-img w3-border w3-card-4 w3-right" src="{{ user.profile.image.url }}" style="width:100px; height:100px;">
                   {{ p_form|crispy }}
               </fieldset>
+
               <div class="form-group">
                   <button class="btn btn-outline-warning" type="submit">Update</button>
               </div>
+             
           </form>
         </div>
       </div>

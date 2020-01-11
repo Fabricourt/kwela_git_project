@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = RichTextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
     photo_blog = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True, blank=True)
     is_mvp = models.BooleanField(default=False)
     is_published = models.BooleanField(default=True)

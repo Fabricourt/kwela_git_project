@@ -5,6 +5,18 @@ from contact.models import Sema
 from django.contrib.admin.views.decorators import staff_member_required
 from blog.models import Post
 from pages.models import Background_image
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+from client_payments.models import Payment
+
 
 
 def register(request):
@@ -66,7 +78,7 @@ def login(request):
     if user is not None:
       auth.login(request, user)
       messages.success(request, 'You are now logged in')
-      return redirect('profile')
+      return redirect('dashboard')
     else:
       messages.error(request, 'Invalid credentials')
       return redirect('accounts/login')
@@ -88,13 +100,29 @@ def dashboard(request):
     background_images = Background_image.objects.order_by('link_date').filter(is_published=True)[:1]
 
     
+
     context = {
     'background_images':'background_images',
     'contact': user_contact,
     'posts':posts,
+    
     }
 
     return render(request, 'accounts/dashboard.html', context)
     
 
 
+
+class UserPaymentListView(ListView):
+    model = Payment
+    template_name = 'accounts/dashboard.html'  # <app>/<model>_<viewtype>.html
+    context_object_name = 'payments'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Payment.objects.filter(user=user).order_by('-date_posted')
+
+
+class PaymentDetailView(DetailView):
+    model = Payment

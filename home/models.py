@@ -13,6 +13,15 @@ class Topbar(models.Model):
     def __str__(self):
         return self.title
         
+class Background_image(models.Model):
+    title = models.CharField(max_length=100)
+    models.ImageField(upload_to='background/', blank=True, null=True)
+    reload = models.DateTimeField(default=timezone.now)
+    is_published = models.BooleanField(default=True)
+    def __str__(self):
+        return self.title
+
+
 class header_carousel_pics(models.Model):
     title = models.CharField(max_length=100)
     home_header = models.ImageField(upload_to='home_header/', blank=True, null=True)

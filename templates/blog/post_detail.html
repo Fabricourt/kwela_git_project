@@ -23,11 +23,32 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 </head>
+<section class="galeria">
+  <div class="sesgoarriba"></div>
+  <div class="imagenes">
+      <img src="{% static 'img/malibu.jpg' %}" alt="" class="img-fluid">
+<div class="enmica">
+          <h2>GETMORE Going Beyond Your Limit</h2>
+          
+          <div></div>
+      </div>
+  </div>
+ 
+  <div class="sesgoabajo">
+
+
+    
+  </div>
+  
+</section>
 
 <div id="fb-root w3-card-4 w3-white"></div>
 <section>
-  <div class="w3-padding-64 w3-margin-bottom w3-center">
-    <h1 class="w3-card-4 w3-content w3-padding w3-border w3-xxlarge w3-amber w3-opacity-min">{{ post.title }}</h1>
+  {% if object.author == user %}
+  
+  <div class="w3-padding-64 w3-margin-bottom w3-center front">
+    <br><br>
+    <h1 class="w3-card-4 w3-content w3-padding w3-border w3-xxlarge">{{ post.title }}</h1>
   </div>
   <div class="w3-row-padding w3-content" style="max-width:1400px">
   <div class="w3-twothird ">
@@ -61,6 +82,9 @@
       <div class="fb-comments  w3-text-white w3-hover-shadow " data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="12"></div>
     </div>
   </div>
+  {% else %}
+  <p>Your not supposed to view this file make sure you</p>
+  {% endif %} 
 </section>
 
 

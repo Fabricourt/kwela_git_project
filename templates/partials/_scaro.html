@@ -1,0 +1,269 @@
+{% load static %}
+{% include 'partials/_parallaxcss.html' %}
+<header id="home">
+
+       
+<img class="w3-display-container"src="http://localhost:8000/media/links/2020/01/06/malibu_O7JPQ39.jpg" alt="faq" style="width:100%; height:110vh">
+ <div class="overlay"></div>
+  
+  
+
+        <div class="tophead w3-display-topleft" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7 ">
+                        <h1 class="title-main wow fadeInLeft" data-wow-duration="2.0s">Prime Realestate</h1>
+                        <h3 class="subtitle-main wow fadeInUp" data-wow-duration="1.3s">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus.</h3>
+						<div class="top-btn-block wow fadeInUp data-wow-duration="2.5s">
+							<a href="javascript:void(0)" class="btn-explore ">Explore</a>
+							<a href="javascript:void(0)" class="btn-account ">We have the best to offer</a>
+						</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="sesgoabajo"></div>
+    </header>
+    <main>
+        <section class="overview-wrap w3-theme-l5  " id="overview">
+            <div class="container">
+                <div class="contenedor ">
+
+                    <h2 class="title-overview   wow fadeInUp">Premium Plot Listings</h2>
+                    <p class="subtitle-overview wow fadeInUp">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus</p>
+                    <div class="">
+                 
+                        <div id="listings" class="py-5">
+                            <div class="container">
+                        
+                                <div class="row">
+
+                                    {% if mvp_listings %}
+                                    
+                                    {% for listing in mvp_listings %}
+                                   
+                                            <!--overlay-->
+                                            {% include 'partials/_listings.html' %}
+                                    
+                                        {% endfor %}
+                                        {% else %}
+                                            <div class="col-md-12 w3-center">
+                                            
+                                            <p>No Premium listings Available</p>
+                                            </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        
+                      </div>
+                  
+                  <a href="{% url 'listings' %}" style="text-decoration: none;"><h2 class="w3-center col-sm  w3-xlarge wow fadeInUp w3-hover-text-green w3-block w3-padding w3-margin-top ">View More Plot Listings Here</h2></a>
+                </div>
+            </div>
+        </section>
+       
+        
+      <section class="galeria">
+          <div class="sesgoarriba"></div>
+          <div class="imagenes">
+              <img src="{% static 'img/malibu.jpg' %}" alt="" class="img-fluid">
+       <div class="enmica">
+                  <h2>LanDPlanet Going Beyond Your Limit</h2>
+                  
+                  <div></div>
+              </div>
+          </div>
+         
+          <div class="sesgoabajo">
+
+
+            
+          </div>
+          
+      </section>
+		
+		<!--Our Team-->
+        <section class="our-team w3-theme-l5" id="team">
+            <div class="container">
+                <h2 class="title-our-team wow fadeInUp">Our Team</h2>
+                <p class="subtitle-our-team wow fadeInUp">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus</p>
+
+                <ul class="row">
+                
+                    {% for team in teams %}
+                    <li class="col-12 col-md-6 col-lg-3 wow fadeInLeft" data-wow-duration="1.4s">
+                        <div class="mycard-block equal-hight">
+                            <figure><img src="{{ team.team.profile.image.url }}" class="img-fluid" alt=""></figure>
+                            <h5><a href="javascript:void(0)">{{ team.team.username }} <br> {{ team.email }}</a></h5>
+                            <p>{{ team.job_title }}</p>
+                            <ul class="follow-us clearfix">
+                                <li><a href="{{ team.facebook }}" class="btn btn-circle my-social-btn fb"><i class="fa fa-facebook " ></i></a></li>
+                                <li><a href="{{ team.twitter }}" class="btn btn-circle my-social-btn twitter"><i class="fa fa-twitter " ></i></a></li>
+                                <li><a href="{{ team.linkedin }}" class="btn btn-circle my-social-btn google"><i class="fa fa-linkedin " ></i></a></li>
+                                
+
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                 
+                </ul>
+            </div>
+        </section>
+
+        <section class="testimonials-wrap" id="testimonials">
+            <div class="sesgoarriba"></div>
+            <div class="container">
+                <div class="contenedor">
+                    <h2 class="title-testimonials wow fadeInUp">Happy Clients</h2>
+                    <h3 class="subtitle-testimonials wow fadeInUp">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus</h3>
+
+                    <!-- banner starts -->
+
+                    <div class="slide-one">
+                        <div id="demo" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                              <ul class="carousel-indicators">
+                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                <li data-target="#demo" data-slide-to="1"></li>
+                                <li data-target="#demo" data-slide-to="2"></li>
+                              </ul>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active ">
+                                    <div class="banner-slide">
+                                        <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="img-fluid">
+                                        <h5>Lorem Ipsum -</h5>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item ">
+                                    <div class="banner-slide">
+                                        <img src="https://images.pexels.com/photos/903661/pexels-photo-903661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid">
+                                        <h5>Lorem Ipsum -</h5>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus.
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="banner-slide">
+                                        <img src="https://images.pexels.com/photos/713520/pexels-photo-713520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid">
+                                        <h5>Lorem Ipsum -</h5>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev " href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <div class="sesgoabajo"></div>
+        </section>
+
+        <!--latest post-->
+        <section class="blog-wrap" id="blog">            
+            <div class="container-fluid">
+                 <h2 class="title-blog wow fadeInUp">Latest Posts</h2>
+                    <p class="subtitle-blog wow fadeInUp">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo leo ornare nec vulputate tempus velit nam id purus tellus hendrerit mi dapibus</p>
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="card">
+                            <figure class="text-center">
+                                <img src="{{post.photo_blog.url}}" class="img-fluid">
+                            </figure>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <p class="card-text">{{ post.content|slice:"100"|safe }}...</p>
+                                <a href="#" class="">Read more</a>
+                              </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                   
+                </div>
+            </div>
+        </section>
+
+        <section class="cta contact-wrap" id="contact">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9  mx-auto  wow zoomIn">
+                        <div class="cta-inner text-center rounded">
+                            <h2 class="section-heading mb-4">
+    							<a href="{% url 'contact' %}">
+                                <span class="section-heading-upper">Get in Touch With Us</span>
+                                </a>
+                             </h2>
+                            <div class="contactForm w3-hide">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Name" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mobile" class="form-control" placeholder="Mobile" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="4" cols="50" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="submit" name="submit" value="Send" class="btn-login">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+  
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+            <script>
+              new WOW().init();
+              </script>
+    <script>
+      
+        $(window).on("scroll", function() {
+            if ($(this).scrollTop() > 10) {
+                $("nav.navbar").addClass("mybg-dark");
+                $("nav.navbar").addClass("navbar-shrink");
+
+            } else {
+                $("nav.navbar").removeClass("mybg-dark");
+                $("nav.navbar").removeClass("navbar-shrink");
+
+            }
+
+        });
+
+        
+    </script>
