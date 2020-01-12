@@ -1,0 +1,37 @@
+{% load static %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none;}
+
+</style>
+
+
+
+
+
+<div class=" w3-section w3-metro-darken" style="max-width:100% ">
+  <img class="mySlides w3-animate-fading" src="https://images.unsplash.com/photo-1526593676484-54adc4701fee?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
+  <img class="mySlides w3-animate-fading" src="https://cdn.pixabay.com/photo/2017/10/20/12/37/surveying-equipment-2871066_960_720.jpg" style="width:100%">
+  <img class="mySlides w3-animate-fading" src="https://cdn.pixabay.com/photo/2019/05/20/14/18/construction-4216751_960_720.jpg" style="width:100%">
+
+
+
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 8000); // Change image every 2 seconds
+}
+</script>
+

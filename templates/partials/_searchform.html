@@ -1,5 +1,4 @@
 {% load static %}
-
 <section class ="w3-margin-bottom">
 
         <div class="text-center ">
@@ -14,12 +13,12 @@
                          
                         <div class="col-sm  mb-6 w3-margin-top">
                           <label class="sr-only">Keywords</label>
-                          <input type="text" name="keywords" class="form-control w3-border-theme" placeholder="Keyword (search)">
+                          <input type="text" name="keywords" class="form-control w3-border-red" placeholder="Keyword (search)">
                         </div>
                 
                     <div class="col-sm mb-6 w3-margin-top">
                         <label class="sr-only">Location</label>
-                        <select name="town" class="form-control w3-border-theme">
+                        <select name="town" class="form-control w3-border-red">
                           <option selected="true" disabled="disabled">Name for sarrounding area</option>
                           {% for key,value in location_choices.items %}
                             <option value="{{ key }}">{{ value }}</option>
@@ -32,7 +31,7 @@
                         <div class="form-row w3-margin-top"> 
                           <div class="col-sm mb-3 ">
                             <label class="sr-only">Plot size</label>
-                            <select name="plot_size" class="form-control w3-border-theme">
+                            <select name="plot_size" class="form-control w3-border-red">
                               <option selected="true" disabled="disabled">Plot Sizes (All)</option>
                               {% for key,value in plot_size_choices.items %}
                                 <option value="{{ key }}">{{ value }}</option>
@@ -42,7 +41,7 @@
 
                             <div class="col-sm mb-3">
                           <label class="sr-only">Town</label>
-                          <select name="town" class="form-control w3-border-theme">
+                          <select name="town" class="form-control w3-border-red">
                             <option selected="true" disabled="disabled">Town (All)</option>
                             {% for key,value in town_choices.items %}
                               <option value="{{ key }}">{{ value }}</option>
@@ -50,7 +49,7 @@
                             </select>
                           </div>
                           <div class="col-sm mb-3">
-                            <select name="price" class="form-control w3-border-theme" id="type">
+                            <select name="price" class="form-control w3-border-red" id="type">
                               <option selected="true" disabled="disabled">Max Price (Any)</option>
                               {% for key,value in price_choices.items %}
                               <option value="{{ key }}">{{ value }}</option>
@@ -59,7 +58,7 @@
                           </div>
                         </div>
                    
-                        <button class="btn w3-theme w3-text-white w3-border-blue   btn-block mt-4 w3-wide w3-large" type="submit"><b>Submit</b></button>
+                        <button class="btn  w3-text-red w3-border-red w3-hover-text-white w3-hover-red  btn-block mt-4 w3-wide w3-large" type="submit"><b>Submit</b></button>
                       </form>
               </div>
        

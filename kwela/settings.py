@@ -92,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 
             ],
             'loaders': [
@@ -266,7 +267,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 JET_SIDE_MENU_COMPACT = False
 
-JET_DEFAULT_THEME = 'green'
+JET_DEFAULT_THEME = 'default'
 
 JET_THEMES = [
     {

@@ -1,14 +1,16 @@
 {% load static %}
 
-  <nav class="navbar fixed-top w3-win8-cobalt navbar-expand-lg navbar-dark">
+  <nav class="navbar fixed-top w3-topbar w3-border w3-border-red w3-metro-darken w3-opacity-min navbar-expand-lg navbar-dark">
       <div class="container-fluid">
       <span>
      <a class="navbar-brand" href="{% url 'index' %}">
-      <img style="width:40px; height:40px" src="{% static 'img/android-icon-48x48.png' %}" class="w3-circle" /></span> 
+      <img style="width:48px; height:48px" src="{% static 'img/favicon.jpg' %}" class="w3-spin w3-circle" /></span> 
  
-              <span>LanDPlanet<span>
+                                
+      <h2 class="title-main w3-hide-small w3-wide w3-xxlarge  w3-red w3-tag w3-opacity-min wow fadeIn" data-wow-duration="15.0s"><span class="w3-red w3-border-red w3-border">LAND</span><span class="w3-black w3-border-red w3-border ">NET</span></h2>
+      <h2 class="title-main w3-hide-large  w3-hide-medium w3-wide w3-large w3-red w3-tag w3-opacity-min wow fadeIn" data-wow-duration="15.0s"><span class="w3-red w3-border-red w3-border">LAND</span> <span class="w3-black w3-border-red w3-border ">NET</span></h2>
           </a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler navbar-toggler-right w3-text-red" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="fa fa-bars mfa-white"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -31,7 +33,7 @@
                         class="nav-item mr-3"
                       {% endif %}
                     >
-                      <a class="nav-link " href="{% url 'listings' %}">All Plots </a>
+                      <a class="nav-link " href="{% url 'listings' %}">Plots </a>
                     </li>
                  
             

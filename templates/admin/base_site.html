@@ -1,16 +1,27 @@
 {% extends "admin_interface:admin/base_site.html" %}
 {% load static %}
 
+{% block extrahead %}
+<link rel="shortcut icon" style="width:32; height:32;" href="{% static 'img/favicon.png'  %}" class="w3-circle" />
+{% endblock %}
+
+<div class="bodyx"></div>
+
+
+</h1>
 {% block branding %}
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
 
-  <h1 id="head"  >
-    <span><img style="width:32px; height:32px" src="{% static 'img/android-icon-48x48.png' %}" class="w3-circle " /></span> 
-      <span class="w3-text-white">LanDPlanet</span> Admin
+  <h1 id="head" class="w3-right" >
+    <span><img style="width:32px; height:32px" src="{% static 'img/favicon.png' %}" class="w3-circle " /></span> 
+   <span class="w3-text-khaki">Admin</span> 
   </h1>
+  
+ 
+  
 {% endblock %}
 {% block extrastyle %}
-
+{% include 'partials/index/_pulse.html' %}
 <link rel="stylesheet" href="{% static 'css/admin.css' %}">
 {% endblock %}

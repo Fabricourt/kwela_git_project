@@ -7,25 +7,23 @@
        
             <!-- Listing 1 -->
             <div class="col-md-6 col-lg-4 mb-4 ">
-              <div class="w3-border w3-hover-shadow  w3-border-green card listing-preview">
+              <div class="w3-border w3-hover-border-red
+                w3-border-black card listing-preview wow fadeInLeft" data-wow-duration="4.5s">
                 <img class="card-img-top sudo" src="{{ listing.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge  w3-green text-white">Kes{{ listing.price | intcomma }}</span>
+                    <span class="badge  w3-metro-darken w3-border-red text-white">Kes{{ listing.price | intcomma }}</span>
   
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h5 class="text-primary">{{ listing.title }}</h5>
-                   <a href="#">
-                 
-                  
+                    <h5 class="text-dark ">{{ listing.title }}</h5>
                     <p>
                       <i class="fas fa-map-marker w3-text-green"></i> Closest Town {{ listing.town }} 
                     </p>
                   </div>
-                  <hr class="w3-aqua">
+                  <hr class="w3-metro-red ">
 
                   <div class="row py-2 text-secondary">
                     <div class="col-sm">
@@ -39,7 +37,7 @@
                         <span class="text-dark">Posted {{ listing.list_date | timesince }}</span></div>
                     </div>
                     <div class="col-sm-12">
-                  <a href="{% url 'listing' listing.id %}" class="btn w3-white w3-border-green  w3-hover-green btn-block">More Info</a>
+                  <a href="{% url 'listing' listing.id %}" class="btn w3-white w3-border-black w3-hover-border-red w3-text-red w3-hover-text-green btn-block">More Info</a>
                   </div>
                 </div>
               </div>
