@@ -26,7 +26,7 @@ django-registration==3.0
 django-wysiwyg==0.8.0
 feedparser==5.2.1
 google-api-python-client==1.4.1
-httplib2==0.15.0
+httplib2==0.18.0
 idna==2.8
 kombu==3.0.37
 mccabe==0.6.1
