@@ -22,7 +22,7 @@ django-google-analytics-app==4.4.0
 django-jet==1.0.8
 django-js-asset==1.1.0
 django-mathfilters==0.4.0
-django-registration==3.0
+django-registration==3.1.2
 django-wysiwyg==0.8.0
 feedparser==5.2.1
 google-api-python-client==1.4.1
